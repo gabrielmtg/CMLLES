@@ -33,3 +33,4 @@ bin/
 */bin/
 
 datasets/*
+*.train
