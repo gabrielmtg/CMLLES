@@ -1,20 +1,16 @@
-# Iris MLP — NCNN
-#
-# Pré-requisito: executar 'python3 train_iris.py' para gerar model/iris_mlp.param e .bin
-#
-# Ajuste NCNN_DIR para apontar para a instalação do NCNN compilado.
+NCNN_DIR ?= ../../ncnn/build/install
 
-NCNN_DIR ?= ../../ncnn/build
+#CC       = g++
+#CFLAGS   = -O2 -Wall -Wextra -I$(NCNN_DIR)/include/ncnn -fopenmp
+#LDFLAGS  = -L$(NCNN_DIR)/lib -lncnn -fopenmp -lstdc++ -lm -Wl,-rpath,$(NCNN_DIR)/lib
 
 CXX      = g++
-CXXFLAGS = -O2 -Wall -Wextra -std=c++17 \
-           -I$(NCNN_DIR)/install/include/ncnn \
-           -I$(NCNN_DIR)/install/include
-LDFLAGS  = -L$(NCNN_DIR)/install/lib -lncnn -lpthread -lm
+CXXFLAGS = -O2 -Wall -Wextra -I$(NCNN_DIR)/include/ncnn -fopenmp
+LDFLAGS  = -L$(NCNN_DIR)/lib -lncnn -fopenmp -lstdc++ -lm -Wl,-rpath,$(NCNN_DIR)/lib
 
 .PHONY: all clean run train
 
-all: iris_mlp
+all: train iris_mlp run
 
 train:
 	python3 train_iris.py

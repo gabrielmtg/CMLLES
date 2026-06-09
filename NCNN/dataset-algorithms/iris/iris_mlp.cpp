@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cmath>
 
-#include "net.h"
+#include <net.h>
 
 #define NUM_FEATURES  4
 #define NUM_CLASSES   3

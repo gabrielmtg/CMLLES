@@ -1,13 +1,13 @@
 import os
-import subprocess
-import sys
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import pnnx
 
 DATASET_PATH = "../../../datasets/iris/iris.data"
 MODEL_DIR    = "model"
+MODEL_PATH   = os.path.join(MODEL_DIR, "iris_mlp.onnx")
 HIDDEN_SIZE  = 16
 EPOCHS       = 500
 LR           = 0.01
@@ -34,7 +34,6 @@ def load_iris(path):
     X = np.array(features, dtype=np.float32)
     y = np.array(labels, dtype=np.int64)
 
-    # Normalização min-max [0, 1]
     xmin = X.min(axis=0)
     xmax = X.max(axis=0)
     rng = xmax - xmin
@@ -45,11 +44,11 @@ def load_iris(path):
 
 
 class IrisMLP(nn.Module):
-    def __init__(self):
+    def __init__(self, input_size=4, hidden_size=HIDDEN_SIZE, output_size=3):
         super().__init__()
-        self.fc1 = nn.Linear(4, HIDDEN_SIZE)
+        self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(HIDDEN_SIZE, 3)
+        self.fc2 = nn.Linear(hidden_size, output_size)
 
     def forward(self, x):
         x = self.relu(self.fc1(x))
@@ -62,7 +61,7 @@ def main():
     np.random.seed(SEED)
 
     print("=" * 50)
-    print("  Iris MLP — Treinamento PyTorch → NCNN")
+    print("  Iris MLP — Treinamento PyTorch → ONNX")
     print("=" * 50)
 
     X, y = load_iris(DATASET_PATH)
@@ -95,74 +94,10 @@ def main():
     print(f"\nAcurácia final: {acc:.1f}%")
 
     os.makedirs(MODEL_DIR, exist_ok=True)
-    onnx_path = os.path.join(MODEL_DIR, "iris_mlp.onnx")
     dummy = torch.randn(1, 4)
-    torch.onnx.export(
-        model, dummy, onnx_path,
-        input_names=["input"],
-        output_names=["output"],
-        opset_version=11
-    )
-    print(f"\nONNX exportado: {onnx_path}")
-
-    param_path = os.path.join(MODEL_DIR, "iris_mlp.param")
-    bin_path   = os.path.join(MODEL_DIR, "iris_mlp.bin")
-
-    for tool in ["onnx2ncnn", "pnnx"]:
-        try:
-            if tool == "onnx2ncnn":
-                subprocess.run(
-                    [tool, onnx_path, param_path, bin_path],
-                    check=True, capture_output=True
-                )
-            else:
-                subprocess.run(
-                    [tool, onnx_path, f"inputshape=[1,4]"],
-                    check=True, capture_output=True, cwd=MODEL_DIR
-                )
-            print(f"NCNN convertido com {tool}: {param_path}, {bin_path}")
-            return
-        except (FileNotFoundError, subprocess.CalledProcessError):
-            continue
-
-    print("\nAVISO: onnx2ncnn/pnnx não encontrados. Gerando .param/.bin manualmente...")
-    generate_ncnn_manual(model, param_path, bin_path)
-
-
-def generate_ncnn_manual(model, param_path, bin_path):
-    import struct
-
-    fc1_w = model.fc1.weight.data.numpy()   # [16, 4]
-    fc1_b = model.fc1.bias.data.numpy()     # [16]
-    fc2_w = model.fc2.weight.data.numpy()   # [3, 16]
-    fc2_b = model.fc2.bias.data.numpy()     # [3]
-
-    with open(param_path, "w") as f:
-        f.write("7767517\n")
-        f.write("5 5\n")
-        f.write("Input            input    0 1 input\n")
-        f.write("InnerProduct     fc1      1 1 input fc1_out 0=16 1=1 2=64\n")
-        f.write("ReLU             relu1    1 1 fc1_out relu1_out\n")
-        f.write("InnerProduct     fc2      1 1 relu1_out fc2_out 0=3 1=1 2=48\n")
-        f.write("Softmax          softmax  1 1 fc2_out output 0=0\n")
-
-    with open(bin_path, "wb") as f:
-        f.write(struct.pack('I', 0))
-        for row in fc1_w:
-            for v in row:
-                f.write(struct.pack('f', float(v)))
-        for v in fc1_b:
-            f.write(struct.pack('f', float(v)))
-
-        f.write(struct.pack('I', 0))
-        for row in fc2_w:
-            for v in row:
-                f.write(struct.pack('f', float(v)))
-        for v in fc2_b:
-            f.write(struct.pack('f', float(v)))
-
-    print(f"  {param_path} ({os.path.getsize(param_path)} bytes)")
-    print(f"  {bin_path} ({os.path.getsize(bin_path)} bytes)")
+    pnnx.export(model, "model/iris_model.pt", dummy)
+    print(f"Modelo exportado: {MODEL_PATH}")
+    print(f"Tamanho: {os.path.getsize(MODEL_PATH)} bytes")
 
 
 if __name__ == "__main__":
