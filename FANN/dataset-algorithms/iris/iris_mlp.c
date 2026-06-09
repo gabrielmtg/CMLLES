@@ -13,8 +13,8 @@
 #define LEARNING_RATE   0.01f
 
 #define DATASET_PATH    "../../../datasets/iris/iris.data"
-#define TRAIN_DATA      "iris_fann.train"
-#define MODEL_OUT       "iris_model.net"
+#define TRAIN_DATA      "model/iris_fann.train"
+#define MODEL_OUT       "model/iris_model.net"
 #define MAX_SAMPLES     200
 
 static const char *class_names[NUM_CLASSES] = {

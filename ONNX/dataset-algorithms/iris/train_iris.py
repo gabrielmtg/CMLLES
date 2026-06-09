@@ -98,8 +98,9 @@ def main():
         model, dummy, MODEL_PATH,
         input_names=["input"],
         output_names=["output"],
-        dynamic_axes={"input": {0: "batch"}, "output": {0: "batch"}},
-        opset_version=11
+        external_data=False,
+        dynamo=False,
+        opset_version=18
     )
     print(f"Modelo exportado: {MODEL_PATH}")
     print(f"Tamanho: {os.path.getsize(MODEL_PATH)} bytes")

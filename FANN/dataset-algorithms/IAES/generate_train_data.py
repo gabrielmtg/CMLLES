@@ -92,4 +92,4 @@ if __name__ == "__main__":
             "../../../datasets/IAES-dataset/3-cores"
             ]
 
-    generate_fann_from_folders(folders=pastas_dataset, output_path="IAES_fann.train", window_size=10)
+    generate_fann_from_folders(folders=pastas_dataset, output_path="model/IAES_fann.train", window_size=10)

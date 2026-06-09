@@ -13,8 +13,8 @@
 #define WINDOW_SIZE 10
 #define N_SIGNALS 4
 
-#define TRAIN_DATA "IAES_fann.train"
-#define MODEL_OUT "IAES_model.net"
+#define TRAIN_DATA "model/IAES_fann.train"
+#define MODEL_OUT "model/IAES_model.net"
 
 static double time_ns(void) {
     struct timespec ts;
@@ -64,7 +64,7 @@ int main() {
     const unsigned int num_layers = NUM_LAYERS;
     const float learning_rate = 0.0001f;
 
-    const unsigned int max_epochs = 500;
+    const unsigned int max_epochs = 200;
     const unsigned int epochs_between_reports = 10;
     const float desired_error = 0.001f;
 
