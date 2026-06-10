@@ -7,14 +7,13 @@ import pnnx
 
 DATASET_PATH = "../../../datasets/iris/iris.data"
 MODEL_DIR    = "model"
-MODEL_PATH   = os.path.join(MODEL_DIR, "iris_mlp.onnx")
+MODEL_PT_PATH = os.path.join(MODEL_DIR, "iris_mlp.pt") # Arquivo base para o PNNX
 HIDDEN_SIZE  = 16
 EPOCHS       = 500
 LR           = 0.01
 SEED         = 42
 
 CLASS_NAMES = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
-
 
 def load_iris(path):
     features = []
@@ -42,7 +41,6 @@ def load_iris(path):
 
     return X, y
 
-
 class IrisMLP(nn.Module):
     def __init__(self, input_size=4, hidden_size=HIDDEN_SIZE, output_size=3):
         super().__init__()
@@ -55,13 +53,12 @@ class IrisMLP(nn.Module):
         x = self.fc2(x)
         return x
 
-
 def main():
     torch.manual_seed(SEED)
     np.random.seed(SEED)
 
     print("=" * 50)
-    print("  Iris MLP — Treinamento PyTorch → ONNX")
+    print("  Iris MLP — Treinamento PyTorch → NCNN (PNNX)")
     print("=" * 50)
 
     X, y = load_iris(DATASET_PATH)
@@ -94,11 +91,12 @@ def main():
     print(f"\nAcurácia final: {acc:.1f}%")
 
     os.makedirs(MODEL_DIR, exist_ok=True)
+    
     dummy = torch.randn(1, 4)
-    pnnx.export(model, "model/iris_model.pt", dummy)
-    print(f"Modelo exportado: {MODEL_PATH}")
-    print(f"Tamanho: {os.path.getsize(MODEL_PATH)} bytes")
-
+    
+    print("\nExportando modelo via PNNX...")
+    pnnx.export(model, MODEL_PT_PATH, dummy)
+    print(f"Sucesso! Arquivos 'iris_mlp.ncnn.param' e 'iris_mlp.ncnn.bin' gerados em {MODEL_DIR}/.")
 
 if __name__ == "__main__":
     main()

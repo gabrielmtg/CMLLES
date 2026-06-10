@@ -1,39 +1,23 @@
-# Iris MLP — LiteRT (TFLite Micro)
-#
-# Pré-requisito: executar 'python3 train_iris.py' para gerar model/iris_model_data.h
-#
-# Ajuste TFLM_DIR para apontar para o repositório tflite-micro.
-# O build system do TFLite Micro é complexo; este Makefile assume
-# que a lib foi compilada previamente.
+TF_SRC_DIR ?= ../../tensorflow
 
-TFLM_DIR  = ../../tflite-micro
-TFLM_INC  = $(TFLM_DIR) \
-             $(TFLM_DIR)/tensorflow/lite/micro \
-             $(TFLM_DIR)/third_party/flatbuffers/include \
-             $(TFLM_DIR)/third_party/gemmlowp \
-             $(TFLM_DIR)/third_party/ruy
+LITERT_DIR ?= $(TF_SRC_DIR)/tflite_build
 
-CXX       = g++
-CXXFLAGS  = -O2 -Wall -Wextra -std=c++17 \
-            $(addprefix -I, $(TFLM_INC)) \
-            -I.
-LDFLAGS   = -lm -lpthread
-
-# Nota: a compilação completa do TFLite Micro requer o build system
-# do projeto (Bazel ou CMake). Este Makefile é um template.
-# Para compilar, siga as instruções em:
-# https://github.com/tensorflow/tflite-micro/tree/main/tensorflow/lite/micro
+CC       = gcc
+CFLAGS   = -O2 -Wall -Wextra -I$(TF_SRC_DIR) -I$(LITERT_DIR)/include
+LDFLAGS  = -L$(LITERT_DIR) -ltensorflowlite_c -lm -Wl,-rpath,$(LITERT_DIR)
 
 .PHONY: all clean run train
 
-all:
-	@echo "NOTA: TFLite Micro requer build via Bazel ou CMake do projeto."
-	@echo "Este Makefile é um template. Use:"
-	@echo "  1. python3 train_iris.py  (gerar modelo)"
-	@echo "  2. Integrar iris_mlp.cpp no build do tflite-micro"
+all: train iris_mlp run
 
 train:
 	python3 train_iris.py
 
+iris_mlp: iris_mlp.c
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
+
+run: iris_mlp
+	./iris_mlp
+
 clean:
-	rm -f iris_mlp
+	rm -f iris_mlp model/iris_mlp.tflite

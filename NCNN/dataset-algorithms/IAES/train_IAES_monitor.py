@@ -57,8 +57,11 @@ def train_and_export(folders, window_size=10):
     with open("model/iaes_test_data.txt", 'w') as f:
         f.write(f"{len(final_df)} 12 1\n")
     
+    chunk_size = 100000
     with open("model/iaes_test_data.txt", 'a') as f:
-        np.savetxt(f, final_df.values, fmt="%.6f", delimiter=" ")
+        for i in range(0, len(final_df), chunk_size):
+            chunk = final_df.iloc[i:i+chunk_size].values
+            np.savetxt(f, chunk, fmt="%.6f", delimiter=" ")
 
     X = torch.tensor(final_df[feature_cols].values, dtype=torch.float32)
     y = torch.tensor(final_df['target'].values, dtype=torch.float32).view(-1, 1)

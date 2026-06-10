@@ -19,16 +19,27 @@ int main() {
     printf("========================================\n\n");
 
     const OrtApi* g_ort = OrtGetApiBase()->GetApi(ORT_API_VERSION);
+
+#define ORT_ABORT_ON_ERROR(expr) do { \
+    OrtStatus* onnx_status = (expr); \
+    if (onnx_status != NULL) { \
+        const char* msg = g_ort->GetErrorMessage(onnx_status); \
+        fprintf(stderr, "ONNX Runtime Error: %s\n", msg); \
+        g_ort->ReleaseStatus(onnx_status); \
+        exit(1); \
+    } \
+} while(0)
+
     OrtEnv* env;
-    g_ort->CreateEnv(ORT_LOGGING_LEVEL_WARNING, "IAES_ONNX", &env);
+    ORT_ABORT_ON_ERROR(g_ort->CreateEnv(ORT_LOGGING_LEVEL_WARNING, "IAES_ONNX", &env));
 
     OrtSessionOptions* session_options;
-    g_ort->CreateSessionOptions(&session_options);
-    g_ort->SetIntraOpNumThreads(session_options, 1);
-    g_ort->SetSessionGraphOptimizationLevel(session_options, ORT_ENABLE_ALL);
+    ORT_ABORT_ON_ERROR(g_ort->CreateSessionOptions(&session_options));
+    ORT_ABORT_ON_ERROR(g_ort->SetIntraOpNumThreads(session_options, 1));
+    ORT_ABORT_ON_ERROR(g_ort->SetSessionGraphOptimizationLevel(session_options, ORT_ENABLE_ALL));
 
-    OrtSession* session;
-    g_ort->CreateSession(env, ONNX_MODEL, session_options, &session);
+    OrtSession* session = NULL;
+    ORT_ABORT_ON_ERROR(g_ort->CreateSession(env, ONNX_MODEL, session_options, &session));
 
     FILE *fin = fopen(TEST_DATA, "r");
     if (!fin) {
@@ -40,10 +51,11 @@ int main() {
     fscanf(fin, "%d %d %d", &num_samples, &num_inputs, &num_outputs);
 
     float** x_data = malloc(num_samples * sizeof(float*));
+    float* x_data_flat = (float*)malloc(num_samples * INPUTS * sizeof(float));
     float* y_data = malloc(num_samples * sizeof(float));
 
     for (int i = 0; i < num_samples; i++) {
-        x_data[i] = malloc(INPUTS * sizeof(float));
+        x_data[i] = &x_data_flat[i * INPUTS];
         for (int j = 0; j < INPUTS; j++) {
             fscanf(fin, "%f", &x_data[i][j]);
         }
@@ -54,7 +66,7 @@ int main() {
     printf("modelo ONNX carregado. Avaliando %d amostras\n", num_samples);
 
     OrtMemoryInfo* memory_info;
-    g_ort->CreateCpuMemoryInfo(OrtArenaAllocator, OrtMemTypeDefault, &memory_info);
+    ORT_ABORT_ON_ERROR(g_ort->CreateCpuMemoryInfo(OrtArenaAllocator, OrtMemTypeDefault, &memory_info));
     
     const char* input_names[] = {"input"};
     const char* output_names[] = {"output"};
@@ -67,16 +79,16 @@ int main() {
         OrtValue* input_tensor = NULL;
         OrtValue* output_tensor = NULL;
 
-        g_ort->CreateTensorWithDataAsOrtValue(memory_info, x_data[i], INPUTS * sizeof(float), input_shape, 2, ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, &input_tensor);
+        ORT_ABORT_ON_ERROR(g_ort->CreateTensorWithDataAsOrtValue(memory_info, x_data[i], INPUTS * sizeof(float), input_shape, 2, ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, &input_tensor));
 
         double t0 = time_ns();
         
-        g_ort->Run(session, NULL, input_names, (const OrtValue* const*)&input_tensor, 1, output_names, 1, &output_tensor);
+        ORT_ABORT_ON_ERROR(g_ort->Run(session, NULL, input_names, (const OrtValue* const*)&input_tensor, 1, output_names, 1, &output_tensor));
         
         total_infer_ns += (time_ns() - t0);
 
         float* out_ptr;
-        g_ort->GetTensorMutableData(output_tensor, (void**)&out_ptr);
+        ORT_ABORT_ON_ERROR(g_ort->GetTensorMutableData(output_tensor, (void**)&out_ptr));
 
         int pred = (out_ptr[0] >= 0.5f) ? 1 : 0;
         int true_val = (y_data[i] >= 0.5f) ? 1 : 0;
@@ -102,7 +114,7 @@ int main() {
     g_ort->ReleaseSessionOptions(session_options);
     g_ort->ReleaseEnv(env);
     
-    for(int i = 0; i < num_samples; i++) free(x_data[i]);
+    free(x_data_flat);
     free(x_data);
     free(y_data);
 
