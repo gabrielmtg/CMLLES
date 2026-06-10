@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.optim as optim
 import pnnx
 
-DATASET_PATH = "../../../datasets/iris/iris.data"
+DATASET_PATH = "../../../../datasets/iris/iris.data"
 MODEL_DIR    = "model"
 MODEL_PT_PATH = os.path.join(MODEL_DIR, "iris_mlp.pt") # Arquivo base para o PNNX
 HIDDEN_SIZE  = 16

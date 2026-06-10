@@ -5,7 +5,7 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import pnnx
+import onnx
 
 def process_single_file(csv_path, window_size=10):
     df = pd.read_csv(csv_path)
@@ -51,9 +51,7 @@ def train_and_export(folders, window_size=10):
         if std_val == 0: std_val = 1e-9
         final_df[col] = (final_df[col] - mean_val) / std_val
 
-    os.makedirs("model", exist_ok=True)
-
-    print("salvando 'iaes_test_data.txt' para o codigo em C++ testar a inferencia")
+    print("salvando 'iaes_test_data.txt' para o codigo em C testar a inferencia")
     with open("model/iaes_test_data.txt", 'w') as f:
         f.write(f"{len(final_df)} 12 1\n")
     
@@ -81,7 +79,6 @@ def train_and_export(folders, window_size=10):
             return self.net(x)
 
     model = IAES_Model()
-    model.eval()
     criterion = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.01)
 
@@ -96,14 +93,19 @@ def train_and_export(folders, window_size=10):
         if (epoch+1) % 20 == 0:
             print(f"epoca [{epoch+1}/{epochs}] - Erro (Loss): {loss.item():.4f}")
 
+    model.eval()
     dummy_input = torch.randn(1, 12)
-    print("Exportando modelo via PNNX para NCNN...")
-    pnnx.export(model, "model/iaes_model.pt", dummy_input)
-    print("sucesso!!! arquivos 'iaes_model.ncnn.param' e 'iaes_model.ncnn.bin' gerados em 'model/'.")
+    print("Exportando modelo via ONNX...")
+    torch.onnx.export(model, dummy_input, "model/iaes_model.onnx", input_names=['input'], output_names=['output'])
+    
+    onnx_model = onnx.load("model/iaes_model.onnx")
+    onnx_model.ir_version = 9
+    onnx.save(onnx_model, "model/iaes_model.onnx")
+    print("sucesso!!! modelo salvo como 'iaes_model.onnx'")
 
 if __name__ == "__main__":
     pastas = [
-        "../../../datasets/IAES-dataset/2-cores", 
-        "../../../datasets/IAES-dataset/3-cores"
+        "../../../../datasets/IAES-dataset/2-cores", 
+        "../../../../datasets/IAES-dataset/3-cores"
     ]
     train_and_export(pastas)

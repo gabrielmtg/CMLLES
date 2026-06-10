@@ -1,4 +1,4 @@
-NCNN_DIR ?= ../../ncnn/build/install
+NCNN_DIR ?= ../../../ncnn/build/install
 
 CC       = gcc
 CFLAGS   = -O2 -Wall -Wextra -I$(NCNN_DIR)/include/ncnn -fopenmp

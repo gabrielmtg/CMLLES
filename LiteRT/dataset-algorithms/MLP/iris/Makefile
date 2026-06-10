@@ -1,4 +1,4 @@
-TF_SRC_DIR ?= ../../tensorflow
+TF_SRC_DIR ?= ../../../tensorflow
 
 LITERT_DIR ?= $(TF_SRC_DIR)/tflite_build
 

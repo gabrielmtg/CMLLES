@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.optim as optim
 import litert_torch
 
-DATASET_PATH = "../../../datasets/iris/iris.data"
+DATASET_PATH = "../../../../datasets/iris/iris.data"
 MODEL_DIR    = "model"
 MODEL_TFLITE = os.path.join(MODEL_DIR, "iris_mlp.tflite")
 HIDDEN_SIZE  = 16

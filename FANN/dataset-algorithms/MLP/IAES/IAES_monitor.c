@@ -28,12 +28,10 @@ void evaluate_and_print_metrics(struct fann *ann, struct fann_train_data *data, 
     double total_infer_ns = 0.0;
 
     for (unsigned int i = 0; i < total_samples; i++) {
-        // Inicia o cronômetro para uma única amostra
         double t0 = time_ns();
         fann_type *out = fann_run(ann, data->input[i]);
         total_infer_ns += (time_ns() - t0); // Acumula o tempo de inferência
 
-        // Avalia o acerto (limiar de 0.5 para saída Sigmoid)
         int pred_label = (out[0] >= 0.5f) ? 1 : 0;
         int true_label = (data->output[i][0] >= 0.5f) ? 1 : 0;
 
@@ -42,12 +40,10 @@ void evaluate_and_print_metrics(struct fann *ann, struct fann_train_data *data, 
         }
     }
 
-    // Cálculos finais
     double accuracy = ((double)correct / total_samples) * 100.0;
     double avg_infer_us = (total_infer_ns / total_samples) / 1e3; // Converte ns para µs
     double total_infer_ms = total_infer_ns / 1e6;                 // Converte ns para ms
 
-    // Impressão dos resultados
     printf("\n─── Resultados ─────────────────────────\n");
     printf("Acurácia:              %d/%u (%.1f%%)\n", correct, total_samples, accuracy);
     printf("Tempo de treinamento:  %.2f ms\n", train_time_ms);

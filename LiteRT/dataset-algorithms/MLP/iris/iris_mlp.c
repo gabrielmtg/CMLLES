@@ -8,7 +8,7 @@
 #define NUM_CLASSES   3
 #define MAX_SAMPLES   200
 #define MODEL_PATH    "model/iris_mlp.tflite"
-#define DATASET_PATH  "../../../datasets/iris/iris.data"
+#define DATASET_PATH  "../../../../datasets/iris/iris.data"
 
 static const char *class_names[NUM_CLASSES] = {
     "Iris-setosa",

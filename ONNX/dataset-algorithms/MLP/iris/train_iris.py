@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-DATASET_PATH = "../../../datasets/iris/iris.data"
+DATASET_PATH = "../../../../datasets/iris/iris.data"
 MODEL_DIR    = "model"
 MODEL_PATH   = os.path.join(MODEL_DIR, "iris_mlp.onnx")
 HIDDEN_SIZE  = 16

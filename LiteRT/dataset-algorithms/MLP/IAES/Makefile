@@ -1,6 +1,6 @@
-TF_SRC_DIR ?= ../../tensorflow
+TF_SRC_DIR ?= ../../../tensorflow
 
-LITERT_DIR ?= ../../tensorflow/tflite_build
+LITERT_DIR ?= ../../../tensorflow/tflite_build
 
 CC       = gcc
 CFLAGS   = -O2 -Wall -Wextra -I$(TF_SRC_DIR) -I$(LITERT_DIR)/include

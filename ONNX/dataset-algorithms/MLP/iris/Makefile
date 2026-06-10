@@ -1,4 +1,4 @@
-ORT_DIR ?= ../../onnxruntime-bak
+ORT_DIR ?= ../../../onnxruntime-bak
 
 CC       = gcc
 CFLAGS   = -O2 -Wall -Wextra -I$(ORT_DIR)/include

@@ -9,7 +9,7 @@
 #define MAX_SAMPLES   200
 #define MODEL_PARAM   "model/iris_mlp.ncnn.param"
 #define MODEL_BIN     "model/iris_mlp.ncnn.bin"
-#define DATASET_PATH  "../../../datasets/iris/iris.data"
+#define DATASET_PATH  "../../../../datasets/iris/iris.data"
 
 static const char *class_names[NUM_CLASSES] = {
     "Iris-setosa",
