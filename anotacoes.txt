@@ -51,5 +51,6 @@ CNN 2D: https://github.com/GreenWaves-Technologies/visual_wake_words
 CNN 1D: https://engineering.case.edu/bearingdatacenter
 MLP: nosso dataset (https://github.com/canalrafael/IAES)
 
-
+para o LSTM:
+https://github.com/biswajitsahoo1111/rul_codes_open/blob/master/notebooks/cmapss_notebooks/CMAPSS_data_description_and_preprocessing.ipynb
 
