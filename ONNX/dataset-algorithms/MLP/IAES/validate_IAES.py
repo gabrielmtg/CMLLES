@@ -37,8 +37,8 @@ def main():
     print("=" * 55)
 
     folders = [
-        "../../../../datasets/IAES-dataset/2-cores",
-        "../../../../datasets/IAES-dataset/3-cores"
+        "../../../../datasets/MLP/IAES-dataset/2-cores",
+        "../../../../datasets/MLP/IAES-dataset/3-cores"
     ]
 
     all_processed_dfs = []

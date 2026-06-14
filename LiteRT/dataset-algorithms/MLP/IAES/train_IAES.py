@@ -105,7 +105,7 @@ def train_and_export(folders, window_size=10):
 
 if __name__ == "__main__":
     pastas = [
-        "../../../../datasets/IAES-dataset/2-cores", 
-        "../../../../datasets/IAES-dataset/3-cores"
+        "../../../../datasets/MLP/IAES-dataset/2-cores", 
+        "../../../../datasets/MLP/IAES-dataset/3-cores"
     ]
     train_and_export(pastas)

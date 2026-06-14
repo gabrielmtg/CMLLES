@@ -12,7 +12,7 @@
 #define DESIRED_ERROR   0.001f
 #define LEARNING_RATE   0.01f
 
-#define DATASET_PATH    "../../../../datasets/iris/iris.data"
+#define DATASET_PATH    "../../../../datasets/MLP/iris/iris.data"
 #define TRAIN_DATA      "model/iris_fann.train"
 #define MODEL_OUT       "model/iris_model.net"
 #define MAX_SAMPLES     200

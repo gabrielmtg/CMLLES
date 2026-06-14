@@ -2,7 +2,7 @@ import numpy as np
 import onnxruntime as ort
 import time
 
-DATASET_PATH = "../../../../datasets/iris/iris.data"
+DATASET_PATH = "../../../../datasets/MLP/iris/iris.data"
 ONNX_MODEL_PATH = "model/iris_mlp.onnx"
 CLASS_NAMES = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
 NUM_CLASSES = 3

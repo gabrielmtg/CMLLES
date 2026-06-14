@@ -88,8 +88,8 @@ def generate_fann_from_folders(folders, output_path, window_size=10):
 
 if __name__ == "__main__":
     pastas_dataset = [
-            "../../../../datasets/IAES-dataset/2-cores",
-            "../../../../datasets/IAES-dataset/3-cores"
+            "../../../../datasets/MLP/IAES-dataset/2-cores",
+            "../../../../datasets/MLP/IAES-dataset/3-cores"
             ]
 
     generate_fann_from_folders(folders=pastas_dataset, output_path="model/IAES_fann.train", window_size=10)
