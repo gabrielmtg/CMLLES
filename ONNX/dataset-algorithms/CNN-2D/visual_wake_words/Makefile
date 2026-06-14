@@ -6,19 +6,19 @@ LDFLAGS  = -L$(ORT_DIR)/lib -lonnxruntime -lm -Wl,-rpath,$(ORT_DIR)/lib
 
 .PHONY: all clean run train
 
-all: train iris_mlp run
+all: train vww_inference run
 
 train:
-	python3 train_iris.py
+	python3 train_vww.py
 
-iris_mlp: iris_mlp.c
+vww_inference: vww_inference.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-run: iris_mlp
-	./iris_mlp
+run: vww_inference
+	./vww_inference
 
-validate: iris_mlp
-	python3 validate_iris.py
+validate: vww_inference
+	python3 validate_vww.py	
 
 clean:
-	rm -rf iris_mlp model/iris_mlp.onnx model/iris_mlp.onnx.data
+	rm -rf vww_inference vww_96_model.onnx

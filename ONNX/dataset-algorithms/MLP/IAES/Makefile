@@ -17,6 +17,9 @@ IAES_monitor: IAES_monitor.c
 run: IAES_monitor
 	./IAES_monitor
 
+validate: IAES_monitor
+	python3 validate_IAES.py
+
 clean:
 	rm -rf IAES_monitor data/iaes_model.onnx data/iaes_model.onnx.data data/iaes_test_data.txt
 

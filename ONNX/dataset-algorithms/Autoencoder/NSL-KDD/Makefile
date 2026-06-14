@@ -17,5 +17,8 @@ nsl: nsl.c
 run: nsl
 	./nsl
 
+validate: nsl
+	python3 validate_nsl.py
+
 clean:
 	rm -rf nsl model/nsl_model.onnx model/nsl_model.onnx.data model/nsl_test_data.txt
