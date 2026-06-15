@@ -4,7 +4,7 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import pnnx
+import litert_torch
 from torch.utils.data import DataLoader, TensorDataset
 
 def process_nsl_files(train_path, test_path):
@@ -43,10 +43,13 @@ def process_nsl_files(train_path, test_path):
     return df_train, df_test, feature_cols
 
 def train_and_export_nsl(train_csv, test_csv):
+    print(f"Lendo arquivos originais: {train_csv} e {test_csv}")
     df_train, df_test, feature_cols = process_nsl_files(train_csv, test_csv)
     
     input_dim = len(feature_cols)
+    print(f"Dimensao de entrada apos One-Hot Encoding: {input_dim} atributos")
     
+    print("Aplicando normalizacao Min-Max (0 a 1) baseada no Treinamento...")
     for col in feature_cols:
         min_val = df_train[col].min()
         max_val = df_train[col].max()
@@ -58,6 +61,7 @@ def train_and_export_nsl(train_csv, test_csv):
 
     os.makedirs("model", exist_ok=True)
 
+    print("Salvando 'nsl_test_data.txt' para o codigo em C...")
     with open("model/nsl_test_data.txt", 'w') as f:
         f.write(f"{len(df_test)} {input_dim} 1\n")
     
@@ -97,6 +101,7 @@ def train_and_export_nsl(train_csv, test_csv):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+    print("Treinando com Mini-Batches de 256...")
     epochs = 50 
     for epoch in range(epochs):
         epoch_loss = 0.0
@@ -107,11 +112,17 @@ def train_and_export_nsl(train_csv, test_csv):
             loss.backward()
             optimizer.step()
             epoch_loss += loss.item()
+            
+        if (epoch+1) % 10 == 0:
+            print(f"Epoca [{epoch+1}/{epochs}] - Loss Médio: {epoch_loss/len(dataloader):.5f}")
 
     model.eval()
     dummy_input = torch.randn(1, input_dim)
 
-    pnnx.export(model, "model/nsl_model.pt", dummy_input)
+    print("Exportando modelo via LiteRT...")
+    edge_model = litert_torch.convert(model.eval(), (dummy_input,))
+    edge_model.export("model/nsl_model.tflite")
+    print("Sucesso!!! Modelo salvo como 'model/nsl_model.tflite'")
 
 if __name__ == "__main__":
     treino = "../../../../datasets/Autoencoder/NSL_KDD_Dataset/KDDTrain+.txt"

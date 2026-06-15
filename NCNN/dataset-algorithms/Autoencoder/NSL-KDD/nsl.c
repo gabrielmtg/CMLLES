@@ -4,8 +4,8 @@
 #include <c_api.h>
 
 #define TEST_DATA "model/nsl_test_data.txt"
-#define PARAM_FILE "model/nsl_model.ncnn.param"
-#define BIN_FILE "model/nsl_model.ncnn.bin"
+#define NCNN_PARAM "model/nsl_model.ncnn.param"
+#define NCNN_BIN "model/nsl_model.ncnn.bin"
 
 static double time_ns(void) {
     struct timespec ts;
@@ -14,61 +14,70 @@ static double time_ns(void) {
 }
 
 int main() {
-    printf("=============================================\n");
-    printf("  NSL-KDD Autoencoder Monitor — NCNN (C API)\n");
-    printf("=============================================\n\n");
-
     ncnn_net_t net = ncnn_net_create();
-    if (ncnn_net_load_param(net, PARAM_FILE) != 0) {
-        fprintf(stderr, "Erro ao carregar o parametro do modelo.\n");
+
+    if (ncnn_net_load_param(net, NCNN_PARAM) != 0) {
+        ncnn_net_destroy(net);
         return 1;
     }
-    if (ncnn_net_load_model(net, BIN_FILE) != 0) {
-        fprintf(stderr, "Erro ao carregar o modelo binario.\n");
+    if (ncnn_net_load_model(net, NCNN_BIN) != 0) {
+        ncnn_net_destroy(net);
         return 1;
     }
 
     FILE *fin = fopen(TEST_DATA, "r");
-    if (!fin) return 1;
+    if (!fin) {
+        ncnn_net_destroy(net);
+        return 1;
+    }
     
     int num_samples, num_inputs, num_outputs;
-    fscanf(fin, "%d %d %d", &num_samples, &num_inputs, &num_outputs);
+    if (fscanf(fin, "%d %d %d", &num_samples, &num_inputs, &num_outputs) != 3) {
+        fclose(fin);
+        ncnn_net_destroy(net);
+        return 1;
+    }
 
+    float** x_data = (float**)malloc(num_samples * sizeof(float*));
     float* x_data_flat = (float*)malloc(num_samples * num_inputs * sizeof(float));
     float* y_data = (float*)malloc(num_samples * sizeof(float));
 
     for (int i = 0; i < num_samples; i++) {
+        x_data[i] = &x_data_flat[i * num_inputs];
         for (int j = 0; j < num_inputs; j++) {
-            fscanf(fin, "%f", &x_data_flat[i * num_inputs + j]);
+            if (fscanf(fin, "%f", &x_data[i][j]) != 1) {}
         }
-        fscanf(fin, "%f", &y_data[i]);
+        if (fscanf(fin, "%f", &y_data[i]) != 1) {}
     }
     fclose(fin);
-
-    printf("Modelo carregado. A avaliar %d amostras...\n", num_samples);
 
     int correct = 0;
     double total_infer_ns = 0.0;
     float threshold = 0.008f; 
 
     for (int i = 0; i < num_samples; i++) {
-        ncnn_extractor_t ex = ncnn_extractor_create(net);
+        ncnn_mat_t in_mat = ncnn_mat_create_1d(num_inputs, NULL);
         
-        ncnn_mat_t in = ncnn_mat_create_external_1d(num_inputs, (void*)&x_data_flat[i * num_inputs], NULL);
-        ncnn_extractor_input(ex, "in0", in);
+        float* in_ptr = (float*)ncnn_mat_get_data(in_mat);
+        for (int j = 0; j < num_inputs; j++) {
+            in_ptr[j] = x_data[i][j];
+        }
 
         double t0 = time_ns();
         
-        ncnn_mat_t out;
-        ncnn_extractor_extract(ex, "out0", &out);
+        ncnn_extractor_t ex = ncnn_extractor_create(net);
+        ncnn_extractor_input(ex, "in0", in_mat);
+        
+        ncnn_mat_t out_mat;
+        ncnn_extractor_extract(ex, "out0", &out_mat);
         
         total_infer_ns += (time_ns() - t0);
 
-        float* out_ptr = (float*)ncnn_mat_get_data(out);
-
+        float* out_ptr = (float*)ncnn_mat_get_data(out_mat);
+        
         float mse = 0.0f;
         for (int j = 0; j < num_inputs; j++) {
-            float diff = x_data_flat[i * num_inputs + j] - out_ptr[j];
+            float diff = x_data[i][j] - out_ptr[j];
             mse += (diff * diff);
         }
         mse /= num_inputs;
@@ -78,16 +87,24 @@ int main() {
 
         if (pred == true_val) correct++;
 
-        ncnn_mat_destroy(in);
-        ncnn_mat_destroy(out);
+        ncnn_mat_destroy(in_mat);
+        ncnn_mat_destroy(out_mat);
         ncnn_extractor_destroy(ex);
     }
 
-    printf("Exatidão: %d/%d (%.1f%%)\n", correct, num_samples, ((double)correct/num_samples)*100);
+    double accuracy = ((double)correct / num_samples) * 100.0;
+    double avg_infer_us = (total_infer_ns / num_samples) / 1e3;
+    double total_infer_ms = total_infer_ns / 1e6;
+
+    printf("%.1f\n", accuracy);
+    printf("%.2f\n", avg_infer_us);
+    printf("%.2f\n", total_infer_ms);
+
+    free(x_data_flat);
+    free(x_data);
+    free(y_data);
 
     ncnn_net_destroy(net);
-    free(x_data_flat);
-    free(y_data);
 
     return 0;
 }

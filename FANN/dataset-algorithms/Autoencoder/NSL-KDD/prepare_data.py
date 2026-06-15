@@ -1,11 +1,6 @@
 import pandas as pd
 import numpy as np
 import os
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import pnnx
-from torch.utils.data import DataLoader, TensorDataset
 
 def process_nsl_files(train_path, test_path):
     col_names = ["duration","protocol_type","service","flag","src_bytes",
@@ -42,7 +37,7 @@ def process_nsl_files(train_path, test_path):
     
     return df_train, df_test, feature_cols
 
-def train_and_export_nsl(train_csv, test_csv):
+def generate_fann_data(train_csv, test_csv):
     df_train, df_test, feature_cols = process_nsl_files(train_csv, test_csv)
     
     input_dim = len(feature_cols)
@@ -58,62 +53,26 @@ def train_and_export_nsl(train_csv, test_csv):
 
     os.makedirs("model", exist_ok=True)
 
-    with open("model/nsl_test_data.txt", 'w') as f:
-        f.write(f"{len(df_test)} {input_dim} 1\n")
-    
-    chunk_size = 100000
-    with open("model/nsl_test_data.txt", 'a') as f:
-        for i in range(0, len(df_test), chunk_size):
+    df_train_normal = df_train[df_train['target'] == 0.0]
+    X_train_normal = df_train_normal[feature_cols].values
+
+    num_train = len(X_train_normal)
+    with open("model/nsl_train.data", 'w') as f:
+        f.write(f"{num_train} {input_dim} {input_dim}\n")
+        for row in X_train_normal:
+            row_str = " ".join(f"{val:.6f}" for val in row)
+            f.write(f"{row_str}\n")
+            f.write(f"{row_str}\n")
+
+    num_test = len(df_test)
+    with open("model/nsl_test.txt", 'w') as f:
+        f.write(f"{num_test} {input_dim} 1\n")
+        chunk_size = 100000
+        for i in range(0, num_test, chunk_size):
             chunk = df_test[feature_cols + ['target']].iloc[i:i+chunk_size].values
             np.savetxt(f, chunk, fmt="%.6f", delimiter=" ")
-
-    df_train_normal = df_train[df_train['target'] == 0.0]
-    X_train_normal = torch.tensor(df_train_normal[feature_cols].values, dtype=torch.float32)
-
-    dataset = TensorDataset(X_train_normal, X_train_normal)
-    dataloader = DataLoader(dataset, batch_size=256, shuffle=True)
-
-    class NSL_Autoencoder(nn.Module):
-        def __init__(self, in_dim):
-            super().__init__()
-            self.net = nn.Sequential(
-                nn.Linear(in_dim, 64),
-                nn.LeakyReLU(0.1),
-                nn.Linear(64, 32),
-                nn.LeakyReLU(0.1),
-                nn.Linear(32, 16),
-                nn.LeakyReLU(0.1),
-                nn.Linear(16, 32),
-                nn.LeakyReLU(0.1),
-                nn.Linear(32, 64),
-                nn.LeakyReLU(0.1),
-                nn.Linear(64, in_dim),
-                nn.Sigmoid() 
-            )
-        def forward(self, x):
-            return self.net(x)
-
-    model = NSL_Autoencoder(input_dim)
-    criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-    epochs = 50 
-    for epoch in range(epochs):
-        epoch_loss = 0.0
-        for batch_x, _ in dataloader:
-            optimizer.zero_grad()
-            out = model(batch_x)
-            loss = criterion(out, batch_x)
-            loss.backward()
-            optimizer.step()
-            epoch_loss += loss.item()
-
-    model.eval()
-    dummy_input = torch.randn(1, input_dim)
-
-    pnnx.export(model, "model/nsl_model.pt", dummy_input)
 
 if __name__ == "__main__":
     treino = "../../../../datasets/Autoencoder/NSL_KDD_Dataset/KDDTrain+.txt"
     teste = "../../../../datasets/Autoencoder/NSL_KDD_Dataset/KDDTest+.txt"
-    train_and_export_nsl(treino, teste)
+    generate_fann_data(treino, teste)
