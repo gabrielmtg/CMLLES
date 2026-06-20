@@ -7,7 +7,7 @@ LDFLAGS  = -L$(LITERT_DIR) -ltensorflowlite_c -lm -Wl,-rpath,$(LITERT_DIR)
 
 .PHONY: all clean run train validate
 
-all: train vww_inference run
+all: train vww_inference run validate
 
 train:
 	python3 train_vww.py

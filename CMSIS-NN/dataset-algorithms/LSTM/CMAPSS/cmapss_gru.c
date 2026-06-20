@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "arm_math.h"
+#include <arm_math.h>
 
 #define SEQ_LEN 30
 #define FEATURES 14

@@ -40,7 +40,6 @@ def export_genann_weights(model, filepath):
             b = layer.bias.data.numpy()
             
             for i in range(w.shape[0]):
-                # CORREÇÃO 1: O Genann exige o Bias PRIMEIRO e com o sinal INVERTIDO
                 f.write(f"{-b[i]:.8f}\n") 
                 for j in range(w.shape[1]):
                     f.write(f"{w[i,j]:.8f}\n")
@@ -123,7 +122,7 @@ def train_and_export(folders, window_size=10):
 
 if __name__ == "__main__":
     pastas = [
-        "../../../datasets/IAES-dataset/2-cores", 
-        "../../../datasets/IAES-dataset/3-cores"
+        "../../../../datasets/MLP/IAES-dataset/2-cores", 
+        "../../../../datasets/MLP/IAES-dataset/3-cores"
     ]
     train_and_export(pastas)

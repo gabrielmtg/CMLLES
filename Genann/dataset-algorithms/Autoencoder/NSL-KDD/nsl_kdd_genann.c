@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../../genann/genann.h"
+#include "genann.h"
 
 #define INPUTS 38
 #define HIDDEN 16

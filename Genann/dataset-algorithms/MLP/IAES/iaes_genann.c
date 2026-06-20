@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../genann/genann.h"
+#include "genann.h"
 
 #define INPUTS 12
 #define HIDDEN 16

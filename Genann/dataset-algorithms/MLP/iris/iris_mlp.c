@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#include "../../genann/genann.h"
+#include "genann.h"
 
 #define NUM_FEATURES    4
 #define NUM_CLASSES     3
@@ -12,7 +12,7 @@
 #define LEARNING_RATE   0.01
 #define EPOCHS          5000
 #define MAX_SAMPLES     200
-#define DATASET_PATH    "../../../datasets/iris/iris.data"
+#define DATASET_PATH    "../../../../datasets/MLP/iris/iris.data"
 
 static const char *class_names[NUM_CLASSES] = {
     "Iris-setosa",

@@ -10,7 +10,7 @@ FEATURES = 14
 HIDDEN = 16
 
 # Caminho para os dados extraídos da NASA
-DATA_DIR = "../../../datasets/CMAPSS-dataset"
+DATA_DIR = "../../../../datasets/LSTM/CMAPSSData"
 
 class CMAPSS_GRU(nn.Module):
     def __init__(self):

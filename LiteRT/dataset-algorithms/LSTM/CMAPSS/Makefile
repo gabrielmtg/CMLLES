@@ -7,7 +7,7 @@ LDFLAGS  = -L$(LITERT_DIR) -ltensorflowlite_c -lm -Wl,-rpath,$(LITERT_DIR)
 
 .PHONY: all clean run train validate
 
-all: train CMAPSS_inference run
+all: train CMAPSS_inference run validate
 
 train:
 	python3 train_CMAPSS.py
@@ -22,4 +22,4 @@ validate: CMAPSS_inference
 	python3 validate_CMAPSS.py
 
 clean:
-	rm -rf CMAPSS_inference model/cmapss_lstm.tflite
+	rm -rf CMAPSS_inference model/cmapss_lstm.tflite model/scaler.pkl
