@@ -1,15 +1,19 @@
-*/dataset-algorithms/*/iris_mlp
-*/dataset-algorithms/*/IAES_monitor
-*/dataset-algorithms/*/IAES-monitor-MLP
-*/dataset-algorithms/*/*.out
-*/dataset-algorithms/*/*.bin
-*/dataset-algorithms/*/build/
-*/dataset-algorithms/*/bin/
+output_rpi_image/
+output_rt_image/
+
+onnxruntime-linux-aarch64-1.17.1/
+
+datasets/*
+
+*.train
+*.test
 
 __pycache__/
+**/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+
 .venv/
 venv/
 env/
@@ -20,10 +24,30 @@ env/
 .idea/
 .DS_Store
 
-build/
-*/build/
-bin/
-*/bin/
+#model files
+*/benchmarks/*/model/*.net
+*/benchmarks/*/model/*.genann
+*/benchmarks/*/model/*.onnx
+*/benchmarks/*/model/*.tflite
+*/benchmarks/*/model/*.ncnn.param
+*/benchmarks/*/model/*.ncnn.bin
+*/benchmarks/*/model/*.h
 
-datasets/*
-*.train
+#binarios
+*/benchmarks/*/benchmark_*
+*/benchmarks/*/gen_models
+*/benchmarks/*/train_models
+
+#model data
+*/benchmarks/*/model/test_data.txt
+#*/benchmarks/*/model/training_metrics.json
+*/benchmarks/*/model/*_threshold.txt
+*/benchmarks/*/model/test_images_*.bin
+*/benchmarks/*/model/test_labels.bin
+*/benchmarks/*/latencies/
+
+build/
+**/build/
+**/build_native/
+bin/
+**/bin/

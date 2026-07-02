@@ -1,0 +1,23 @@
+{
+  "cnn_simple": {
+    "training_time_s": 887.438,
+    "epochs": 5,
+    "final_train_loss": 0.524849,
+    "final_test_accuracy_pct": 8.0,
+    "test_samples": 100
+  },
+  "cnn_intermediate": {
+    "training_time_s": 1019.582,
+    "epochs": 5,
+    "final_train_loss": 0.478237,
+    "final_test_accuracy_pct": 9.0,
+    "test_samples": 100
+  },
+  "cnn_mobilenet": {
+    "training_time_s": 1743.303,
+    "epochs": 5,
+    "final_train_loss": 0.413516,
+    "final_test_accuracy_pct": 10.0,
+    "test_samples": 100
+  }
+}

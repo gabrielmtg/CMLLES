@@ -1,21 +1,23 @@
-[submodule "CMSIS-NN/CMSIS-NN"]
-	path = CMSIS-NN/CMSIS-NN
-	url = https://github.com/ARM-software/CMSIS-NN.git
+[submodule "CMSIS-NN/CMSIS-DSP"]
+	path = CMSIS-NN/CMSIS-DSP
+	url = https://github.com/ARM-software/CMSIS-DSP.git
+
+[submodule "CMSIS-NN/CMSIS_5"]
+	path = CMSIS-NN/CMSIS_5
+	url = https://github.com/ARM-software/CMSIS_5.git
+
 [submodule "Genann/genann"]
 	path = Genann/genann
 	url = https://github.com/codeplea/genann.git
-[submodule "LiteRT/tflite-micro"]
-	path = LiteRT/tflite-micro
-	url = https://github.com/tensorflow/tflite-micro.git
+
+[submodule "LiteRT/tensorflow"]
+	path = LiteRT/tensorflow
+	url = https://github.com/tensorflow/tensorflow.git
+
 [submodule "NCNN/ncnn"]
 	path = NCNN/ncnn
 	url = https://github.com/Tencent/ncnn.git
-[submodule "ONNX/onnxruntime"]
-	path = ONNX/onnxruntime
-	url = https://github.com/microsoft/onnxruntime.git
+
 [submodule "FANN/fann"]
 	path = FANN/fann
 	url = https://github.com/libfann/fann.git
-[submodule "Apache-TVM/tvm"]
-	path = Apache-TVM/tvm
-	url = https://github.com/apache/tvm.git

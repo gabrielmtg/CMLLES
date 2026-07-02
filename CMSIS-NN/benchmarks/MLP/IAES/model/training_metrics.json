@@ -1,0 +1,44 @@
+{
+  "iaes_small_relu": {
+    "training_time_s": 39.504,
+    "epochs": 200,
+    "final_train_loss": 0.048603,
+    "final_test_accuracy_pct": 97.87,
+    "test_samples": 2467439
+  },
+  "iaes_small_sigmoid": {
+    "training_time_s": 40.248,
+    "epochs": 200,
+    "final_train_loss": 0.056035,
+    "final_test_accuracy_pct": 97.57,
+    "test_samples": 2467439
+  },
+  "iaes_medium_relu": {
+    "training_time_s": 43.685,
+    "epochs": 200,
+    "final_train_loss": 0.036581,
+    "final_test_accuracy_pct": 97.96,
+    "test_samples": 2467439
+  },
+  "iaes_medium_sigmoid": {
+    "training_time_s": 44.634,
+    "epochs": 200,
+    "final_train_loss": 0.059388,
+    "final_test_accuracy_pct": 97.79,
+    "test_samples": 2467439
+  },
+  "iaes_large_relu": {
+    "training_time_s": 61.24,
+    "epochs": 200,
+    "final_train_loss": 0.034103,
+    "final_test_accuracy_pct": 97.69,
+    "test_samples": 2467439
+  },
+  "iaes_large_sigmoid": {
+    "training_time_s": 58.847,
+    "epochs": 200,
+    "final_train_loss": 0.039379,
+    "final_test_accuracy_pct": 97.81,
+    "test_samples": 2467439
+  }
+}

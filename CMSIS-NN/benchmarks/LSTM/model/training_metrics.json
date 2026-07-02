@@ -1,0 +1,23 @@
+{
+  "lstm_h32": {
+    "training_time_s": 74.388,
+    "best_val_loss": 0.003785,
+    "final_test_mae_cycles": 12.52,
+    "final_test_rmse_cycles": 17.26,
+    "test_samples": 100
+  },
+  "lstm_h64": {
+    "training_time_s": 67.397,
+    "best_val_loss": 0.001668,
+    "final_test_mae_cycles": 10.98,
+    "final_test_rmse_cycles": 15.68,
+    "test_samples": 100
+  },
+  "lstm_h128": {
+    "training_time_s": 144.673,
+    "best_val_loss": 0.000724,
+    "final_test_mae_cycles": 13.72,
+    "final_test_rmse_cycles": 19.04,
+    "test_samples": 100
+  }
+}
