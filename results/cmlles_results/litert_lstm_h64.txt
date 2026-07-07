@@ -1,0 +1,28 @@
+=== litert_lstm_h64 ===
+BENCH lstm_h64_f32
+LATENCY_MEAN_US 545.78
+LATENCY_STD_US  7.14
+LATENCY_MIN_US  539.94
+LATENCY_MAX_US  637.04
+LATENCY_P95_US  560.35
+LATENCY_P99_US  569.98
+MAE_CYCLES      12.10
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_lstm 64':
+
+     1,080,756,053      cycles                                                                  (59.74%)
+     1,110,224,332      instructions                     #    1.03  insn per cycle              (60.21%)
+       449,171,184      cache-references                                                        (60.15%)
+        26,099,345      cache-misses                     #    5.81% of all cache refs           (60.90%)
+       446,570,176      L1-dcache-loads                                                         (54.33%)
+        25,775,123      L1-dcache-load-misses            #    5.77% of all L1-dcache accesses   (54.78%)
+         1,593,866      branch-misses                                                           (55.25%)
+                 6      context-switches                                                      
+
+       0.645034666 seconds time elapsed
+
+       0.576701000 seconds user
+       0.064077000 seconds sys
+
+

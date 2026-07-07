@@ -1,0 +1,21 @@
+=== onnx_iaes_medium_sigmoid ===
+ORT error: Load model from model/iaes_medium_sigmoid_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
+
+
+ Performance counter stats for './benchmark_iaes medium sigmoid':
+
+        91,437,586      cycles                                                                
+       102,353,360      instructions                     #    1.12  insn per cycle            
+        41,322,085      cache-references                                                      
+           548,608      cache-misses                     #    1.33% of all cache refs         
+        41,322,085      L1-dcache-loads                                                       
+           548,608      L1-dcache-load-misses            #    1.33% of all L1-dcache accesses 
+           461,405      branch-misses                                                         
+                 2      context-switches                                                      
+
+       0.052823722 seconds time elapsed
+
+       0.040064000 seconds user
+       0.012019000 seconds sys
+
+

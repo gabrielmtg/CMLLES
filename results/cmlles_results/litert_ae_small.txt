@@ -1,0 +1,28 @@
+=== litert_ae_small ===
+BENCH ae_small_f32
+LATENCY_MEAN_US 16.42
+LATENCY_STD_US  1.04
+LATENCY_MIN_US  15.85
+LATENCY_MAX_US  37.44
+LATENCY_P95_US  16.95
+LATENCY_P99_US  17.41
+ACCURACY_PCT    85.20
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae small':
+
+     1,990,849,452      cycles                                                                  (97.54%)
+     3,272,394,463      instructions                     #    1.64  insn per cycle              (97.46%)
+     1,263,019,784      cache-references                                                        (97.66%)
+         2,287,129      cache-misses                     #    0.18% of all cache refs           (97.88%)
+     1,259,346,787      L1-dcache-loads                                                         (98.12%)
+         2,447,259      L1-dcache-load-misses            #    0.19% of all L1-dcache accesses   (98.39%)
+         1,301,804      branch-misses                                                           (98.44%)
+                18      context-switches                                                      
+
+       1.195372944 seconds time elapsed
+
+       1.025995000 seconds user
+       0.107789000 seconds sys
+
+

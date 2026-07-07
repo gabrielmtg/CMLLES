@@ -1,0 +1,28 @@
+=== cmsisnn_cnn2d_simple ===
+BENCH cnn_simple_int8
+LATENCY_MEAN_US 1.03
+LATENCY_STD_US  0.11
+LATENCY_MIN_US  0.96
+LATENCY_MAX_US  2.39
+LATENCY_P95_US  1.04
+LATENCY_P99_US  1.67
+ACCURACY_PCT    0.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d_simple':
+
+        99,189,720      cycles                                                                  (58.67%)
+        85,311,294      instructions                     #    0.86  insn per cycle              (63.35%)
+        22,354,112      cache-references                                                        (64.08%)
+           304,151      cache-misses                     #    1.36% of all cache refs           (63.70%)
+        22,126,907      L1-dcache-loads                                                         (57.21%)
+           309,405      L1-dcache-load-misses            #    1.40% of all L1-dcache accesses   (59.28%)
+           746,464      branch-misses                                                           (66.43%)
+                11      context-switches                                                      
+
+       0.120222852 seconds time elapsed
+
+       0.031005000 seconds user
+       0.062010000 seconds sys
+
+

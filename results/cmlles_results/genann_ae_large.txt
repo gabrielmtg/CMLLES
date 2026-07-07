@@ -1,0 +1,28 @@
+=== genann_ae_large ===
+BENCH ae_large_f64
+LATENCY_MEAN_US 46.21
+LATENCY_STD_US  1.81
+LATENCY_MIN_US  45.43
+LATENCY_MAX_US  74.05
+LATENCY_P95_US  46.45
+LATENCY_P99_US  58.78
+ACCURACY_PCT    81.90
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae large':
+
+     2,226,061,314      cycles                                                                  (96.99%)
+     3,833,571,552      instructions                     #    1.72  insn per cycle              (97.25%)
+     1,409,764,367      cache-references                                                        (97.54%)
+         3,322,942      cache-misses                     #    0.24% of all cache refs           (97.54%)
+     1,409,739,884      L1-dcache-loads                                                         (97.54%)
+         3,322,141      L1-dcache-load-misses            #    0.24% of all L1-dcache accesses   (97.54%)
+         1,711,044      branch-misses                                                           (97.32%)
+                21      context-switches                                                      
+
+       1.269126981 seconds time elapsed
+
+       1.161566000 seconds user
+       0.104140000 seconds sys
+
+

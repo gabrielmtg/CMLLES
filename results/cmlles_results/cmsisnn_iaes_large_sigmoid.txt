@@ -1,0 +1,28 @@
+=== cmsisnn_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_int8
+LATENCY_MEAN_US 4.15
+LATENCY_STD_US  1.08
+LATENCY_MIN_US  4.05
+LATENCY_MAX_US  38.13
+LATENCY_P95_US  4.17
+LATENCY_P99_US  4.30
+ACCURACY_PCT    36.10
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes_large_sigmoid':
+
+        62,745,782      cycles                                                                  (52.66%)
+        65,028,684      instructions                     #    1.04  insn per cycle              (69.22%)
+        22,332,289      cache-references                                                        (74.93%)
+           146,644      cache-misses                     #    0.66% of all cache refs           (75.72%)
+        23,363,344      L1-dcache-loads                                                         (74.92%)
+           146,698      L1-dcache-load-misses            #    0.63% of all L1-dcache accesses   (74.21%)
+           176,465      branch-misses                                                           (73.56%)
+                 4      context-switches                                                      
+
+       0.069774111 seconds time elapsed
+
+       0.007957000 seconds user
+       0.059683000 seconds sys
+
+

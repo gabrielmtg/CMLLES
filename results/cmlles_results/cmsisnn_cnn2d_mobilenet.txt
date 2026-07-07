@@ -1,0 +1,28 @@
+=== cmsisnn_cnn2d_mobilenet ===
+BENCH cnn_mobilenet_int8
+LATENCY_MEAN_US 1.95
+LATENCY_STD_US  0.76
+LATENCY_MIN_US  1.65
+LATENCY_MAX_US  6.43
+LATENCY_P95_US  4.31
+LATENCY_P99_US  4.98
+ACCURACY_PCT    0.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d_mobilenet':
+
+       506,278,517      cycles                                                                  (48.95%)
+       508,857,115      instructions                     #    1.01  insn per cycle              (49.02%)
+        98,023,525      cache-references                                                        (48.87%)
+         1,360,034      cache-misses                     #    1.39% of all cache refs           (47.64%)
+        98,053,924      L1-dcache-loads                                                         (46.57%)
+         1,381,559      L1-dcache-load-misses            #    1.41% of all L1-dcache accesses   (48.90%)
+         3,640,018      branch-misses                                                           (51.23%)
+                16      context-switches                                                      
+
+       0.544097593 seconds time elapsed
+
+       0.247295000 seconds user
+       0.078310000 seconds sys
+
+

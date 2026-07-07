@@ -1,0 +1,28 @@
+=== fann_mlp_medium_relu ===
+BENCH mlp_medium_relu_f32
+LATENCY_MEAN_US 26.18
+LATENCY_STD_US  1.01
+LATENCY_MIN_US  26.07
+LATENCY_MAX_US  41.20
+LATENCY_P95_US  26.13
+LATENCY_P99_US  26.17
+ACCURACY_PCT    66.60
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp medium relu':
+
+       120,570,111      cycles                                                                  (66.17%)
+       200,507,488      instructions                     #    1.66  insn per cycle              (67.28%)
+        64,193,551      cache-references                                                        (66.82%)
+           304,840      cache-misses                     #    0.47% of all cache refs           (64.87%)
+        63,194,047      L1-dcache-loads                                                         (67.09%)
+           323,847      L1-dcache-load-misses            #    0.51% of all L1-dcache accesses   (69.72%)
+           273,824      branch-misses                                                           (72.76%)
+                 6      context-switches                                                      
+
+       0.103966611 seconds time elapsed
+
+       0.052486000 seconds user
+       0.048449000 seconds sys
+
+

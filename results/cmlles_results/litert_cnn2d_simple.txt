@@ -1,0 +1,28 @@
+=== litert_cnn2d_simple ===
+BENCH cnn_simple_f32
+LATENCY_MEAN_US 528.12
+LATENCY_STD_US  7.33
+LATENCY_MIN_US  523.82
+LATENCY_MAX_US  617.37
+LATENCY_P95_US  544.13
+LATENCY_P99_US  550.54
+ACCURACY_PCT    10.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d simple':
+
+     1,011,975,312      cycles                                                                  (57.45%)
+     1,233,761,288      instructions                     #    1.22  insn per cycle              (59.81%)
+       445,423,012      cache-references                                                        (60.46%)
+         9,155,452      cache-misses                     #    2.06% of all cache refs           (61.12%)
+       445,494,775      L1-dcache-loads                                                         (61.12%)
+         9,121,434      L1-dcache-load-misses            #    2.05% of all L1-dcache accesses   (58.58%)
+           505,223      branch-misses                                                           (53.49%)
+                12      context-switches                                                      
+
+       0.636665018 seconds time elapsed
+
+       0.543828000 seconds user
+       0.060425000 seconds sys
+
+

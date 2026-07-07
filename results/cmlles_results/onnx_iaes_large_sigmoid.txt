@@ -1,0 +1,21 @@
+=== onnx_iaes_large_sigmoid ===
+ORT error: Load model from model/iaes_large_sigmoid_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
+
+
+ Performance counter stats for './benchmark_iaes large sigmoid':
+
+        92,027,155      cycles                                                                
+       102,374,186      instructions                     #    1.11  insn per cycle            
+        41,330,622      cache-references                                                      
+           534,729      cache-misses                     #    1.29% of all cache refs         
+        41,330,622      L1-dcache-loads                                                       
+           534,729      L1-dcache-load-misses            #    1.29% of all L1-dcache accesses 
+           469,002      branch-misses                                                         
+                 3      context-switches                                                      
+
+       0.053218667 seconds time elapsed
+
+       0.034933000 seconds user
+       0.017466000 seconds sys
+
+

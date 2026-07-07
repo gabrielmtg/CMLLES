@@ -1,0 +1,28 @@
+=== ncnn_ae_large ===
+BENCH ae_large_f32
+LATENCY_MEAN_US 27.92
+LATENCY_STD_US  3.56
+LATENCY_MIN_US  27.30
+LATENCY_MAX_US  121.15
+LATENCY_P95_US  27.93
+LATENCY_P99_US  29.13
+ACCURACY_PCT    81.60
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae large':
+
+     2,449,161,410      cycles                                                                  (97.35%)
+     4,530,900,062      instructions                     #    1.85  insn per cycle              (97.88%)
+     1,474,296,322      cache-references                                                        (97.87%)
+         2,332,734      cache-misses                     #    0.16% of all cache refs           (97.70%)
+     1,475,701,981      L1-dcache-loads                                                         (97.62%)
+         2,385,806      L1-dcache-load-misses            #    0.16% of all L1-dcache accesses   (97.78%)
+         1,244,991      branch-misses                                                           (97.96%)
+                19      context-switches                                                      
+
+       1.130906333 seconds time elapsed
+
+       1.292573000 seconds user
+       0.095451000 seconds sys
+
+

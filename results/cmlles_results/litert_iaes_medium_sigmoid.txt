@@ -1,0 +1,28 @@
+=== litert_iaes_medium_sigmoid ===
+BENCH iaes_medium_sigmoid_f32
+LATENCY_MEAN_US 14.47
+LATENCY_STD_US  3.79
+LATENCY_MIN_US  14.09
+LATENCY_MAX_US  131.24
+LATENCY_P95_US  14.41
+LATENCY_P99_US  14.89
+ACCURACY_PCT    97.70
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium sigmoid':
+
+        86,011,038      cycles                                                                  (60.85%)
+        85,136,488      instructions                     #    0.99  insn per cycle              (59.76%)
+        31,023,439      cache-references                                                        (63.30%)
+         1,086,017      cache-misses                     #    3.50% of all cache refs           (71.89%)
+        29,871,612      L1-dcache-loads                                                         (76.25%)
+         1,061,756      L1-dcache-load-misses            #    3.55% of all L1-dcache accesses   (78.64%)
+           259,394      branch-misses                                                           (78.18%)
+                 2      context-switches                                                      
+
+       0.084875462 seconds time elapsed
+
+       0.027592000 seconds user
+       0.055185000 seconds sys
+
+

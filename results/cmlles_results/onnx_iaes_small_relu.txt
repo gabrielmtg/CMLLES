@@ -1,0 +1,21 @@
+=== onnx_iaes_small_relu ===
+ORT error: Load model from model/iaes_small_relu_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
+
+
+ Performance counter stats for './benchmark_iaes small relu':
+
+        95,090,586      cycles                                                                
+       102,958,301      instructions                     #    1.08  insn per cycle            
+        41,556,484      cache-references                                                      
+           526,359      cache-misses                     #    1.27% of all cache refs         
+        41,556,484      L1-dcache-loads                                                       
+           526,359      L1-dcache-load-misses            #    1.27% of all L1-dcache accesses 
+           467,935      branch-misses                                                         
+                11      context-switches                                                      
+
+       0.067582963 seconds time elapsed
+
+       0.031032000 seconds user
+       0.023274000 seconds sys
+
+

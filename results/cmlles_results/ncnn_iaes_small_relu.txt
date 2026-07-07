@@ -1,0 +1,28 @@
+=== ncnn_iaes_small_relu ===
+BENCH iaes_small_relu_f32
+LATENCY_MEAN_US 12.75
+LATENCY_STD_US  2.88
+LATENCY_MIN_US  12.31
+LATENCY_MAX_US  94.26
+LATENCY_P95_US  12.74
+LATENCY_P99_US  13.57
+ACCURACY_PCT    97.90
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes small relu':
+
+       496,376,102      cycles                                                                  (90.91%)
+     1,305,318,691      instructions                     #    2.63  insn per cycle              (90.58%)
+       230,703,632      cache-references                                                        (91.29%)
+           619,253      cache-misses                     #    0.27% of all cache refs           (92.15%)
+       228,434,279      L1-dcache-loads                                                         (93.15%)
+           660,222      L1-dcache-load-misses            #    0.29% of all L1-dcache accesses   (94.15%)
+           274,880      branch-misses                                                           (95.21%)
+                24      context-switches                                                      
+
+       0.117678445 seconds time elapsed
+
+       0.243018000 seconds user
+       0.062714000 seconds sys
+
+

@@ -1,0 +1,28 @@
+=== cmsisnn_iaes_small_relu ===
+BENCH iaes_small_relu_int8
+LATENCY_MEAN_US 0.85
+LATENCY_STD_US  0.02
+LATENCY_MIN_US  0.81
+LATENCY_MAX_US  1.00
+LATENCY_P95_US  0.87
+LATENCY_P99_US  0.93
+ACCURACY_PCT    36.10
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes_small_relu':
+
+        55,075,130      cycles                                                                  (57.36%)
+        56,904,671      instructions                     #    1.03  insn per cycle              (60.85%)
+        20,024,774      cache-references                                                        (72.52%)
+           170,982      cache-misses                     #    0.85% of all cache refs           (78.19%)
+        20,888,636      L1-dcache-loads                                                         (75.66%)
+           173,492      L1-dcache-load-misses            #    0.83% of all L1-dcache accesses   (74.83%)
+           161,035      branch-misses                                                           (74.07%)
+                 5      context-switches                                                      
+
+       0.067325537 seconds time elapsed
+
+       0.016161000 seconds user
+       0.048484000 seconds sys
+
+

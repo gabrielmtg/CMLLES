@@ -1,0 +1,28 @@
+=== cmsisnn_iaes_small_sigmoid ===
+BENCH iaes_small_sigmoid_int8
+LATENCY_MEAN_US 0.86
+LATENCY_STD_US  0.01
+LATENCY_MIN_US  0.83
+LATENCY_MAX_US  1.02
+LATENCY_P95_US  0.87
+LATENCY_P99_US  0.93
+ACCURACY_PCT    36.10
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes_small_sigmoid':
+
+        53,469,012      cycles                                                                  (57.43%)
+        56,798,713      instructions                     #    1.06  insn per cycle              (60.62%)
+        20,756,613      cache-references                                                        (65.30%)
+           117,307      cache-misses                     #    0.57% of all cache refs           (78.02%)
+        20,856,258      L1-dcache-loads                                                         (75.45%)
+           115,126      L1-dcache-load-misses            #    0.55% of all L1-dcache accesses   (74.59%)
+           169,385      branch-misses                                                           (73.81%)
+                 2      context-switches                                                      
+
+       0.065713500 seconds time elapsed
+
+       0.015122000 seconds user
+       0.049146000 seconds sys
+
+

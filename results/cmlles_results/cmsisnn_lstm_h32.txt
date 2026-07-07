@@ -1,0 +1,28 @@
+=== cmsisnn_lstm_h32 ===
+BENCH lstm_h32_int8
+LATENCY_MEAN_US 270.72
+LATENCY_STD_US  3.55
+LATENCY_MIN_US  269.39
+LATENCY_MAX_US  315.78
+LATENCY_P95_US  281.65
+LATENCY_P99_US  284.13
+MAE_CYCLES      78.45
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_lstm_h32':
+
+       576,384,695      cycles                                                                  (60.76%)
+     1,082,041,537      instructions                     #    1.88  insn per cycle              (62.44%)
+       342,510,942      cache-references                                                        (62.43%)
+           283,725      cache-misses                     #    0.08% of all cache refs           (62.44%)
+       341,742,213      L1-dcache-loads                                                         (60.35%)
+           283,278      L1-dcache-load-misses            #    0.08% of all L1-dcache accesses   (59.15%)
+         1,465,624      branch-misses                                                           (58.91%)
+                 9      context-switches                                                      
+
+       0.361585796 seconds time elapsed
+
+       0.290753000 seconds user
+       0.067709000 seconds sys
+
+

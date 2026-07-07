@@ -1,0 +1,28 @@
+=== fann_mlp_large_relu ===
+BENCH mlp_large_relu_f32
+LATENCY_MEAN_US 108.90
+LATENCY_STD_US  6.20
+LATENCY_MIN_US  107.87
+LATENCY_MAX_US  276.20
+LATENCY_P95_US  108.56
+LATENCY_P99_US  122.54
+ACCURACY_PCT    36.70
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp large relu':
+
+       374,840,435      cycles                                                                  (69.79%)
+       751,762,700      instructions                     #    2.01  insn per cycle              (71.02%)
+       232,625,934      cache-references                                                        (72.63%)
+           842,459      cache-misses                     #    0.36% of all cache refs           (76.06%)
+       233,171,294      L1-dcache-loads                                                         (77.77%)
+           844,009      L1-dcache-load-misses            #    0.36% of all L1-dcache accesses   (77.76%)
+         1,025,209      branch-misses                                                           (73.60%)
+                25      context-switches                                                      
+
+       0.247319796 seconds time elapsed
+
+       0.183963000 seconds user
+       0.058711000 seconds sys
+
+

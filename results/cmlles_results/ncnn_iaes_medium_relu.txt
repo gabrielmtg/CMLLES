@@ -1,0 +1,28 @@
+=== ncnn_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 17.91
+LATENCY_STD_US  4.76
+LATENCY_MIN_US  17.30
+LATENCY_MAX_US  121.39
+LATENCY_P95_US  17.74
+LATENCY_P99_US  19.02
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium relu':
+
+       531,915,030      cycles                                                                  (90.55%)
+     1,375,031,424      instructions                     #    2.59  insn per cycle              (90.19%)
+       243,257,128      cache-references                                                        (90.90%)
+           800,214      cache-misses                     #    0.33% of all cache refs           (91.59%)
+       242,265,343      L1-dcache-loads                                                         (91.76%)
+           823,533      L1-dcache-load-misses            #    0.34% of all L1-dcache accesses   (92.60%)
+           277,462      branch-misses                                                           (93.56%)
+                18      context-switches                                                      
+
+       0.093140777 seconds time elapsed
+
+       0.259598000 seconds user
+       0.064899000 seconds sys
+
+

@@ -1,0 +1,28 @@
+=== fann_mlp_medium_sigmoid ===
+BENCH mlp_medium_sigmoid_f32
+LATENCY_MEAN_US 32.61
+LATENCY_STD_US  1.32
+LATENCY_MIN_US  31.87
+LATENCY_MAX_US  48.80
+LATENCY_P95_US  32.76
+LATENCY_P99_US  44.65
+ACCURACY_PCT    39.90
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp medium sigmoid':
+
+       134,415,723      cycles                                                                  (68.58%)
+       217,169,959      instructions                     #    1.62  insn per cycle              (69.11%)
+        66,947,839      cache-references                                                        (70.20%)
+           476,857      cache-misses                     #    0.71% of all cache refs           (70.18%)
+        66,985,165      L1-dcache-loads                                                         (69.72%)
+           483,209      L1-dcache-load-misses            #    0.72% of all L1-dcache accesses   (69.85%)
+           465,783      branch-misses                                                           (72.35%)
+                 7      context-switches                                                      
+
+       0.113156778 seconds time elapsed
+
+       0.070739000 seconds user
+       0.039299000 seconds sys
+
+

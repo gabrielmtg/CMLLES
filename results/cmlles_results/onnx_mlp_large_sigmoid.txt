@@ -1,0 +1,28 @@
+=== onnx_mlp_large_sigmoid ===
+BENCH mlp_large_sigmoid_f32
+LATENCY_MEAN_US 46.43
+LATENCY_STD_US  2.39
+LATENCY_MIN_US  45.70
+LATENCY_MAX_US  101.69
+LATENCY_P95_US  46.83
+LATENCY_P99_US  55.59
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp large sigmoid':
+
+       232,141,590      cycles                                                                  (70.98%)
+       211,030,640      instructions                     #    0.91  insn per cycle              (75.02%)
+        91,605,677      cache-references                                                        (77.18%)
+         2,155,456      cache-misses                     #    2.35% of all cache refs           (79.53%)
+        90,978,244      L1-dcache-loads                                                         (77.83%)
+         2,122,706      L1-dcache-load-misses            #    2.33% of all L1-dcache accesses   (77.67%)
+           890,972      branch-misses                                                           (77.09%)
+                 2      context-switches                                                      
+
+       0.170039796 seconds time elapsed
+
+       0.075553000 seconds user
+       0.087482000 seconds sys
+
+

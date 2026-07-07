@@ -1,0 +1,28 @@
+=== litert_iaes_small_sigmoid ===
+BENCH iaes_small_sigmoid_f32
+LATENCY_MEAN_US 4.57
+LATENCY_STD_US  0.70
+LATENCY_MIN_US  4.43
+LATENCY_MAX_US  26.57
+LATENCY_P95_US  4.61
+LATENCY_P99_US  5.15
+ACCURACY_PCT    97.40
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes small sigmoid':
+
+        67,021,476      cycles                                                                  (60.46%)
+        64,852,815      instructions                     #    0.97  insn per cycle              (64.11%)
+        23,888,899      cache-references                                                        (74.76%)
+           354,520      cache-misses                     #    1.48% of all cache refs           (79.80%)
+        24,753,556      L1-dcache-loads                                                         (79.78%)
+           357,291      L1-dcache-load-misses            #    1.44% of all L1-dcache accesses   (79.13%)
+           225,109      branch-misses                                                           (75.27%)
+                 2      context-switches                                                      
+
+       0.072669778 seconds time elapsed
+
+       0.011962000 seconds user
+       0.059813000 seconds sys
+
+

@@ -1,0 +1,28 @@
+=== fann_ae_medium ===
+BENCH ae_medium_f32
+LATENCY_MEAN_US 62.08
+LATENCY_STD_US  1.90
+LATENCY_MIN_US  61.07
+LATENCY_MAX_US  80.98
+LATENCY_P95_US  63.50
+LATENCY_P99_US  73.72
+ACCURACY_PCT    75.80
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae medium':
+
+     2,082,517,768      cycles                                                                  (95.83%)
+     3,549,285,888      instructions                     #    1.70  insn per cycle              (96.07%)
+     1,344,731,168      cache-references                                                        (96.33%)
+         1,407,681      cache-misses                     #    0.10% of all cache refs           (96.62%)
+     1,342,735,262      L1-dcache-loads                                                         (96.93%)
+         1,442,930      L1-dcache-load-misses            #    0.11% of all L1-dcache accesses   (97.25%)
+         1,394,257      branch-misses                                                           (97.21%)
+                10      context-switches                                                      
+
+       1.190170943 seconds time elapsed
+
+       1.114304000 seconds user
+       0.071890000 seconds sys
+
+

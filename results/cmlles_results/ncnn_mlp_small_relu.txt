@@ -1,0 +1,28 @@
+=== ncnn_mlp_small_relu ===
+BENCH mlp_small_relu_f32
+LATENCY_MEAN_US 12.69
+LATENCY_STD_US  3.07
+LATENCY_MIN_US  12.32
+LATENCY_MAX_US  107.55
+LATENCY_P95_US  12.70
+LATENCY_P99_US  13.52
+ACCURACY_PCT    100.00
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp small relu':
+
+       483,163,878      cycles                                                                  (90.14%)
+     1,283,393,281      instructions                     #    2.66  insn per cycle              (90.26%)
+       223,102,269      cache-references                                                        (90.98%)
+           577,822      cache-misses                     #    0.26% of all cache refs           (91.84%)
+       220,941,977      L1-dcache-loads                                                         (92.84%)
+           617,244      L1-dcache-load-misses            #    0.28% of all L1-dcache accesses   (93.99%)
+           228,634      branch-misses                                                           (94.63%)
+                23      context-switches                                                      
+
+       0.150775111 seconds time elapsed
+
+       0.209547000 seconds user
+       0.087628000 seconds sys
+
+

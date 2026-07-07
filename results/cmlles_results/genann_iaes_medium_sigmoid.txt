@@ -1,0 +1,28 @@
+=== genann_iaes_medium_sigmoid ===
+BENCH iaes_medium_sigmoid_f64
+LATENCY_MEAN_US 10.74
+LATENCY_STD_US  0.57
+LATENCY_MIN_US  10.32
+LATENCY_MAX_US  23.09
+LATENCY_P95_US  11.02
+LATENCY_P99_US  11.37
+ACCURACY_PCT    98.10
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium':
+
+        86,159,173      cycles                                                                  (58.89%)
+       106,653,843      instructions                     #    1.24  insn per cycle              (69.02%)
+        36,097,623      cache-references                                                        (72.75%)
+           356,812      cache-misses                     #    0.99% of all cache refs           (77.12%)
+        35,265,481      L1-dcache-loads                                                         (81.18%)
+           346,291      L1-dcache-load-misses            #    0.98% of all L1-dcache accesses   (78.71%)
+           298,132      branch-misses                                                           (78.22%)
+                 5      context-switches                                                      
+
+       0.082457852 seconds time elapsed
+
+       0.026764000 seconds user
+       0.053528000 seconds sys
+
+

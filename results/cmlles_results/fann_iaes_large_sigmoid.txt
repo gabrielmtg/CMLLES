@@ -1,0 +1,28 @@
+=== fann_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 120.86
+LATENCY_STD_US  2.55
+LATENCY_MIN_US  118.56
+LATENCY_MAX_US  138.37
+LATENCY_P95_US  123.56
+LATENCY_P99_US  134.44
+ACCURACY_PCT    95.70
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes large sigmoid':
+
+       409,891,460      cycles                                                                  (71.08%)
+       791,659,004      instructions                     #    1.93  insn per cycle              (72.12%)
+       245,041,112      cache-references                                                        (72.04%)
+           993,547      cache-misses                     #    0.41% of all cache refs           (73.29%)
+       244,963,051      L1-dcache-loads                                                         (72.05%)
+           992,111      L1-dcache-load-misses            #    0.41% of all L1-dcache accesses   (73.33%)
+         1,076,457      branch-misses                                                           (74.70%)
+                 4      context-switches                                                      
+
+       0.263413870 seconds time elapsed
+
+       0.180305000 seconds user
+       0.080135000 seconds sys
+
+

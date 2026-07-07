@@ -1,0 +1,28 @@
+=== cmsisnn_mlp_small_sigmoid ===
+BENCH mlp_small_sigmoid_int8
+LATENCY_MEAN_US 0.89
+LATENCY_STD_US  0.02
+LATENCY_MIN_US  0.87
+LATENCY_MAX_US  1.02
+LATENCY_P95_US  0.91
+LATENCY_P99_US  0.98
+ACCURACY_PCT    33.40
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp_small_sigmoid':
+
+        35,979,403      cycles                                                                  (49.75%)
+        26,792,499      instructions                     #    0.74  insn per cycle              (62.74%)
+        12,407,353      cache-references                                                        (74.58%)
+            59,597      cache-misses                     #    0.48% of all cache refs           (74.51%)
+        12,206,859      L1-dcache-loads                                                         (71.63%)
+            60,977      L1-dcache-load-misses            #    0.50% of all L1-dcache accesses   (70.67%)
+           103,674      branch-misses                                                           (69.77%)
+                 2      context-switches                                                      
+
+       0.058324722 seconds time elapsed
+
+       0.004062000 seconds user
+       0.052816000 seconds sys
+
+

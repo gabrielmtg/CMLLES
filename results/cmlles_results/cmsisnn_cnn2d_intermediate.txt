@@ -1,0 +1,28 @@
+=== cmsisnn_cnn2d_intermediate ===
+BENCH cnn_intermediate_int8
+LATENCY_MEAN_US 1.38
+LATENCY_STD_US  0.12
+LATENCY_MIN_US  1.30
+LATENCY_MAX_US  2.76
+LATENCY_P95_US  1.41
+LATENCY_P99_US  2.00
+ACCURACY_PCT    0.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d_intermediate':
+
+        91,136,682      cycles                                                                  (54.14%)
+        80,297,089      instructions                     #    0.88  insn per cycle              (57.96%)
+        21,855,248      cache-references                                                        (62.29%)
+           239,074      cache-misses                     #    1.09% of all cache refs           (58.56%)
+        21,710,066      L1-dcache-loads                                                         (58.88%)
+           239,466      L1-dcache-load-misses            #    1.10% of all L1-dcache accesses   (57.67%)
+           772,751      branch-misses                                                           (64.82%)
+                 3      context-switches                                                      
+
+       0.094337389 seconds time elapsed
+
+       0.037033000 seconds user
+       0.053492000 seconds sys
+
+

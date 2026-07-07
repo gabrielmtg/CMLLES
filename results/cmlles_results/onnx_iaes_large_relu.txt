@@ -1,0 +1,21 @@
+=== onnx_iaes_large_relu ===
+ORT error: Load model from model/iaes_large_relu_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
+
+
+ Performance counter stats for './benchmark_iaes large relu':
+
+        91,878,811      cycles                                                                
+       102,385,158      instructions                     #    1.11  insn per cycle            
+        41,341,751      cache-references                                                      
+           540,813      cache-misses                     #    1.31% of all cache refs         
+        41,341,751      L1-dcache-loads                                                       
+           540,813      L1-dcache-load-misses            #    1.31% of all L1-dcache accesses 
+           455,641      branch-misses                                                         
+                 2      context-switches                                                      
+
+       0.053099482 seconds time elapsed
+
+       0.037387000 seconds user
+       0.014954000 seconds sys
+
+

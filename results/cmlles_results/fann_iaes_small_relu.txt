@@ -1,0 +1,28 @@
+=== fann_iaes_small_relu ===
+BENCH iaes_small_relu_f32
+LATENCY_MEAN_US 4.84
+LATENCY_STD_US  0.39
+LATENCY_MIN_US  4.80
+LATENCY_MAX_US  17.02
+LATENCY_P95_US  4.89
+LATENCY_P99_US  4.93
+ACCURACY_PCT    97.30
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes small relu':
+
+        71,129,654      cycles                                                                  (56.49%)
+        81,347,355      instructions                     #    1.14  insn per cycle              (71.65%)
+        27,996,031      cache-references                                                        (76.90%)
+           253,110      cache-misses                     #    0.90% of all cache refs           (80.07%)
+        28,797,411      L1-dcache-loads                                                         (80.04%)
+           252,454      L1-dcache-load-misses            #    0.88% of all L1-dcache accesses   (77.65%)
+           204,310      branch-misses                                                           (75.59%)
+                 9      context-switches                                                      
+
+       0.078716871 seconds time elapsed
+
+       0.016120000 seconds user
+       0.056422000 seconds sys
+
+

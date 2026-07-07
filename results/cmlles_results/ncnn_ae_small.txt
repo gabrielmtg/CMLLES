@@ -1,0 +1,28 @@
+=== ncnn_ae_small ===
+BENCH ae_small_f32
+LATENCY_MEAN_US 21.47
+LATENCY_STD_US  4.56
+LATENCY_MIN_US  20.81
+LATENCY_MAX_US  148.78
+LATENCY_P95_US  21.35
+LATENCY_P99_US  22.70
+ACCURACY_PCT    85.20
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae small':
+
+     2,461,384,162      cycles                                                                  (97.96%)
+     4,498,216,820      instructions                     #    1.83  insn per cycle              (97.96%)
+     1,471,708,886      cache-references                                                        (97.95%)
+         2,198,570      cache-misses                     #    0.15% of all cache refs           (97.85%)
+     1,470,238,493      L1-dcache-loads                                                         (98.03%)
+         2,251,396      L1-dcache-load-misses            #    0.15% of all L1-dcache accesses   (98.23%)
+         1,290,917      branch-misses                                                           (98.43%)
+                60      context-switches                                                      
+
+       1.246037481 seconds time elapsed
+
+       1.281749000 seconds user
+       0.115437000 seconds sys
+
+

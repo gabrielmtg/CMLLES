@@ -1,0 +1,28 @@
+=== cmsisnn_mlp_large_relu ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 4.20
+LATENCY_STD_US  0.53
+LATENCY_MIN_US  4.07
+LATENCY_MAX_US  20.80
+LATENCY_P95_US  4.20
+LATENCY_P99_US  4.31
+ACCURACY_PCT    33.40
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp_large_relu':
+
+        42,300,281      cycles                                                                  (51.01%)
+        40,854,278      instructions                     #    0.97  insn per cycle              (51.71%)
+        14,829,463      cache-references                                                        (55.71%)
+           155,445      cache-misses                     #    1.05% of all cache refs           (75.62%)
+        14,736,130      L1-dcache-loads                                                         (72.58%)
+           159,852      L1-dcache-load-misses            #    1.08% of all L1-dcache accesses   (71.70%)
+           115,813      branch-misses                                                           (70.97%)
+                 3      context-switches                                                      
+
+       0.064160777 seconds time elapsed
+
+       0.008152000 seconds user
+       0.052988000 seconds sys
+
+

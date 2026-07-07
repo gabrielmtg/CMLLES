@@ -1,0 +1,28 @@
+=== cmsisnn_iaes_large_relu ===
+BENCH iaes_large_relu_int8
+LATENCY_MEAN_US 4.31
+LATENCY_STD_US  0.02
+LATENCY_MIN_US  4.28
+LATENCY_MAX_US  4.52
+LATENCY_P95_US  4.33
+LATENCY_P99_US  4.37
+ACCURACY_PCT    36.10
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes_large_relu':
+
+        61,286,097      cycles                                                                  (51.29%)
+        65,700,525      instructions                     #    1.07  insn per cycle              (67.10%)
+        23,328,892      cache-references                                                        (78.91%)
+           117,621      cache-misses                     #    0.50% of all cache refs           (78.87%)
+        23,267,054      L1-dcache-loads                                                         (76.23%)
+           115,244      L1-dcache-load-misses            #    0.50% of all L1-dcache accesses   (75.53%)
+           171,899      branch-misses                                                           (74.88%)
+                 3      context-switches                                                      
+
+       0.071121185 seconds time elapsed
+
+       0.008112000 seconds user
+       0.060842000 seconds sys
+
+

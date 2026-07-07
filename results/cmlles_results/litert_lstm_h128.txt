@@ -1,0 +1,28 @@
+=== litert_lstm_h128 ===
+BENCH lstm_h128_f32
+LATENCY_MEAN_US 1454.78
+LATENCY_STD_US  22.53
+LATENCY_MIN_US  1424.61
+LATENCY_MAX_US  1682.09
+LATENCY_P95_US  1480.74
+LATENCY_P99_US  1540.15
+MAE_CYCLES      12.70
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_lstm 128':
+
+     2,725,795,879      cycles                                                                  (59.05%)
+     2,269,007,421      instructions                     #    0.83  insn per cycle              (59.17%)
+       936,972,187      cache-references                                                        (59.28%)
+        96,571,583      cache-misses                     #   10.31% of all cache refs           (59.52%)
+       937,683,575      L1-dcache-loads                                                         (53.48%)
+        96,098,404      L1-dcache-load-misses            #   10.25% of all L1-dcache accesses   (53.71%)
+         3,990,427      branch-misses                                                           (53.93%)
+                25      context-switches                                                      
+
+       1.567599370 seconds time elapsed
+
+       1.497632000 seconds user
+       0.059905000 seconds sys
+
+

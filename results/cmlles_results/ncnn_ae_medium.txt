@@ -1,0 +1,28 @@
+=== ncnn_ae_medium ===
+BENCH ae_medium_f32
+LATENCY_MEAN_US 24.51
+LATENCY_STD_US  4.11
+LATENCY_MIN_US  23.85
+LATENCY_MAX_US  114.68
+LATENCY_P95_US  24.63
+LATENCY_P99_US  25.85
+ACCURACY_PCT    79.70
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae medium':
+
+     2,426,621,346      cycles                                                                  (97.78%)
+     4,530,840,606      instructions                     #    1.87  insn per cycle              (97.84%)
+     1,471,835,245      cache-references                                                        (97.91%)
+         2,179,754      cache-misses                     #    0.15% of all cache refs           (97.90%)
+     1,471,914,703      L1-dcache-loads                                                         (97.89%)
+         2,181,327      L1-dcache-load-misses            #    0.15% of all L1-dcache accesses   (97.90%)
+         1,238,058      branch-misses                                                           (98.05%)
+                31      context-switches                                                      
+
+       1.125413537 seconds time elapsed
+
+       1.301653000 seconds user
+       0.075631000 seconds sys
+
+

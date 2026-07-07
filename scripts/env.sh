@@ -15,6 +15,8 @@ export IMAGES_DIR="${OUTPUT_DIR}/images"
 export LIBS_PREFIX="${OUTPUT_DIR}/aarch64-sysroot"
 export EXEC_DIR="${OUTPUT_DIR}/executables"
 
+export RESULTS_DIR="${CMLLES_SOURCE_DIR}/results"
+
 export CROSS_CC="aarch64-linux-gnu-gcc"
 export CROSS_CXX="aarch64-linux-gnu-g++"
 export CROSS_AR="aarch64-linux-gnu-ar"

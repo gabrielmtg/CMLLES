@@ -1,0 +1,28 @@
+=== cmsisnn_ae_medium ===
+BENCH ae_medium_int8
+LATENCY_MEAN_US 4.12
+LATENCY_STD_US  0.38
+LATENCY_MIN_US  4.04
+LATENCY_MAX_US  16.07
+LATENCY_P95_US  4.17
+LATENCY_P99_US  4.22
+ACCURACY_PCT    54.80
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae_medium':
+
+     1,903,364,995      cycles                                                                  (97.74%)
+     3,231,884,159      instructions                     #    1.70  insn per cycle              (97.63%)
+     1,245,296,268      cache-references                                                        (97.60%)
+         1,094,519      cache-misses                     #    0.09% of all cache refs           (98.71%)
+     1,235,920,771      L1-dcache-loads                                                         (98.67%)
+         1,094,336      L1-dcache-load-misses            #    0.09% of all L1-dcache accesses   (98.63%)
+         1,066,632      branch-misses                                                           (98.60%)
+                18      context-switches                                                      
+
+       1.086058314 seconds time elapsed
+
+       1.018744000 seconds user
+       0.064172000 seconds sys
+
+

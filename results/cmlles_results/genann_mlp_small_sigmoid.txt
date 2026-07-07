@@ -1,0 +1,28 @@
+=== genann_mlp_small_sigmoid ===
+BENCH mlp_small_sigmoid_f64
+LATENCY_MEAN_US 1.71
+LATENCY_STD_US  0.37
+LATENCY_MIN_US  1.63
+LATENCY_MAX_US  13.17
+LATENCY_P95_US  1.74
+LATENCY_P99_US  1.96
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp small sigmoid':
+
+        39,178,236      cycles                                                                  (47.49%)
+        30,845,250      instructions                     #    0.79  insn per cycle              (57.11%)
+        12,217,281      cache-references                                                        (62.51%)
+           129,309      cache-misses                     #    1.06% of all cache refs           (75.25%)
+        13,380,384      L1-dcache-loads                                                         (72.34%)
+           125,062      L1-dcache-load-misses            #    0.93% of all L1-dcache accesses   (71.46%)
+           133,556      branch-misses                                                           (70.68%)
+                 4      context-switches                                                      
+
+       0.061528667 seconds time elapsed
+
+       0.023508000 seconds user
+       0.035262000 seconds sys
+
+
