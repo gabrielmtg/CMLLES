@@ -44,8 +44,7 @@ Treina todos os frameworks e algoritmos em sequência. Os modelos são salvos em
 ## Passo 2 — Gerar a imagem do SD card
 
 ```bash
-cd scripts
-./build.sh
+./scripts/build.sh
 ```
 
 O script faz automaticamente:
@@ -69,8 +68,7 @@ output_rpi_image/images/cmlles-raspios.img
 ## Passo 3 — Gravar no SD card
 
 ```bash
-cd scripts
-./deploy_to_sdcard.sh /dev/sdX   # substitua sdX pelo seu dispositivo
+./scripts/deploy_to_sdcard.sh /dev/sdX   # substitua sdX pelo seu dispositivo
 ```
 
 Para identificar o dispositivo correto, compare o `lsblk` antes e depois de inserir o SD card:
@@ -131,14 +129,39 @@ journalctl -u cmlles-bench.service
 
 ---
 
-## Coleta de métricas
+## Passo 7 — Coletar os resultados
 
-Após rodar os benchmarks no RPi, use os scripts auxiliares no PC:
+Após os benchmarks terminarem no RPi (serviço com status `exited`), desligue o RPi, insira o SD card no PC e rode em sequência:
 
 ```bash
-# Métricas de treinamento (training_metrics.json de todos os frameworks)
-scripts/collect_training_metrics.sh
+# 1. Copia cmlles_results/ e latencies_rpi/ do SD card → results/
+./scripts/collect/collect_from_sdcard.sh
 
-# Métricas de tamanho de binário (size, objdump)
-scripts/collect_binary_metrics.sh
+# 2. Agrega PMU por inferência (1000 medições individuais) → results/per_inference_perf_summary.csv
+./scripts/collect/collect_per_inference_perf.sh
+
+# 3. Parseia perf stat externo (totais por benchmark) → results/perf_metrics_all.csv
+./scripts/collect/collect_perf_metrics.sh
+
+# 4. Métricas de treinamento (training_metrics.json) → results/training_metrics_all.csv
+./scripts/collect/collect_training_metrics.sh
+
+# 5. Tamanho dos binários (size, objdump) → results/binary_metrics.csv
+./scripts/collect/collect_binary_metrics.sh
+```
+
+Todos os CSVs gerados ficam em `results/`. As latências individuais (1000 linhas por benchmark) ficam em `results/latencies_rpi/`.
+
+---
+
+## Estrutura de resultados
+
+```
+results/
+├── latencies_rpi/                    # 1000 latências por benchmark (cycles, instructions, L1, etc.)
+├── cmlles_results/                   # saída bruta do perf stat por benchmark
+├── per_inference_perf_summary.csv    # sumário PMU por inferência (mean, std, p95, p99)
+├── perf_metrics_all.csv              # totais do perf stat por benchmark
+├── training_metrics_all.csv          # métricas de treinamento de todos os frameworks
+└── binary_metrics.csv                # tamanho de texto/dados/bss por executável
 ```
