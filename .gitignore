@@ -49,3 +49,13 @@ bin/
 !*/benchmarks/**/*.c
 */benchmarks/**/train_models
 */benchmarks/**/prepare_data
+
+# Binários soltos
+a.out
+
+# Diretórios de backup
+*-bak/
+
+# Build artifacts dentro de submodulos
+NCNN/ncnn/build/
+FANN/fann/build/
