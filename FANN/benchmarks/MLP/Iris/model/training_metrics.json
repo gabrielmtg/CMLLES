@@ -1,0 +1,44 @@
+{
+  "mlp_small_relu": {
+    "training_time_s": 0.110,
+    "epochs": 500,
+    "final_train_mse": 1362.033936,
+    "final_test_accuracy_pct": 30.00,
+    "test_samples": 30
+  },
+  "mlp_small_sigmoid": {
+    "training_time_s": 0.138,
+    "epochs": 500,
+    "final_train_mse": 0.073877,
+    "final_test_accuracy_pct": 90.00,
+    "test_samples": 30
+  },
+  "mlp_medium_relu": {
+    "training_time_s": 0.644,
+    "epochs": 500,
+    "final_train_mse": 0.130021,
+    "final_test_accuracy_pct": 66.67,
+    "test_samples": 30
+  },
+  "mlp_medium_sigmoid": {
+    "training_time_s": 0.761,
+    "epochs": 500,
+    "final_train_mse": 0.719704,
+    "final_test_accuracy_pct": 40.00,
+    "test_samples": 30
+  },
+  "mlp_large_relu": {
+    "training_time_s": 2.812,
+    "epochs": 500,
+    "final_train_mse": 87686.289062,
+    "final_test_accuracy_pct": 36.67,
+    "test_samples": 30
+  },
+  "mlp_large_sigmoid": {
+    "training_time_s": 2.936,
+    "epochs": 500,
+    "final_train_mse": 11.753133,
+    "final_test_accuracy_pct": 76.67,
+    "test_samples": 30
+  }
+}

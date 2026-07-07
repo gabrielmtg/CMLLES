@@ -1,0 +1,14 @@
+{
+  "lstm_h32": {
+    "training_time_s": 162.682,
+    "best_val_loss": 0.003785
+  },
+  "lstm_h64": {
+    "training_time_s": 232.163,
+    "best_val_loss": 0.002156
+  },
+  "lstm_h128": {
+    "training_time_s": 581.314,
+    "best_val_loss": 0.000681
+  }
+}

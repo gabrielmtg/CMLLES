@@ -1,0 +1,16 @@
+7767517
+14 13
+pnnx.Input               pnnx_input_0             0 1 0 #0=(1,122)f32
+nn.Linear                0                        1 1 0 1 bias=True in_features=122 out_features=128 @bias=(128)f32 @weight=(128,122)f32 #0=(1,122)f32 #1=(1,128)f32
+nn.LeakyReLU             1                        1 1 1 2 negative_slope=0.1 #1=(1,128)f32 #2=(1,128)f32
+nn.Linear                2                        1 1 2 3 bias=True in_features=128 out_features=64 @bias=(64)f32 @weight=(64,128)f32 #2=(1,128)f32 #3=(1,64)f32
+nn.LeakyReLU             3                        1 1 3 4 negative_slope=0.1 #3=(1,64)f32 #4=(1,64)f32
+nn.Linear                4                        1 1 4 5 bias=True in_features=64 out_features=32 @bias=(32)f32 @weight=(32,64)f32 #4=(1,64)f32 #5=(1,32)f32
+nn.LeakyReLU             5                        1 1 5 6 negative_slope=0.1 #5=(1,32)f32 #6=(1,32)f32
+nn.Linear                6                        1 1 6 7 bias=True in_features=32 out_features=64 @bias=(64)f32 @weight=(64,32)f32 #6=(1,32)f32 #7=(1,64)f32
+nn.LeakyReLU             7                        1 1 7 8 negative_slope=0.1 #7=(1,64)f32 #8=(1,64)f32
+nn.Linear                8                        1 1 8 9 bias=True in_features=64 out_features=128 @bias=(128)f32 @weight=(128,64)f32 #8=(1,64)f32 #9=(1,128)f32
+nn.LeakyReLU             9                        1 1 9 10 negative_slope=0.1 #9=(1,128)f32 #10=(1,128)f32
+nn.Linear                10                       1 1 10 11 bias=True in_features=128 out_features=122 @bias=(122)f32 @weight=(122,128)f32 #10=(1,128)f32 #11=(1,122)f32
+nn.Sigmoid               11                       1 1 11 12 #11=(1,122)f32 #12=(1,122)f32
+pnnx.Output              pnnx_output_0            1 0 12 #12=(1,122)f32

@@ -1,0 +1,20 @@
+{
+  "ae_small": {
+    "training_time_s": 108.86,
+    "epochs": 50,
+    "final_train_loss": 0.001782,
+    "threshold": 0.01081495
+  },
+  "ae_medium": {
+    "training_time_s": 117.344,
+    "epochs": 50,
+    "final_train_loss": 0.003135,
+    "threshold": 0.01411524
+  },
+  "ae_large": {
+    "training_time_s": 117.545,
+    "epochs": 50,
+    "final_train_loss": 0.001349,
+    "threshold": 0.0068008
+  }
+}

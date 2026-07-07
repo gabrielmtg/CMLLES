@@ -1,44 +1,44 @@
 {
   "iaes_small_relu": {
-    "training_time_s": 17.866,
+    "training_time_s": 17.844,
     "epochs": 200,
-    "final_train_mse": 0.024667,
-    "final_test_accuracy_pct": 96.50,
+    "final_train_mse": 0.022549,
+    "final_test_accuracy_pct": 97.30,
     "test_samples": 1000
   },
   "iaes_small_sigmoid": {
-    "training_time_s": 24.272,
+    "training_time_s": 22.710,
     "epochs": 200,
-    "final_train_mse": 0.022269,
-    "final_test_accuracy_pct": 97.30,
+    "final_train_mse": 0.017495,
+    "final_test_accuracy_pct": 97.60,
     "test_samples": 1000
   },
   "iaes_medium_relu": {
-    "training_time_s": 113.132,
+    "training_time_s": 111.315,
     "epochs": 200,
-    "final_train_mse": 0.092538,
-    "final_test_accuracy_pct": 90.70,
+    "final_train_mse": 0.092341,
+    "final_test_accuracy_pct": 87.80,
     "test_samples": 1000
   },
   "iaes_medium_sigmoid": {
-    "training_time_s": 127.794,
+    "training_time_s": 176.510,
     "epochs": 200,
-    "final_train_mse": 0.059570,
-    "final_test_accuracy_pct": 97.30,
+    "final_train_mse": 0.021140,
+    "final_test_accuracy_pct": 96.50,
     "test_samples": 1000
   },
   "iaes_large_relu": {
-    "training_time_s": 472.951,
+    "training_time_s": 455.625,
     "epochs": 200,
-    "final_train_mse": 0.129223,
-    "final_test_accuracy_pct": 82.80,
+    "final_train_mse": 0.233979,
+    "final_test_accuracy_pct": 76.10,
     "test_samples": 1000
   },
   "iaes_large_sigmoid": {
-    "training_time_s": 608.526,
+    "training_time_s": 589.129,
     "epochs": 200,
-    "final_train_mse": 0.027440,
-    "final_test_accuracy_pct": 96.60,
+    "final_train_mse": 0.036054,
+    "final_test_accuracy_pct": 95.70,
     "test_samples": 1000
   }
 }

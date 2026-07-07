@@ -1,0 +1,32 @@
+{
+  "mlp_small_relu": {
+    "training_time_s": 0.445,
+    "epochs": 500,
+    "final_train_loss": 0.040035
+  },
+  "mlp_small_sigmoid": {
+    "training_time_s": 0.318,
+    "epochs": 500,
+    "final_train_loss": 0.04034
+  },
+  "mlp_medium_relu": {
+    "training_time_s": 0.74,
+    "epochs": 500,
+    "final_train_loss": 0.001634
+  },
+  "mlp_medium_sigmoid": {
+    "training_time_s": 1.285,
+    "epochs": 500,
+    "final_train_loss": 0.036848
+  },
+  "mlp_large_relu": {
+    "training_time_s": 1.447,
+    "epochs": 500,
+    "final_train_loss": 4e-06
+  },
+  "mlp_large_sigmoid": {
+    "training_time_s": 1.058,
+    "epochs": 500,
+    "final_train_loss": 0.02706
+  }
+}

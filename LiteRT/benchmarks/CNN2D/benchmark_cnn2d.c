@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+#include <sys/stat.h>
+#include <tensorflow/lite/c/c_api.h>
+
+#define N_RUNS   1000
+#define N_WARMUP 5
+
+static double time_us(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1e6 + ts.tv_nsec / 1e3;
+}
+
+static int cmp_double(const void *a, const void *b) {
+    double da = *(const double *)a;
+    double db = *(const double *)b;
+    return (da > db) - (da < db);
+}
+
+static void compute_stats(double *lat, int n, double *mean, double *stdv,
+                           double *mn, double *mx, double *p95, double *p99) {
+    double sum = 0.0;
+    *mn = lat[0]; *mx = lat[0];
+    for (int i = 0; i < n; i++) {
+        sum += lat[i];
+        if (lat[i] < *mn) *mn = lat[i];
+        if (lat[i] > *mx) *mx = lat[i];
+    }
+    *mean = sum / n;
+    double var = 0.0;
+    for (int i = 0; i < n; i++) { double d = lat[i] - *mean; var += d * d; }
+    *stdv = sqrt(var / n);
+    double sorted[N_RUNS];
+    memcpy(sorted, lat, n * sizeof(double));
+    qsort(sorted, n, sizeof(double), cmp_double);
+    *p95 = sorted[(int)(0.95 * n)];
+    *p99 = sorted[(int)(0.99 * n)];
+}
+
+typedef struct {
+    float *images;
+    int   *labels;
+    int    n_samples, channels, height, width;
+} ImageData;
+
+static void load_test_images(const char *path, ImageData *td) {
+    FILE *f = fopen(path, "rb");
+    if (!f) { fprintf(stderr, "Cannot open %s\n", path); exit(1); }
+    int header[4];
+    fread(header, sizeof(int), 4, f);
+    td->n_samples = header[0]; td->channels = header[1];
+    td->height = header[2]; td->width = header[3];
+    int sz = td->n_samples * td->channels * td->height * td->width;
+    td->images = malloc(sz * sizeof(float));
+    fread(td->images, sizeof(float), sz, f);
+    fclose(f);
+}
+
+static void load_test_labels(const char *path, ImageData *td) {
+    FILE *f = fopen(path, "rb");
+    if (!f) { fprintf(stderr, "Cannot open %s\n", path); exit(1); }
+    int n; fread(&n, sizeof(int), 1, f);
+    td->labels = malloc(n * sizeof(int));
+    fread(td->labels, sizeof(int), n, f);
+    fclose(f);
+}
+
+static void save_csv(const char *path, double *lat, int n, const char *label) {
+    FILE *f = fopen(path, "w");
+    if (!f) return;
+    fprintf(f, "run,latency_us,label\n");
+    for (int i = 0; i < n; i++)
+        fprintf(f, "%d,%.3f,%s\n", i + 1, lat[i], label);
+    fclose(f);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <config> [n_warmup]\n", argv[0]);
+        return 1;
+    }
+    const char *cfg = argv[1];
+    int n_warmup = (argc > 2) ? atoi(argv[2]) : N_WARMUP;
+
+    const char *img_file = (strcmp(cfg, "mobilenet") == 0)
+        ? "model/test_images_96.bin" : "model/test_images_32.bin";
+
+    char model_path[256], label[64], csv_path[256];
+    snprintf(model_path, sizeof(model_path), "model/cnn_%s_f32.tflite", cfg);
+    snprintf(label, sizeof(label), "cnn_%s_f32", cfg);
+    mkdir("latencies", 0755);
+    snprintf(csv_path, sizeof(csv_path), "latencies/latencies_%s.csv", label);
+
+    ImageData td;
+    load_test_images(img_file, &td);
+    load_test_labels("model/test_labels.bin", &td);
+    int img_sz = td.channels * td.height * td.width;
+
+    TfLiteModel *tfl_model = TfLiteModelCreateFromFile(model_path);
+    if (!tfl_model) { fprintf(stderr, "Failed to load %s\n", model_path); return 1; }
+    TfLiteInterpreterOptions *opts = TfLiteInterpreterOptionsCreate();
+    TfLiteInterpreterOptionsSetNumThreads(opts, 1);
+    TfLiteInterpreter *interp = TfLiteInterpreterCreate(tfl_model, opts);
+    TfLiteInterpreterAllocateTensors(interp);
+
+    TfLiteTensor *in_tensor = TfLiteInterpreterGetInputTensor(interp, 0);
+
+    for (int i = 0; i < n_warmup; i++) {
+        TfLiteTensorCopyFromBuffer(in_tensor,
+            td.images + (i % td.n_samples) * img_sz, img_sz * sizeof(float));
+        TfLiteInterpreterInvoke(interp);
+    }
+
+    double latencies[N_RUNS];
+    int correct = 0;
+    for (int i = 0; i < N_RUNS; i++) {
+        int idx = i % td.n_samples;
+        TfLiteTensorCopyFromBuffer(in_tensor,
+            td.images + idx * img_sz, img_sz * sizeof(float));
+        double t0 = time_us();
+        TfLiteInterpreterInvoke(interp);
+        latencies[i] = time_us() - t0;
+        const TfLiteTensor *out_tensor = TfLiteInterpreterGetOutputTensor(interp, 0);
+        const float *out_data = (const float *)TfLiteTensorData(out_tensor);
+        int pred = (out_data[1] > out_data[0]) ? 1 : 0;
+        if (pred == td.labels[idx]) correct++;
+    }
+
+    double mean, stdv, mn, mx, p95, p99;
+    compute_stats(latencies, N_RUNS, &mean, &stdv, &mn, &mx, &p95, &p99);
+    save_csv(csv_path, latencies, N_RUNS, label);
+
+    printf("BENCH %s\n", label);
+    printf("LATENCY_MEAN_US %.2f\n", mean);
+    printf("LATENCY_STD_US  %.2f\n", stdv);
+    printf("LATENCY_MIN_US  %.2f\n", mn);
+    printf("LATENCY_MAX_US  %.2f\n", mx);
+    printf("LATENCY_P95_US  %.2f\n", p95);
+    printf("LATENCY_P99_US  %.2f\n", p99);
+    printf("ACCURACY_PCT    %.2f\n", 100.0 * correct / N_RUNS);
+    printf("TEST_SAMPLES    %d\n", td.n_samples);
+
+    free(td.images); free(td.labels);
+    TfLiteInterpreterDelete(interp);
+    TfLiteInterpreterOptionsDelete(opts);
+    TfLiteModelDelete(tfl_model);
+    return 0;
+}

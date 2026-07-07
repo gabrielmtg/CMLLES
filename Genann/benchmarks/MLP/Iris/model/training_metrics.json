@@ -1,0 +1,23 @@
+{
+  "mlp_small_sigmoid": {
+    "training_time_s": 0.028,
+    "epochs": 500,
+    "final_train_mse": 0.018575,
+    "final_test_accuracy_pct": 93.33,
+    "test_samples": 30
+  },
+  "mlp_medium_sigmoid": {
+    "training_time_s": 0.220,
+    "epochs": 500,
+    "final_train_mse": 0.009920,
+    "final_test_accuracy_pct": 100.00,
+    "test_samples": 30
+  },
+  "mlp_large_sigmoid": {
+    "training_time_s": 0.424,
+    "epochs": 500,
+    "final_train_mse": 0.010268,
+    "final_test_accuracy_pct": 96.67,
+    "test_samples": 30
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "cnn_simple": {
+    "training_time_s": 1167.924,
+    "epochs": 5,
+    "final_train_loss": 0.589491
+  },
+  "cnn_intermediate": {
+    "training_time_s": 1830.865,
+    "epochs": 5,
+    "final_train_loss": 0.481743
+  },
+  "cnn_mobilenet": {
+    "training_time_s": 4002.793,
+    "epochs": 5,
+    "final_train_loss": 0.504487
+  }
+}

@@ -24,30 +24,28 @@ env/
 .idea/
 .DS_Store
 
-#model files
-*/benchmarks/*/model/*.net
-*/benchmarks/*/model/*.genann
-*/benchmarks/*/model/*.onnx
-*/benchmarks/*/model/*.tflite
-*/benchmarks/*/model/*.ncnn.param
-*/benchmarks/*/model/*.ncnn.bin
-*/benchmarks/*/model/*.h
-
-#binarios
-*/benchmarks/*/benchmark_*
-*/benchmarks/*/gen_models
-*/benchmarks/*/train_models
-
-#model data
-*/benchmarks/*/model/test_data.txt
-#*/benchmarks/*/model/training_metrics.json
-*/benchmarks/*/model/*_threshold.txt
-*/benchmarks/*/model/test_images_*.bin
-*/benchmarks/*/model/test_labels.bin
-*/benchmarks/*/latencies/
+#*/benchmarks/*/model/*.net
+#*/benchmarks/*/model/*.genann
+#*/benchmarks/*/model/*.onnx
+#*/benchmarks/*/model/*.onnx.data
+#*/benchmarks/*/model/*.tflite
+#*/benchmarks/*/model/*.ncnn.param
+#*/benchmarks/*/model/*.ncnn.bin
+#*/benchmarks/*/model/*.pnnx.param
+#*/benchmarks/*/model/*.pnnx.bin
+#*/benchmarks/*/model/*.pnnx.onnx
+#*/benchmarks/*/model/*_pnnx.py
+#*/benchmarks/*/model/*_ncnn.py
+FANN/benchmarks/Autoencoder/model/nsl_ae_train.data
+Genann/benchmarks/Autoencoder/model/nsl_ae_train.data
 
 build/
 **/build/
 **/build_native/
 bin/
 **/bin/
+
+*/benchmarks/**/benchmark_*
+!*/benchmarks/**/*.c
+*/benchmarks/**/train_models
+*/benchmarks/**/prepare_data

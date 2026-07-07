@@ -65,7 +65,7 @@ static double clock_us(void) {
 }
 
 int main(void) {
-    load_train_data("model/genann_train.data");
+    load_train_data("model/iaes_genann_train.data");
     load_test_data("model/test_data.txt");
 
     FILE *jf = fopen("model/training_metrics.json", "w");

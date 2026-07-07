@@ -1,0 +1,7 @@
+7767517
+5 4
+pnnx.Input               pnnx_input_0             0 1 0 #0=(1,30,14)f32
+nn.LSTM                  lstm                     1 1 0 1 batch_first=True bias=True bidirectional=False hidden_size=32 input_size=14 num_layers=1 proj_size=0 @bias_hh_l0=(128)f32 @bias_ih_l0=(128)f32 @weight_hh_l0=(128,32)f32 @weight_ih_l0=(128,14)f32 #0=(1,30,14)f32 #1=(1,30,32)f32
+Tensor.select            Tensor.select_0          1 1 1 2 dim=1 index=-1 $input=1 #1=(1,30,32)f32 #2=(1,32)f32
+nn.Linear                fc                       1 1 2 3 bias=True in_features=32 out_features=1 @bias=(1)f32 @weight=(1,32)f32 #2=(1,32)f32 #3=(1,1)f32
+pnnx.Output              pnnx_output_0            1 0 3 #3=(1,1)f32

@@ -1,0 +1,26 @@
+{
+  "ae_small": {
+    "training_time_s": 48.216,
+    "epochs": 50,
+    "final_train_mse": 0.018023,
+    "threshold": 0.42801592,
+    "final_test_accuracy_pct": 74.94,
+    "test_samples": 22544
+  },
+  "ae_medium": {
+    "training_time_s": 84.756,
+    "epochs": 50,
+    "final_train_mse": 0.017515,
+    "threshold": 0.42947474,
+    "final_test_accuracy_pct": 74.92,
+    "test_samples": 22544
+  },
+  "ae_large": {
+    "training_time_s": 133.978,
+    "epochs": 50,
+    "final_train_mse": 0.400868,
+    "threshold": 0.04422234,
+    "final_test_accuracy_pct": 75.02,
+    "test_samples": 22544
+  }
+}

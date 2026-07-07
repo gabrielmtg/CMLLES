@@ -1,0 +1,32 @@
+{
+  "iaes_small_relu": {
+    "training_time_s": 233.188,
+    "epochs": 200,
+    "final_train_loss": 0.048535
+  },
+  "iaes_small_sigmoid": {
+    "training_time_s": 244.896,
+    "epochs": 200,
+    "final_train_loss": 0.043924
+  },
+  "iaes_medium_relu": {
+    "training_time_s": 320.159,
+    "epochs": 200,
+    "final_train_loss": 0.057865
+  },
+  "iaes_medium_sigmoid": {
+    "training_time_s": 349.016,
+    "epochs": 200,
+    "final_train_loss": 0.051696
+  },
+  "iaes_large_relu": {
+    "training_time_s": 483.836,
+    "epochs": 200,
+    "final_train_loss": 0.043849
+  },
+  "iaes_large_sigmoid": {
+    "training_time_s": 518.692,
+    "epochs": 200,
+    "final_train_loss": 0.061413
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "ae_small": {
+    "training_time_s": 37.914,
+    "epochs": 50,
+    "threshold": 0.0021404338,
+    "final_test_accuracy_pct": 78.77,
+    "test_samples": 22544
+  },
+  "ae_medium": {
+    "training_time_s": 49.000,
+    "epochs": 50,
+    "threshold": 0.0025560443,
+    "final_test_accuracy_pct": 84.51,
+    "test_samples": 22544
+  },
+  "ae_large": {
+    "training_time_s": 61.723,
+    "epochs": 50,
+    "threshold": 0.0030426962,
+    "final_test_accuracy_pct": 82.43,
+    "test_samples": 22544
+  }
+}
