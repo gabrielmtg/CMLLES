@@ -2,7 +2,7 @@ NCNN_DIR ?= ../../ncnn/build/install
 
 CC      = gcc
 CFLAGS  = -O2 -Wall -Wextra -I$(NCNN_DIR)/include/ncnn -fopenmp
-LDFLAGS = -L$(NCNN_DIR)/lib -lncnn -fopenmp -lstdc++ -lm -Wl,-rpath,$(NCNN_DIR)/lib
+LDFLAGS = -L$(NCNN_DIR)/lib -lncnn -fopenmp -Wl,-Bstatic,-lstdc++,-Bdynamic -lm -Wl,-rpath,$(NCNN_DIR)/lib
 
 .PHONY: all clean train
 

@@ -5,6 +5,10 @@
 #include <stdint.h>
 #include <math.h>
 #include <sys/stat.h>
+#include <linux/perf_event.h>
+#include <sys/ioctl.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 #include "arm_nnfunctions.h"
 
@@ -73,12 +77,12 @@ static void load_test_data(const char *path, TestData *td) {
     fclose(f);
 }
 
-static void save_csv(const char *path, double *lat, int n, const char *label) {
+static void save_csv(const char *path, double *lat, uint64_t (*pmc)[5], int n, const char *label) {
     FILE *f = fopen(path, "w");
     if (!f) return;
-    fprintf(f, "run,latency_us,label\n");
+    fprintf(f, "run,latency_us,cycles,instructions,l1_loads,l1_misses,branch_misses,label\n");
     for (int i = 0; i < n; i++)
-        fprintf(f, "%d,%.3f,%s\n", i + 1, lat[i], label);
+        fprintf(f, "%d,%.3f,%lu,%lu,%lu,%lu,%lu,%s\n", i + 1, lat[i], (unsigned long)pmc[i][0], (unsigned long)pmc[i][1], (unsigned long)pmc[i][2], (unsigned long)pmc[i][3], (unsigned long)pmc[i][4], label);
     fclose(f);
 }
 
@@ -130,6 +134,60 @@ static int run_inference_binary(const int8_t *input) {
     return in_ptr[0] > 0 ? 1 : 0;
 }
 
+static long perf_event_open_syscall(struct perf_event_attr *hw, pid_t pid,
+                                     int cpu, int group_fd, unsigned long flags) {
+    return syscall(__NR_perf_event_open, hw, pid, cpu, group_fd, flags);
+}
+
+typedef struct { int fd[5]; } PerfFds;
+
+static int open_perf_fd(uint32_t type, uint64_t config) {
+    struct perf_event_attr attr;
+    memset(&attr, 0, sizeof(attr));
+    attr.type       = type;
+    attr.size       = sizeof(attr);
+    attr.config     = config;
+    attr.disabled   = 1;
+    attr.exclude_hv = 1;
+    return (int)perf_event_open_syscall(&attr, 0, -1, -1, 0);
+}
+
+static PerfFds perf_open_all(void) {
+    PerfFds p;
+    uint64_t l1_loads  = PERF_COUNT_HW_CACHE_L1D
+                       | ((uint64_t)PERF_COUNT_HW_CACHE_OP_READ << 8)
+                       | ((uint64_t)PERF_COUNT_HW_CACHE_RESULT_ACCESS << 16);
+    uint64_t l1_misses = PERF_COUNT_HW_CACHE_L1D
+                       | ((uint64_t)PERF_COUNT_HW_CACHE_OP_READ << 8)
+                       | ((uint64_t)PERF_COUNT_HW_CACHE_RESULT_MISS << 16);
+    p.fd[0] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_CPU_CYCLES);
+    p.fd[1] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_INSTRUCTIONS);
+    p.fd[2] = open_perf_fd(PERF_TYPE_HW_CACHE, l1_loads);
+    p.fd[3] = open_perf_fd(PERF_TYPE_HW_CACHE, l1_misses);
+    p.fd[4] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_BRANCH_MISSES);
+    return p;
+}
+
+static void perf_reset_enable(PerfFds *p) {
+    for (int _i = 0; _i < 5; _i++) {
+        if (p->fd[_i] >= 0) {
+            ioctl(p->fd[_i], PERF_EVENT_IOC_RESET,  0);
+            ioctl(p->fd[_i], PERF_EVENT_IOC_ENABLE, 0);
+        }
+    }
+}
+
+static void perf_disable_read(PerfFds *p, uint64_t *out) {
+    for (int _i = 0; _i < 5; _i++) {
+        if (p->fd[_i] >= 0) {
+            ioctl(p->fd[_i], PERF_EVENT_IOC_DISABLE, 0);
+            read(p->fd[_i], &out[_i], sizeof(uint64_t));
+        } else {
+            out[_i] = 0;
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     int n_warmup = (argc > 1) ? atoi(argv[1]) : N_WARMUP;
 
@@ -148,20 +206,24 @@ int main(int argc, char *argv[]) {
         run_inference_binary(input_int8);
     }
 
+    static uint64_t pmc_data[N_RUNS][5];
+    PerfFds perf = perf_open_all();
     double latencies[N_RUNS];
     int correct = 0;
     for (int i = 0; i < N_RUNS; i++) {
         int idx = i % td.n_samples;
         quantize_input(td.X[idx], input_int8, input_size);
+        perf_reset_enable(&perf);
         double t0 = time_us();
         int pred = run_inference_binary(input_int8);
         latencies[i] = time_us() - t0;
+        perf_disable_read(&perf, pmc_data[i]);
         if (pred == (int)td.y[idx]) correct++;
     }
 
     double mean, stdv, mn, mx, p95, p99;
     compute_stats(latencies, N_RUNS, &mean, &stdv, &mn, &mx, &p95, &p99);
-    save_csv(csv_path, latencies, N_RUNS, MODEL_LABEL);
+    save_csv(csv_path, latencies, pmc_data, N_RUNS, MODEL_LABEL);
 
     printf("BENCH " MODEL_LABEL "\n");
     printf("LATENCY_MEAN_US %.2f\n", mean);
@@ -175,5 +237,7 @@ int main(int argc, char *argv[]) {
 
     free(input_int8);
     free(td.X[0]); free(td.X); free(td.y);
+    for (int _i = 0; _i < 5; _i++)
+        if (perf.fd[_i] >= 0) close(perf.fd[_i]);
     return 0;
 }
