@@ -79,7 +79,7 @@ def _bar_group(ax, stats, x_order, x_labels, activation=None):
 
     ax.set_xticks(x_pos)
     ax.set_xticklabels([x_labels[x] for x in x_order])
-    ax.set_ylabel("Latência média (µs)")
+    ax.set_ylabel("Average latency (µs)")
     ax.set_yscale("log")
 
 
@@ -94,7 +94,7 @@ def plot_mlp(df, dataset_key):
     for ax, act, title in zip(axes, ["relu", "sigmoid"], ["ReLU", "Sigmoid"]):
         _bar_group(ax, stats, SIZE_ORDER, SIZE_LABEL, activation=act)
         ax.set_title(title)
-        ax.set_xlabel("Tamanho")
+        ax.set_xlabel("Size")
 
     handles = [mpatches.Patch(facecolor=COLORS[f], label=f, hatch=HATCHES[f])
                for f in FRAMEWORK_ORDER if f in stats["framework"].values]
@@ -113,7 +113,7 @@ def plot_algo(df, algorithm, x_order, x_labels, title):
     fig, ax = plt.subplots(figsize=(5, 3))
     ax.set_title(title)
     _bar_group(ax, stats, x_order, x_labels)
-    ax.set_xlabel("Configuração")
+    ax.set_xlabel("Configuration")
 
     handles = [mpatches.Patch(facecolor=COLORS[f], label=f, hatch=HATCHES[f])
                for f in FRAMEWORK_ORDER if f in stats["framework"].values]
@@ -170,12 +170,12 @@ def plot_overview(df):
                edgecolor="white", linewidth=0.5)
 
     ax.set_yscale("log")
-    ax.set_ylabel("Latência média de inferência (µs)")
+    ax.set_ylabel("Average inference latency (µs)")
     ax.set_xticks(x_pos)
     ax.set_xticklabels([algo_labels[a] for a in present_algos])
-    ax.set_xlabel("Algoritmo")
+    ax.set_xlabel("Algorithm")
     ax.legend(loc="upper left", ncol=2)
-    ax.set_title("Comparação de latência de inferência — todos os algoritmos")
+    ax.set_title("Inference latency comparison — all algorithms")
     fig.tight_layout()
     save(fig, "latency_overview.pdf")
     plt.close(fig)
@@ -184,7 +184,7 @@ def plot_overview(df):
 def main():
     df = load_latencies()
     if df.empty:
-        print("Nenhum CSV de latência encontrado em results/latencies_rpi/")
+        print("No latency CSV found in results/latencies_rpi/")
         return
 
     plot_overview(df)

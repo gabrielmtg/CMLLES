@@ -21,3 +21,6 @@
 [submodule "FANN/fann"]
 	path = FANN/fann
 	url = https://github.com/libfann/fann.git
+[submodule "CMSIS-NN/CMSIS-NN"]
+	path = CMSIS-NN/CMSIS-NN
+	url = https://github.com/ARM-software/CMSIS-NN.git

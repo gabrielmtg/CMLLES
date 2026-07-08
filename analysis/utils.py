@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 RESULTS_DIR = Path(__file__).parent.parent / "results"
 FIGURES_DIR = Path(__file__).parent / "figures"
 
-FRAMEWORK_ORDER = ["FANN", "Genann", "NCNN", "LiteRT", "ONNX", "CMSIS-NN"]
+FRAMEWORK_ORDER  = ["FANN", "Genann", "NCNN", "LiteRT", "ONNX", "CMSIS-NN"]
+INT8_FRAMEWORKS  = ["CMSIS-NN", "LiteRT", "ONNX"]
+PRECISION_ORDER  = ["f32", "int8"]
 
 COLORS = {
     "FANN":     "#0072B2",
@@ -93,8 +95,16 @@ def load_latencies():
             continue
         try:
             df = pd.read_csv(csv_path)
+            stem = csv_path.stem
+            if "_int8" in stem:
+                prec = "int8"
+            elif "_f32" in stem:
+                prec = "f32"
+            else:
+                prec = "int8" if fw == "CMSIS-NN" else "f32"
             df["framework"] = fw
             df["algorithm"] = algo
+            df["precision"] = prec
             rows.append(df)
         except Exception:
             continue

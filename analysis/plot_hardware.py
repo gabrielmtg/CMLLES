@@ -69,11 +69,11 @@ def plot_ipc_and_l1(df):
     fig, axes = plt.subplots(1, 2, figsize=(7, 3.5))
 
     _grouped_bars(axes[0], ipc_data,
-                  "IPC — Instruções por Ciclo",
-                  "IPC (médio sobre variantes)")
+                  "IPC — Instructions per Cycle",
+                  "IPC (mean across variants)")
     _grouped_bars(axes[1], l1_data,
-                  "Taxa de Miss L1-D",
-                  "Miss rate L1-D (%)")
+                  "L1-D Miss Rate",
+                  "L1-D miss rate (%)")
 
     handles = [mpatches.Patch(facecolor=COLORS[f], label=f, hatch=HATCHES[f])
                for f in FRAMEWORK_ORDER if f in ipc_data["framework"].values]
@@ -89,7 +89,7 @@ def plot_branch_misses(df):
 
     fig, ax = plt.subplots(figsize=(5, 3))
     _grouped_bars(ax, bm_data,
-                  "Branch Misses (total por 1000 inferências)",
+                  "Branch Misses (total per 1000 inferences)",
                   "Branch misses")
     ax.set_yscale("log")
 
@@ -127,7 +127,7 @@ def plot_ipc_detailed(df, algorithm, x_order, x_labels, title):
     ax.set_xticklabels([x_labels[v] for v in x_order])
     ax.set_ylabel("IPC")
     ax.set_title(f"IPC — {title}")
-    ax.set_xlabel("Configuração")
+    ax.set_xlabel("Configuration")
     ax.legend(loc="upper right", ncol=2)
     fig.tight_layout()
     fname = f"hardware_ipc_{algorithm.lower().replace('-', '_').replace('/', '_')}.pdf"
@@ -138,7 +138,7 @@ def plot_ipc_detailed(df, algorithm, x_order, x_labels, title):
 def main():
     df = load_perf()
     if df.empty:
-        print("perf_metrics_all.csv não encontrado ou vazio")
+        print("perf_metrics_all.csv not found or empty")
         return
 
     plot_ipc_and_l1(df)

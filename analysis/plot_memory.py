@@ -68,8 +68,8 @@ def plot_total_size(df):
 
     ax.set_xticks(x_pos)
     ax.set_xticklabels([ALGO_LABEL[a] for a in present], rotation=15, ha="right")
-    ax.set_ylabel("Tamanho (KB)")
-    ax.set_title("Footprint de memória estática dos executáveis\n(sólido = .text, transparente = .bss)")
+    ax.set_ylabel("Size (KB)")
+    ax.set_title("Static memory footprint of executables\n(solid = .text, transparent = .bss)")
 
     handles = [mpatches.Patch(facecolor=COLORS[f], label=f, hatch=HATCHES[f])
                for f in FRAMEWORK_ORDER if f in data["framework"].values]
@@ -117,8 +117,8 @@ def plot_text_only(df):
 
     ax.set_xticks(x_pos)
     ax.set_xticklabels([ALGO_LABEL[a] for a in present], rotation=15, ha="right")
-    ax.set_ylabel("Código (.text) em KB")
-    ax.set_title("Tamanho do código compilado por framework e algoritmo")
+    ax.set_ylabel("Code size (.text, KB)")
+    ax.set_title("Compiled code size per framework and algorithm")
     ax.set_yscale("log")
 
     handles = [mpatches.Patch(facecolor=COLORS[f], label=f, hatch=HATCHES[f])
@@ -132,7 +132,7 @@ def plot_text_only(df):
 def main():
     df = load_binary()
     if df.empty:
-        print("binary_metrics.csv não encontrado ou vazio")
+        print("binary_metrics.csv not found or empty")
         return
 
     plot_total_size(df)
