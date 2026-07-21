@@ -1,28 +1,28 @@
 === cmsisnn_ae_large ===
 BENCH ae_large_int8
-LATENCY_MEAN_US 5.11
-LATENCY_STD_US  0.61
-LATENCY_MIN_US  5.02
-LATENCY_MAX_US  19.98
-LATENCY_P95_US  5.11
-LATENCY_P99_US  5.18
+LATENCY_MEAN_US 5.03
+LATENCY_STD_US  0.44
+LATENCY_MIN_US  4.98
+LATENCY_MAX_US  19.04
+LATENCY_P95_US  5.07
+LATENCY_P99_US  5.13
 ACCURACY_PCT    54.80
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae_large':
 
-     1,949,364,712      cycles                                                                  (97.52%)
-     3,224,939,902      instructions                     #    1.65  insn per cycle              (98.02%)
-     1,238,986,461      cache-references                                                        (98.27%)
-         6,989,192      cache-misses                     #    0.56% of all cache refs           (98.72%)
-     1,236,399,346      L1-dcache-loads                                                         (98.68%)
-         6,993,940      L1-dcache-load-misses            #    0.57% of all L1-dcache accesses   (98.64%)
-         1,012,935      branch-misses                                                           (98.61%)
-                 6      context-switches                                                      
+     1,901,194,072      cycles                                                                  (97.73%)
+     3,227,305,539      instructions                     #    1.70  insn per cycle              (97.94%)
+     1,240,063,852      cache-references                                                        (98.18%)
+           960,354      cache-misses                     #    0.08% of all cache refs           (98.84%)
+     1,235,127,404      L1-dcache-loads                                                         (98.84%)
+           960,259      L1-dcache-load-misses            #    0.08% of all L1-dcache accesses   (98.84%)
+         1,076,679      branch-misses                                                           (98.70%)
+                12      context-switches                                                      
 
-       1.109077018 seconds time elapsed
+       1.085089629 seconds time elapsed
 
-       1.038436000 seconds user
-       0.067897000 seconds sys
+       0.981993000 seconds user
+       0.100203000 seconds sys
 
 

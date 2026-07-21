@@ -1,0 +1,28 @@
+=== onnx_lstm_h64_int8 ===
+BENCH lstm_h64_int8
+LATENCY_MEAN_US 312.73
+LATENCY_STD_US  5.02
+LATENCY_MIN_US  310.08
+LATENCY_MAX_US  351.85
+LATENCY_P95_US  327.44
+LATENCY_P99_US  333.56
+MAE_CYCLES      12.04
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_lstm 64 int8':
+
+       754,172,624      cycles                                                                  (66.30%)
+       723,318,543      instructions                     #    0.96  insn per cycle              (66.46%)
+       314,307,237      cache-references                                                        (66.45%)
+         7,799,563      cache-misses                     #    2.48% of all cache refs           (66.43%)
+       313,959,708      L1-dcache-loads                                                         (66.38%)
+         7,880,123      L1-dcache-load-misses            #    2.51% of all L1-dcache accesses   (67.21%)
+         1,626,808      branch-misses                                                           (65.64%)
+                 2      context-switches                                                      
+
+       0.460894278 seconds time elapsed
+
+       0.387151000 seconds user
+       0.071109000 seconds sys
+
+

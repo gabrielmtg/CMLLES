@@ -1,0 +1,28 @@
+=== litert_ae_medium_int8 ===
+BENCH ae_medium_int8
+LATENCY_MEAN_US 21.72
+LATENCY_STD_US  1.19
+LATENCY_MIN_US  20.33
+LATENCY_MAX_US  40.93
+LATENCY_P95_US  22.46
+LATENCY_P99_US  23.15
+ACCURACY_PCT    72.60
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae medium int8':
+
+     1,945,464,641      cycles                                                                  (97.32%)
+     3,276,196,567      instructions                     #    1.68  insn per cycle              (97.25%)
+     1,258,325,510      cache-references                                                        (97.38%)
+         1,285,787      cache-misses                     #    0.10% of all cache refs           (97.59%)
+     1,255,249,172      L1-dcache-loads                                                         (97.82%)
+         1,314,767      L1-dcache-load-misses            #    0.10% of all L1-dcache accesses   (97.89%)
+         1,262,011      branch-misses                                                           (98.17%)
+                 8      context-switches                                                      
+
+       1.109999814 seconds time elapsed
+
+       1.039879000 seconds user
+       0.068254000 seconds sys
+
+

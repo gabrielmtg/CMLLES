@@ -1,28 +1,28 @@
 === litert_mlp_large_relu ===
 BENCH mlp_large_relu_f32
-LATENCY_MEAN_US 41.51
-LATENCY_STD_US  2.61
+LATENCY_MEAN_US 41.92
+LATENCY_STD_US  3.79
 LATENCY_MIN_US  40.13
-LATENCY_MAX_US  97.04
-LATENCY_P95_US  42.15
-LATENCY_P99_US  54.39
+LATENCY_MAX_US  150.28
+LATENCY_P95_US  41.85
+LATENCY_P99_US  54.44
 ACCURACY_PCT    93.40
 TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp large relu':
 
-       116,434,807      cycles                                                                  (54.90%)
-        85,209,251      instructions                     #    0.73  insn per cycle              (57.91%)
-        37,645,152      cache-references                                                        (66.83%)
-         4,273,230      cache-misses                     #   11.35% of all cache refs           (66.85%)
-        37,169,686      L1-dcache-loads                                                         (64.06%)
-         4,007,916      L1-dcache-load-misses            #   10.78% of all L1-dcache accesses   (61.05%)
-           234,070      branch-misses                                                           (60.24%)
-                 6      context-switches                                                      
+       117,796,147      cycles                                                                  (54.36%)
+        89,471,887      instructions                     #    0.76  insn per cycle              (67.18%)
+        37,750,123      cache-references                                                        (67.14%)
+         4,341,750      cache-misses                     #   11.50% of all cache refs           (67.11%)
+        37,342,416      L1-dcache-loads                                                         (64.37%)
+         4,209,962      L1-dcache-load-misses            #   11.27% of all L1-dcache accesses   (64.11%)
+           247,632      branch-misses                                                           (60.23%)
+                 5      context-switches                                                      
 
-       0.111137777 seconds time elapsed
+       0.112222722 seconds time elapsed
 
-       0.051566000 seconds user
-       0.051566000 seconds sys
+       0.054048000 seconds user
+       0.050187000 seconds sys
 
 

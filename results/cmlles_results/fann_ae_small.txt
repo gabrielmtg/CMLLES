@@ -1,28 +1,28 @@
 === fann_ae_small ===
 BENCH ae_small_f32
-LATENCY_MEAN_US 41.01
-LATENCY_STD_US  1.22
-LATENCY_MIN_US  39.44
-LATENCY_MAX_US  56.37
-LATENCY_P95_US  41.20
-LATENCY_P99_US  41.59
+LATENCY_MEAN_US 41.03
+LATENCY_STD_US  1.37
+LATENCY_MIN_US  39.45
+LATENCY_MAX_US  59.87
+LATENCY_P95_US  41.22
+LATENCY_P99_US  52.15
 ACCURACY_PCT    75.70
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae small':
 
-     2,064,107,413      cycles                                                                  (97.46%)
-     3,428,029,790      instructions                     #    1.66  insn per cycle              (97.45%)
-     1,309,289,030      cache-references                                                        (97.45%)
-         1,670,634      cache-misses                     #    0.13% of all cache refs           (97.45%)
-     1,309,338,188      L1-dcache-loads                                                         (97.45%)
-         1,672,495      L1-dcache-load-misses            #    0.13% of all L1-dcache accesses   (97.45%)
-         1,367,942      branch-misses                                                           (97.45%)
-                22      context-switches                                                      
+     2,069,664,532      cycles                                                                  (96.11%)
+     3,429,930,259      instructions                     #    1.66  insn per cycle              (97.38%)
+     1,309,921,057      cache-references                                                        (97.37%)
+         2,028,287      cache-misses                     #    0.15% of all cache refs           (97.15%)
+     1,310,759,260      L1-dcache-loads                                                         (97.13%)
+         2,014,647      L1-dcache-load-misses            #    0.15% of all L1-dcache accesses   (96.87%)
+         1,334,760      branch-misses                                                           (97.05%)
+                18      context-switches                                                      
 
-       1.271537295 seconds time elapsed
+       1.236370758 seconds time elapsed
 
-       1.114132000 seconds user
-       0.091846000 seconds sys
+       1.059337000 seconds user
+       0.115927000 seconds sys
 
 

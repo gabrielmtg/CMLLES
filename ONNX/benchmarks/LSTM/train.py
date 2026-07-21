@@ -8,6 +8,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset, random_split
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from onnxruntime.quantization import quantize_static, CalibrationDataReader, QuantFormat, QuantType
 
 TRAIN_PATH = "../../../datasets/LSTM/CMAPSSData/train_FD001.txt"
 TEST_PATH  = "../../../datasets/LSTM/CMAPSSData/test_FD001.txt"
@@ -29,6 +30,18 @@ INPUT_SIZE = len(FEATURES)
 HIDDEN_SIZES = [32, 64, 128]
 
 COLS = ["id", "cycle", "set1", "set2", "set3"] + [f"s{i}" for i in range(1, 22)]
+
+
+class _CalibReader(CalibrationDataReader):
+    def __init__(self, X):
+        self.data = [{"input": X[i:i+1]} for i in range(min(len(X), 50))]
+        self.idx = 0
+    def get_next(self):
+        if self.idx >= len(self.data):
+            return None
+        d = self.data[self.idx]
+        self.idx += 1
+        return d
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 torch.manual_seed(SEED)
@@ -162,6 +175,10 @@ for hidden in HIDDEN_SIZES:
         opset_version=18, dynamo=False,
     )
     print(f"  Exported {path}")
+    int8_path = path.replace("_f32.onnx", "_int8.onnx")
+    quantize_static(path, int8_path, _CalibReader(X_train),
+                    quant_format=QuantFormat.QDQ, weight_type=QuantType.QInt8)
+    print(f"  Quantized {int8_path}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)

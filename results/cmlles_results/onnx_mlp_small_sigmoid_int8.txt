@@ -1,0 +1,28 @@
+=== onnx_mlp_small_sigmoid_int8 ===
+BENCH mlp_small_sigmoid_int8
+LATENCY_MEAN_US 27.78
+LATENCY_STD_US  1.83
+LATENCY_MIN_US  27.11
+LATENCY_MAX_US  66.24
+LATENCY_P95_US  28.07
+LATENCY_P99_US  30.74
+ACCURACY_PCT    100.00
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp small sigmoid int8':
+
+       208,674,145      cycles                                                                  (73.81%)
+       201,997,761      instructions                     #    0.97  insn per cycle              (78.98%)
+        85,665,990      cache-references                                                        (77.61%)
+         1,640,766      cache-misses                     #    1.92% of all cache refs           (75.93%)
+        83,838,486      L1-dcache-loads                                                         (76.09%)
+         1,668,135      L1-dcache-load-misses            #    1.99% of all L1-dcache accesses   (77.72%)
+           938,184      branch-misses                                                           (79.60%)
+                 4      context-switches                                                      
+
+       0.150312148 seconds time elapsed
+
+       0.091429000 seconds user
+       0.058182000 seconds sys
+
+

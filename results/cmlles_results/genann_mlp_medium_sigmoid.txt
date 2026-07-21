@@ -1,28 +1,28 @@
 === genann_mlp_medium_sigmoid ===
 BENCH mlp_medium_sigmoid_f64
-LATENCY_MEAN_US 9.67
-LATENCY_STD_US  0.81
-LATENCY_MIN_US  9.50
-LATENCY_MAX_US  27.18
-LATENCY_P95_US  9.72
-LATENCY_P99_US  10.15
+LATENCY_MEAN_US 9.53
+LATENCY_STD_US  0.53
+LATENCY_MIN_US  9.39
+LATENCY_MAX_US  24.89
+LATENCY_P95_US  9.61
+LATENCY_P99_US  9.87
 ACCURACY_PCT    100.00
 TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp medium sigmoid':
 
-        65,179,668      cycles                                                                  (53.57%)
-        71,001,611      instructions                     #    1.09  insn per cycle              (64.89%)
-        24,715,073      cache-references                                                        (69.58%)
-           288,634      cache-misses                     #    1.17% of all cache refs           (74.94%)
-        25,555,416      L1-dcache-loads                                                         (78.90%)
-           272,102      L1-dcache-load-misses            #    1.06% of all L1-dcache accesses   (76.09%)
-           208,956      branch-misses                                                           (75.53%)
-                 3      context-switches                                                      
+        64,241,186      cycles                                                                  (53.81%)
+        74,771,344      instructions                     #    1.16  insn per cycle              (63.00%)
+        25,855,876      cache-references                                                        (67.22%)
+           298,894      cache-misses                     #    1.16% of all cache refs           (78.49%)
+        25,562,187      L1-dcache-loads                                                         (78.46%)
+           287,566      L1-dcache-load-misses            #    1.12% of all L1-dcache accesses   (75.61%)
+           215,835      branch-misses                                                           (75.06%)
+                 4      context-switches                                                      
 
-       0.073525314 seconds time elapsed
+       0.072504537 seconds time elapsed
 
-       0.016930000 seconds user
-       0.055023000 seconds sys
+       0.016689000 seconds user
+       0.054242000 seconds sys
 
 

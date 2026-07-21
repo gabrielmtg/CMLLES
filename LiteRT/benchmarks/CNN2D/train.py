@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import pyvww
 import litert_torch as ai_edge_torch
+import ai_edge_quantizer as aq
 
 IMAGES_DIR = "../../../datasets/CNN-2D/coco/images/all2017"
 TRAIN_ANN  = "../../../datasets/CNN-2D/coco/annotations/instances_train.json"
@@ -125,6 +126,13 @@ for cfg_name, (model, img_size) in CONFIGS.items():
     train_ds = pyvww.pytorch.VisualWakeWordsClassification(root=IMAGES_DIR, annFile=TRAIN_ANN, transform=make_transform(img_size))
     loader = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=4)
 
+    calib_imgs = []
+    for imgs, _ in DataLoader(train_ds, batch_size=1, shuffle=False):
+        calib_imgs.append(imgs.cpu().numpy())
+        if len(calib_imgs) >= 50:
+            break
+    calib_np = np.concatenate(calib_imgs, axis=0)
+
     t0 = time.time()
     final_loss = 0.0
     for epoch in range(EPOCHS):
@@ -154,6 +162,15 @@ for cfg_name, (model, img_size) in CONFIGS.items():
     edge_model = ai_edge_torch.convert(model_cpu, dummy)
     edge_model.export(path)
     print(f"  Exported {path}")
+    int8_path = path.replace("_f32.tflite", "_int8.tflite")
+    f32_buf = bytearray(open(path, "rb").read())
+    quantizer = aq.Quantizer(f32_buf)
+    quantizer.load_quantization_recipe(aq.recipe.dynamic_wi8_afp32())
+    calib_data = {"serving_default": [{"args_0": calib_np[i:i+1]} for i in range(len(calib_np))]}
+    calib_res = quantizer.calibrate(calib_data)
+    int8_dir, int8_name = os.path.split(int8_path)
+    quantizer.quantize(calib_res).save(int8_dir, int8_name.replace(".tflite", ""), overwrite=True)
+    print(f"  Quantized {int8_path}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)

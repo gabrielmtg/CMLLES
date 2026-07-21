@@ -1,0 +1,28 @@
+=== litert_ae_large_int8 ===
+BENCH ae_large_int8
+LATENCY_MEAN_US 28.38
+LATENCY_STD_US  0.98
+LATENCY_MIN_US  26.65
+LATENCY_MAX_US  43.24
+LATENCY_P95_US  29.17
+LATENCY_P99_US  29.52
+ACCURACY_PCT    76.40
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae large int8':
+
+     2,040,262,821      cycles                                                                  (97.49%)
+     3,279,852,020      instructions                     #    1.61  insn per cycle              (97.48%)
+     1,261,373,129      cache-references                                                        (97.48%)
+         7,371,567      cache-misses                     #    0.58% of all cache refs           (97.45%)
+     1,260,698,903      L1-dcache-loads                                                         (97.61%)
+         7,415,053      L1-dcache-load-misses            #    0.59% of all L1-dcache accesses   (97.82%)
+         1,421,796      branch-misses                                                           (97.86%)
+                19      context-switches                                                      
+
+       1.165154277 seconds time elapsed
+
+       1.046694000 seconds user
+       0.115855000 seconds sys
+
+

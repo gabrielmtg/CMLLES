@@ -1,28 +1,28 @@
 === cmsisnn_cnn2d_intermediate ===
 BENCH cnn_intermediate_int8
-LATENCY_MEAN_US 1.38
-LATENCY_STD_US  0.12
-LATENCY_MIN_US  1.30
-LATENCY_MAX_US  2.76
-LATENCY_P95_US  1.41
-LATENCY_P99_US  2.00
+LATENCY_MEAN_US 1.40
+LATENCY_STD_US  0.20
+LATENCY_MIN_US  1.31
+LATENCY_MAX_US  4.41
+LATENCY_P95_US  1.44
+LATENCY_P99_US  2.52
 ACCURACY_PCT    0.00
 TEST_SAMPLES    100
 
  Performance counter stats for './benchmark_cnn2d_intermediate':
 
-        91,136,682      cycles                                                                  (54.14%)
-        80,297,089      instructions                     #    0.88  insn per cycle              (57.96%)
-        21,855,248      cache-references                                                        (62.29%)
-           239,074      cache-misses                     #    1.09% of all cache refs           (58.56%)
-        21,710,066      L1-dcache-loads                                                         (58.88%)
-           239,466      L1-dcache-load-misses            #    1.10% of all L1-dcache accesses   (57.67%)
-           772,751      branch-misses                                                           (64.82%)
+        92,270,759      cycles                                                                  (50.58%)
+        80,902,505      instructions                     #    0.88  insn per cycle              (58.38%)
+        22,017,161      cache-references                                                        (61.46%)
+           271,234      cache-misses                     #    1.23% of all cache refs           (59.71%)
+        19,744,077      L1-dcache-loads                                                         (56.33%)
+           270,492      L1-dcache-load-misses            #    1.37% of all L1-dcache accesses   (58.64%)
+           764,139      branch-misses                                                           (61.19%)
                  3      context-switches                                                      
 
-       0.094337389 seconds time elapsed
+       0.094487222 seconds time elapsed
 
-       0.037033000 seconds user
-       0.053492000 seconds sys
+       0.028871000 seconds user
+       0.061868000 seconds sys
 
 

@@ -1,28 +1,28 @@
 === cmsisnn_mlp_medium_relu ===
 BENCH mlp_medium_relu_int8
-LATENCY_MEAN_US 2.02
+LATENCY_MEAN_US 2.04
 LATENCY_STD_US  0.02
-LATENCY_MIN_US  1.98
-LATENCY_MAX_US  2.19
-LATENCY_P95_US  2.04
-LATENCY_P99_US  2.06
+LATENCY_MIN_US  2.02
+LATENCY_MAX_US  2.30
+LATENCY_P95_US  2.07
+LATENCY_P99_US  2.09
 ACCURACY_PCT    33.40
 TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp_medium_relu':
 
-        39,208,262      cycles                                                                  (67.91%)
-        35,330,576      instructions                     #    0.90  insn per cycle              (75.06%)
-        13,322,156      cache-references                                                        (74.99%)
-            85,512      cache-misses                     #    0.64% of all cache refs           (74.97%)
-        13,320,020      L1-dcache-loads                                                         (75.01%)
-            86,644      L1-dcache-load-misses            #    0.65% of all L1-dcache accesses   (75.16%)
-           109,435      branch-misses                                                           (73.29%)
-                 3      context-switches                                                      
+        37,984,218      cycles                                                                  (52.61%)
+        30,051,283      instructions                     #    0.79  insn per cycle              (57.11%)
+        11,923,984      cache-references                                                        (62.72%)
+           109,596      cache-misses                     #    0.92% of all cache refs           (69.42%)
+        13,370,271      L1-dcache-loads                                                         (74.88%)
+           110,749      L1-dcache-load-misses            #    0.83% of all L1-dcache accesses   (72.03%)
+           102,216      branch-misses                                                           (71.17%)
+                 2      context-switches                                                      
 
-       0.060379388 seconds time elapsed
+       0.059922093 seconds time elapsed
 
-       0.019549000 seconds user
-       0.039099000 seconds sys
+       0.008319000 seconds user
+       0.049919000 seconds sys
 
 

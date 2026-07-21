@@ -1,0 +1,28 @@
+=== litert_iaes_medium_relu_int8 ===
+BENCH iaes_medium_relu_int8
+LATENCY_MEAN_US 10.27
+LATENCY_STD_US  0.80
+LATENCY_MIN_US  9.78
+LATENCY_MAX_US  25.32
+LATENCY_P95_US  10.45
+LATENCY_P99_US  11.13
+ACCURACY_PCT    80.30
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium relu int8':
+
+        77,090,950      cycles                                                                  (59.25%)
+        81,058,769      instructions                     #    1.05  insn per cycle              (62.38%)
+        28,426,109      cache-references                                                        (71.70%)
+           434,658      cache-misses                     #    1.53% of all cache refs           (76.64%)
+        29,162,848      L1-dcache-loads                                                         (80.63%)
+           429,316      L1-dcache-load-misses            #    1.47% of all L1-dcache accesses   (80.71%)
+           309,059      branch-misses                                                           (78.18%)
+                 2      context-switches                                                      
+
+       0.079551648 seconds time elapsed
+
+       0.023540000 seconds user
+       0.054927000 seconds sys
+
+

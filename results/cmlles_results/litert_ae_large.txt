@@ -1,28 +1,28 @@
 === litert_ae_large ===
 BENCH ae_large_f32
-LATENCY_MEAN_US 32.24
-LATENCY_STD_US  1.16
-LATENCY_MIN_US  30.82
-LATENCY_MAX_US  51.50
-LATENCY_P95_US  33.00
-LATENCY_P99_US  33.35
+LATENCY_MEAN_US 32.37
+LATENCY_STD_US  2.44
+LATENCY_MIN_US  30.72
+LATENCY_MAX_US  86.33
+LATENCY_P95_US  32.96
+LATENCY_P99_US  34.93
 ACCURACY_PCT    81.60
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae large':
 
-     1,958,807,133      cycles                                                                  (96.91%)
-     3,279,338,514      instructions                     #    1.67  insn per cycle              (97.33%)
-     1,265,643,877      cache-references                                                        (97.33%)
-         2,820,707      cache-misses                     #    0.22% of all cache refs           (97.09%)
-     1,266,112,095      L1-dcache-loads                                                         (97.28%)
-         3,097,039      L1-dcache-load-misses            #    0.24% of all L1-dcache accesses   (97.51%)
-         1,272,613      branch-misses                                                           (97.54%)
+     2,058,550,082      cycles                                                                  (96.80%)
+     3,276,437,249      instructions                     #    1.59  insn per cycle              (97.41%)
+     1,265,201,446      cache-references                                                        (97.34%)
+        28,453,076      cache-misses                     #    2.25% of all cache refs           (97.08%)
+     1,266,950,903      L1-dcache-loads                                                         (96.91%)
+        28,516,451      L1-dcache-load-misses            #    2.25% of all L1-dcache accesses   (97.08%)
+         1,232,340      branch-misses                                                           (97.28%)
                  8      context-switches                                                      
 
-       1.121379222 seconds time elapsed
+       1.177160981 seconds time elapsed
 
-       1.031897000 seconds user
-       0.083991000 seconds sys
+       1.071502000 seconds user
+       0.099581000 seconds sys
 
 

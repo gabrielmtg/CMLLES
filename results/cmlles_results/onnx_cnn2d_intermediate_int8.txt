@@ -1,0 +1,28 @@
+=== onnx_cnn2d_intermediate_int8 ===
+BENCH cnn_intermediate_int8
+LATENCY_MEAN_US 1385.34
+LATENCY_STD_US  10.56
+LATENCY_MIN_US  1375.07
+LATENCY_MAX_US  1487.63
+LATENCY_P95_US  1401.85
+LATENCY_P99_US  1411.91
+ACCURACY_PCT    10.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d intermediate int8':
+
+     2,673,467,058      cycles                                                                  (60.25%)
+     3,729,005,766      instructions                     #    1.39  insn per cycle              (60.55%)
+       913,091,935      cache-references                                                        (61.13%)
+        19,078,817      cache-misses                     #    2.09% of all cache refs           (61.13%)
+       913,777,825      L1-dcache-loads                                                         (61.13%)
+        19,075,877      L1-dcache-load-misses            #    2.09% of all L1-dcache accesses   (61.13%)
+         2,716,471      branch-misses                                                           (54.46%)
+                 5      context-switches                                                      
+
+       1.532669295 seconds time elapsed
+
+       1.453641000 seconds user
+       0.076085000 seconds sys
+
+

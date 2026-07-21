@@ -1,0 +1,28 @@
+=== litert_ae_small_int8 ===
+BENCH ae_small_int8
+LATENCY_MEAN_US 16.72
+LATENCY_STD_US  1.03
+LATENCY_MIN_US  15.83
+LATENCY_MAX_US  36.67
+LATENCY_P95_US  17.44
+LATENCY_P99_US  17.74
+ACCURACY_PCT    58.30
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae small int8':
+
+     1,951,686,251      cycles                                                                  (97.38%)
+     3,261,049,199      instructions                     #    1.67  insn per cycle              (97.48%)
+     1,256,652,033      cache-references                                                        (97.40%)
+         1,585,167      cache-misses                     #    0.13% of all cache refs           (97.54%)
+     1,250,259,878      L1-dcache-loads                                                         (98.07%)
+         1,633,097      L1-dcache-load-misses            #    0.13% of all L1-dcache accesses   (98.13%)
+         1,267,904      branch-misses                                                           (98.42%)
+                16      context-switches                                                      
+
+       1.116144888 seconds time elapsed
+
+       1.026535000 seconds user
+       0.084207000 seconds sys
+
+

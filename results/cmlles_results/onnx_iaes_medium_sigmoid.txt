@@ -1,21 +1,28 @@
 === onnx_iaes_medium_sigmoid ===
-ORT error: Load model from model/iaes_medium_sigmoid_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
-
+BENCH iaes_medium_sigmoid_f32
+LATENCY_MEAN_US 25.46
+LATENCY_STD_US  2.00
+LATENCY_MIN_US  24.96
+LATENCY_MAX_US  65.85
+LATENCY_P95_US  25.54
+LATENCY_P99_US  32.07
+ACCURACY_PCT    97.70
+TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes medium sigmoid':
 
-        91,437,586      cycles                                                                
-       102,353,360      instructions                     #    1.12  insn per cycle            
-        41,322,085      cache-references                                                      
-           548,608      cache-misses                     #    1.33% of all cache refs         
-        41,322,085      L1-dcache-loads                                                       
-           548,608      L1-dcache-load-misses            #    1.33% of all L1-dcache accesses 
-           461,405      branch-misses                                                         
-                 2      context-switches                                                      
+       206,763,779      cycles                                                                  (79.19%)
+       199,815,120      instructions                     #    0.97  insn per cycle              (79.07%)
+        82,110,185      cache-references                                                        (79.01%)
+         1,600,468      cache-misses                     #    1.95% of all cache refs           (78.56%)
+        81,275,425      L1-dcache-loads                                                         (80.28%)
+         1,672,026      L1-dcache-load-misses            #    2.06% of all L1-dcache accesses   (81.87%)
+           896,541      branch-misses                                                           (83.82%)
+                12      context-switches                                                      
 
-       0.052823722 seconds time elapsed
+       0.150766074 seconds time elapsed
 
-       0.040064000 seconds user
-       0.012019000 seconds sys
+       0.093626000 seconds user
+       0.054615000 seconds sys
 
 

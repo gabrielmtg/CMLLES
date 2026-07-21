@@ -1,28 +1,28 @@
 === onnx_lstm_h64 ===
 BENCH lstm_h64_f32
-LATENCY_MEAN_US 306.26
-LATENCY_STD_US  4.68
-LATENCY_MIN_US  304.13
-LATENCY_MAX_US  341.67
-LATENCY_P95_US  321.11
-LATENCY_P99_US  324.15
+LATENCY_MEAN_US 307.86
+LATENCY_STD_US  6.04
+LATENCY_MIN_US  305.37
+LATENCY_MAX_US  407.50
+LATENCY_P95_US  322.20
+LATENCY_P99_US  328.09
 MAE_CYCLES      12.10
 TEST_SAMPLES    100
 
  Performance counter stats for './benchmark_lstm 64':
 
-       734,704,453      cycles                                                                  (65.84%)
-       706,545,671      instructions                     #    0.96  insn per cycle              (65.84%)
-       307,739,845      cache-references                                                        (65.54%)
-         7,723,601      cache-misses                     #    2.51% of all cache refs           (65.35%)
-       308,955,192      L1-dcache-loads                                                         (65.11%)
-         7,605,432      L1-dcache-load-misses            #    2.46% of all L1-dcache accesses   (63.40%)
-         1,524,211      branch-misses                                                           (64.18%)
-                 8      context-switches                                                      
+       741,914,262      cycles                                                                  (65.73%)
+       707,223,656      instructions                     #    0.95  insn per cycle              (65.61%)
+       305,945,916      cache-references                                                        (65.95%)
+         8,073,350      cache-misses                     #    2.64% of all cache refs           (65.86%)
+       305,443,921      L1-dcache-loads                                                         (66.69%)
+         8,036,315      L1-dcache-load-misses            #    2.63% of all L1-dcache accesses   (65.09%)
+         1,489,300      branch-misses                                                           (65.86%)
+                 5      context-switches                                                      
 
-       0.451878314 seconds time elapsed
+       0.453557851 seconds time elapsed
 
-       0.376970000 seconds user
-       0.072185000 seconds sys
+       0.395223000 seconds user
+       0.055890000 seconds sys
 
 

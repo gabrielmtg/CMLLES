@@ -1,0 +1,28 @@
+=== litert_iaes_small_relu_int8 ===
+BENCH iaes_small_relu_int8
+LATENCY_MEAN_US 5.03
+LATENCY_STD_US  0.72
+LATENCY_MIN_US  4.68
+LATENCY_MAX_US  22.54
+LATENCY_P95_US  5.18
+LATENCY_P99_US  5.74
+ACCURACY_PCT    88.20
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes small relu int8':
+
+        70,937,122      cycles                                                                  (64.84%)
+        67,944,479      instructions                     #    0.96  insn per cycle              (74.70%)
+        25,291,012      cache-references                                                        (80.08%)
+           398,036      cache-misses                     #    1.57% of all cache refs           (80.07%)
+        25,425,908      L1-dcache-loads                                                         (79.44%)
+           403,924      L1-dcache-load-misses            #    1.59% of all L1-dcache accesses   (78.78%)
+           281,306      branch-misses                                                           (75.65%)
+                 2      context-switches                                                      
+
+       0.074090963 seconds time elapsed
+
+       0.023190000 seconds user
+       0.050245000 seconds sys
+
+

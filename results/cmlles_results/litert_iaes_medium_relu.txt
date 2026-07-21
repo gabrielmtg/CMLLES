@@ -1,28 +1,28 @@
 === litert_iaes_medium_relu ===
 BENCH iaes_medium_relu_f32
-LATENCY_MEAN_US 11.34
-LATENCY_STD_US  1.25
-LATENCY_MIN_US  11.09
-LATENCY_MAX_US  44.50
-LATENCY_P95_US  11.41
-LATENCY_P99_US  12.04
+LATENCY_MEAN_US 11.68
+LATENCY_STD_US  0.86
+LATENCY_MIN_US  11.24
+LATENCY_MAX_US  27.04
+LATENCY_P95_US  11.74
+LATENCY_P99_US  12.18
 ACCURACY_PCT    98.40
 TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes medium relu':
 
-        81,504,494      cycles                                                                  (60.79%)
-        75,417,100      instructions                     #    0.93  insn per cycle              (59.30%)
-        28,923,150      cache-references                                                        (67.84%)
-         1,230,450      cache-misses                     #    4.25% of all cache refs           (72.05%)
-        28,280,910      L1-dcache-loads                                                         (76.89%)
-         1,207,288      L1-dcache-load-misses            #    4.27% of all L1-dcache accesses   (81.16%)
-           253,509      branch-misses                                                           (78.62%)
-                 3      context-switches                                                      
+        81,129,178      cycles                                                                  (60.89%)
+        75,545,942      instructions                     #    0.93  insn per cycle              (59.22%)
+        29,560,841      cache-references                                                        (62.10%)
+         1,142,493      cache-misses                     #    3.86% of all cache refs           (65.50%)
+        29,335,515      L1-dcache-loads                                                         (78.09%)
+         1,120,736      L1-dcache-load-misses            #    3.82% of all L1-dcache accesses   (77.58%)
+           264,291      branch-misses                                                           (77.14%)
+                 2      context-switches                                                      
 
-       0.082409018 seconds time elapsed
+       0.081859259 seconds time elapsed
 
-       0.021129000 seconds user
-       0.059161000 seconds sys
+       0.023926000 seconds user
+       0.055828000 seconds sys
 
 

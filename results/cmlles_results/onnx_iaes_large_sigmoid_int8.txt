@@ -1,0 +1,28 @@
+=== onnx_iaes_large_sigmoid_int8 ===
+BENCH iaes_large_sigmoid_int8
+LATENCY_MEAN_US 54.61
+LATENCY_STD_US  2.00
+LATENCY_MIN_US  53.69
+LATENCY_MAX_US  77.43
+LATENCY_P95_US  55.06
+LATENCY_P99_US  71.04
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes large sigmoid int8':
+
+       289,027,597      cycles                                                                  (72.27%)
+       293,692,005      instructions                     #    1.02  insn per cycle              (74.47%)
+       119,834,043      cache-references                                                        (76.01%)
+         2,742,103      cache-misses                     #    2.29% of all cache refs           (75.33%)
+       118,518,145      L1-dcache-loads                                                         (77.05%)
+         2,754,930      L1-dcache-load-misses            #    2.32% of all L1-dcache accesses   (79.02%)
+         1,158,991      branch-misses                                                           (78.81%)
+                 2      context-switches                                                      
+
+       0.194927797 seconds time elapsed
+
+       0.124189000 seconds user
+       0.068104000 seconds sys
+
+

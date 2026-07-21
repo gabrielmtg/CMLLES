@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from sklearn.model_selection import train_test_split
+from onnxruntime.quantization import quantize_static, CalibrationDataReader, QuantFormat, QuantType
 
 DATASET_PATH = "../../../../datasets/MLP/iris/iris.data"
 MODEL_DIR    = "model"
@@ -50,6 +51,18 @@ def build_mlp(dims, act_cls):
         if i < len(dims) - 2:
             layers.append(act_cls())
     return nn.Sequential(*layers)
+
+
+class _CalibReader(CalibrationDataReader):
+    def __init__(self, X):
+        self.data = [{"input": X[i:i+1]} for i in range(len(X))]
+        self.idx = 0
+    def get_next(self):
+        if self.idx >= len(self.data):
+            return None
+        d = self.data[self.idx]
+        self.idx += 1
+        return d
 
 
 def save_test_data(path, X, y):
@@ -110,6 +123,10 @@ for size, dims in MLP_CONFIGS.items():
             dynamo=False,
         )
         print(f"  Exported {path}")
+        int8_path = path.replace("_f32.onnx", "_int8.onnx")
+        quantize_static(path, int8_path, _CalibReader(X_train),
+                        quant_format=QuantFormat.QDQ, weight_type=QuantType.QInt8)
+        print(f"  Quantized {int8_path}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)

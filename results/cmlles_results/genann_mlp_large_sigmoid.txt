@@ -1,28 +1,28 @@
 === genann_mlp_large_sigmoid ===
 BENCH mlp_large_sigmoid_f64
-LATENCY_MEAN_US 17.77
-LATENCY_STD_US  1.00
-LATENCY_MIN_US  17.45
-LATENCY_MAX_US  34.07
-LATENCY_P95_US  18.26
-LATENCY_P99_US  18.80
+LATENCY_MEAN_US 17.62
+LATENCY_STD_US  0.92
+LATENCY_MIN_US  17.39
+LATENCY_MAX_US  33.50
+LATENCY_P95_US  17.87
+LATENCY_P99_US  18.33
 ACCURACY_PCT    96.70
 TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp large sigmoid':
 
-        85,230,643      cycles                                                                  (62.28%)
-       112,336,485      instructions                     #    1.32  insn per cycle              (61.73%)
-        37,245,380      cache-references                                                        (60.64%)
-           375,853      cache-misses                     #    1.01% of all cache refs           (63.45%)
-        37,622,261      L1-dcache-loads                                                         (72.06%)
-           399,331      L1-dcache-load-misses            #    1.06% of all L1-dcache accesses   (76.43%)
-           296,109      branch-misses                                                           (78.66%)
+        84,124,834      cycles                                                                  (62.03%)
+       112,498,617      instructions                     #    1.34  insn per cycle              (64.71%)
+        37,777,046      cache-references                                                        (67.94%)
+           408,859      cache-misses                     #    1.08% of all cache refs           (71.76%)
+        37,765,926      L1-dcache-loads                                                         (76.08%)
+           421,415      L1-dcache-load-misses            #    1.12% of all L1-dcache accesses   (80.52%)
+           299,688      branch-misses                                                           (80.10%)
                  4      context-switches                                                      
 
-       0.087278703 seconds time elapsed
+       0.085426426 seconds time elapsed
 
-       0.028015000 seconds user
-       0.056030000 seconds sys
+       0.031737000 seconds user
+       0.051572000 seconds sys
 
 

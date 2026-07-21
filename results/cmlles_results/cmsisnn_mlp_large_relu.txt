@@ -1,28 +1,28 @@
 === cmsisnn_mlp_large_relu ===
 BENCH mlp_large_relu_int8
-LATENCY_MEAN_US 4.20
-LATENCY_STD_US  0.53
-LATENCY_MIN_US  4.07
-LATENCY_MAX_US  20.80
+LATENCY_MEAN_US 4.24
+LATENCY_STD_US  1.06
+LATENCY_MIN_US  4.13
+LATENCY_MAX_US  31.41
 LATENCY_P95_US  4.20
-LATENCY_P99_US  4.31
+LATENCY_P99_US  4.30
 ACCURACY_PCT    33.40
 TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp_large_relu':
 
-        42,300,281      cycles                                                                  (51.01%)
-        40,854,278      instructions                     #    0.97  insn per cycle              (51.71%)
-        14,829,463      cache-references                                                        (55.71%)
-           155,445      cache-misses                     #    1.05% of all cache refs           (75.62%)
-        14,736,130      L1-dcache-loads                                                         (72.58%)
-           159,852      L1-dcache-load-misses            #    1.08% of all L1-dcache accesses   (71.70%)
-           115,813      branch-misses                                                           (70.97%)
+        41,912,354      cycles                                                                  (44.61%)
+        38,255,335      instructions                     #    0.91  insn per cycle              (62.07%)
+        13,708,752      cache-references                                                        (68.07%)
+           125,972      cache-misses                     #    0.92% of all cache refs           (75.28%)
+        14,707,535      L1-dcache-loads                                                         (72.26%)
+           122,919      L1-dcache-load-misses            #    0.84% of all L1-dcache accesses   (71.43%)
+           114,856      branch-misses                                                           (70.69%)
                  3      context-switches                                                      
 
-       0.064160777 seconds time elapsed
+       0.063478667 seconds time elapsed
 
-       0.008152000 seconds user
-       0.052988000 seconds sys
+       0.016117000 seconds user
+       0.044324000 seconds sys
 
 

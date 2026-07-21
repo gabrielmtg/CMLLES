@@ -1,0 +1,28 @@
+=== onnx_cnn2d_mobilenet_int8 ===
+BENCH cnn_mobilenet_int8
+LATENCY_MEAN_US 4195.04
+LATENCY_STD_US  29.03
+LATENCY_MIN_US  4154.67
+LATENCY_MAX_US  4552.07
+LATENCY_P95_US  4244.57
+LATENCY_P99_US  4278.07
+ACCURACY_PCT    12.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d mobilenet int8':
+
+     7,976,808,982      cycles                                                                  (59.42%)
+     9,446,686,601      instructions                     #    1.18  insn per cycle              (59.39%)
+     1,911,451,090      cache-references                                                        (59.39%)
+        40,761,426      cache-misses                     #    2.13% of all cache refs           (57.18%)
+     1,912,490,406      L1-dcache-loads                                                         (55.69%)
+        40,781,701      L1-dcache-load-misses            #    2.13% of all L1-dcache accesses   (55.00%)
+         3,870,668      branch-misses                                                           (53.94%)
+                34      context-switches                                                      
+
+       4.514041590 seconds time elapsed
+
+       4.319437000 seconds user
+       0.191974000 seconds sys
+
+

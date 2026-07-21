@@ -1,21 +1,28 @@
 === onnx_iaes_small_relu ===
-ORT error: Load model from model/iaes_small_relu_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
-
+BENCH iaes_small_relu_f32
+LATENCY_MEAN_US 16.91
+LATENCY_STD_US  8.87
+LATENCY_MIN_US  16.22
+LATENCY_MAX_US  293.69
+LATENCY_P95_US  16.74
+LATENCY_P99_US  18.85
+ACCURACY_PCT    97.90
+TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes small relu':
 
-        95,090,586      cycles                                                                
-       102,958,301      instructions                     #    1.08  insn per cycle            
-        41,556,484      cache-references                                                      
-           526,359      cache-misses                     #    1.27% of all cache refs         
-        41,556,484      L1-dcache-loads                                                       
-           526,359      L1-dcache-load-misses            #    1.27% of all L1-dcache accesses 
-           467,935      branch-misses                                                         
-                11      context-switches                                                      
+       190,430,329      cycles                                                                  (77.82%)
+       190,601,558      instructions                     #    1.00  insn per cycle              (77.45%)
+        75,687,113      cache-references                                                        (79.71%)
+         1,234,789      cache-misses                     #    1.63% of all cache refs           (81.67%)
+        74,367,132      L1-dcache-loads                                                         (83.92%)
+         1,250,265      L1-dcache-load-misses            #    1.68% of all L1-dcache accesses   (86.36%)
+           839,454      branch-misses                                                           (87.40%)
+                16      context-switches                                                      
 
-       0.067582963 seconds time elapsed
+       0.142382556 seconds time elapsed
 
-       0.031032000 seconds user
-       0.023274000 seconds sys
+       0.069026000 seconds user
+       0.069026000 seconds sys
 
 

@@ -1,31 +1,31 @@
 {
   "iaes_small_relu": {
-    "training_time_s": 233.188,
+    "training_time_s": 60.581,
     "epochs": 200,
     "final_train_loss": 0.048535
   },
   "iaes_small_sigmoid": {
-    "training_time_s": 244.896,
+    "training_time_s": 63.136,
     "epochs": 200,
     "final_train_loss": 0.043924
   },
   "iaes_medium_relu": {
-    "training_time_s": 320.159,
+    "training_time_s": 65.965,
     "epochs": 200,
     "final_train_loss": 0.057865
   },
   "iaes_medium_sigmoid": {
-    "training_time_s": 349.016,
+    "training_time_s": 67.153,
     "epochs": 200,
     "final_train_loss": 0.051696
   },
   "iaes_large_relu": {
-    "training_time_s": 483.836,
+    "training_time_s": 87.143,
     "epochs": 200,
     "final_train_loss": 0.043849
   },
   "iaes_large_sigmoid": {
-    "training_time_s": 518.692,
+    "training_time_s": 84.643,
     "epochs": 200,
     "final_train_loss": 0.061413
   }

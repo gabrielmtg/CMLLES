@@ -1,0 +1,28 @@
+=== onnx_ae_large_int8 ===
+BENCH ae_large_int8
+LATENCY_MEAN_US 57.97
+LATENCY_STD_US  2.83
+LATENCY_MIN_US  56.67
+LATENCY_MAX_US  105.57
+LATENCY_P95_US  58.50
+LATENCY_P99_US  75.18
+ACCURACY_PCT    82.00
+TEST_SAMPLES    22544
+
+ Performance counter stats for './benchmark_ae large int8':
+
+     2,153,682,721      cycles                                                                  (95.96%)
+     3,490,756,028      instructions                     #    1.62  insn per cycle              (95.99%)
+     1,347,856,573      cache-references                                                        (96.53%)
+         3,300,021      cache-misses                     #    0.24% of all cache refs           (96.56%)
+     1,345,650,119      L1-dcache-loads                                                         (96.82%)
+         3,424,284      L1-dcache-load-misses            #    0.25% of all L1-dcache accesses   (97.11%)
+         1,950,033      branch-misses                                                           (97.09%)
+                 4      context-switches                                                      
+
+       1.227150388 seconds time elapsed
+
+       1.156961000 seconds user
+       0.068056000 seconds sys
+
+

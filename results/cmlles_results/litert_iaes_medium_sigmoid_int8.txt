@@ -1,0 +1,28 @@
+=== litert_iaes_medium_sigmoid_int8 ===
+BENCH iaes_medium_sigmoid_int8
+LATENCY_MEAN_US 11.90
+LATENCY_STD_US  1.08
+LATENCY_MIN_US  11.56
+LATENCY_MAX_US  33.32
+LATENCY_P95_US  12.11
+LATENCY_P99_US  13.04
+ACCURACY_PCT    89.50
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium sigmoid int8':
+
+        84,923,252      cycles                                                                  (56.59%)
+        82,615,910      instructions                     #    0.97  insn per cycle              (64.04%)
+        29,292,762      cache-references                                                        (67.69%)
+           409,734      cache-misses                     #    1.40% of all cache refs           (69.13%)
+        28,610,534      L1-dcache-loads                                                         (73.33%)
+           412,971      L1-dcache-load-misses            #    1.44% of all L1-dcache accesses   (77.05%)
+           303,444      branch-misses                                                           (76.60%)
+                 3      context-switches                                                      
+
+       0.081394944 seconds time elapsed
+
+       0.032065000 seconds user
+       0.048098000 seconds sys
+
+

@@ -1,0 +1,28 @@
+=== onnx_iaes_medium_relu_int8 ===
+BENCH iaes_medium_relu_int8
+LATENCY_MEAN_US 33.53
+LATENCY_STD_US  9.60
+LATENCY_MIN_US  32.22
+LATENCY_MAX_US  323.55
+LATENCY_P95_US  33.54
+LATENCY_P99_US  49.39
+ACCURACY_PCT    98.50
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes medium relu int8':
+
+       232,095,994      cycles                                                                  (80.70%)
+       235,931,448      instructions                     #    1.02  insn per cycle              (80.51%)
+        96,718,201      cache-references                                                        (80.46%)
+         1,891,520      cache-misses                     #    1.96% of all cache refs           (80.44%)
+        96,726,765      L1-dcache-loads                                                         (80.44%)
+         1,890,046      L1-dcache-load-misses            #    1.95% of all L1-dcache accesses   (80.48%)
+         1,023,958      branch-misses                                                           (79.67%)
+                 3      context-switches                                                      
+
+       0.164306481 seconds time elapsed
+
+       0.122261000 seconds user
+       0.040753000 seconds sys
+
+

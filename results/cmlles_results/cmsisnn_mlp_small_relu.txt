@@ -1,9 +1,9 @@
 === cmsisnn_mlp_small_relu ===
 BENCH mlp_small_relu_int8
-LATENCY_MEAN_US 0.94
-LATENCY_STD_US  0.01
-LATENCY_MIN_US  0.91
-LATENCY_MAX_US  1.13
+LATENCY_MEAN_US 0.93
+LATENCY_STD_US  0.02
+LATENCY_MIN_US  0.89
+LATENCY_MAX_US  1.24
 LATENCY_P95_US  0.95
 LATENCY_P99_US  0.98
 ACCURACY_PCT    33.40
@@ -11,18 +11,18 @@ TEST_SAMPLES    30
 
  Performance counter stats for './benchmark_mlp_small_relu':
 
-        35,212,152      cycles                                                                  (47.56%)
-        26,024,506      instructions                     #    0.74  insn per cycle              (47.84%)
-        10,996,724      cache-references                                                        (67.73%)
-            81,019      cache-misses                     #    0.74% of all cache refs           (71.67%)
-        12,317,276      L1-dcache-loads                                                         (70.58%)
-            82,548      L1-dcache-load-misses            #    0.67% of all L1-dcache accesses   (69.64%)
-           106,527      branch-misses                                                           (68.80%)
+        38,610,274      cycles                                                                  (54.38%)
+        29,007,127      instructions                     #    0.75  insn per cycle              (67.44%)
+        12,475,753      cache-references                                                        (74.78%)
+           116,239      cache-misses                     #    0.93% of all cache refs           (74.69%)
+        12,556,099      L1-dcache-loads                                                         (73.67%)
+           117,662      L1-dcache-load-misses            #    0.94% of all L1-dcache accesses   (68.83%)
+           107,692      branch-misses                                                           (66.98%)
                  5      context-switches                                                      
 
-       0.059401149 seconds time elapsed
+       0.059813778 seconds time elapsed
 
-       0.000000000 seconds user
-       0.056957000 seconds sys
+       0.012290000 seconds user
+       0.045064000 seconds sys
 
 

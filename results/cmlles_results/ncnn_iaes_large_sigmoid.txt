@@ -1,28 +1,28 @@
 === ncnn_iaes_large_sigmoid ===
 BENCH iaes_large_sigmoid_f32
-LATENCY_MEAN_US 31.93
-LATENCY_STD_US  2.45
-LATENCY_MIN_US  31.28
-LATENCY_MAX_US  65.02
-LATENCY_P95_US  31.87
-LATENCY_P99_US  47.46
+LATENCY_MEAN_US 31.95
+LATENCY_STD_US  6.55
+LATENCY_MIN_US  31.24
+LATENCY_MAX_US  218.61
+LATENCY_P95_US  31.74
+LATENCY_P99_US  46.69
 ACCURACY_PCT    97.60
 TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes large sigmoid':
 
-       631,428,624      cycles                                                                  (92.03%)
-     1,460,983,718      instructions                     #    2.31  insn per cycle              (92.01%)
-       268,299,114      cache-references                                                        (91.99%)
-         1,212,173      cache-misses                     #    0.45% of all cache refs           (91.91%)
-       268,678,337      L1-dcache-loads                                                         (91.84%)
-         1,213,216      L1-dcache-load-misses            #    0.45% of all L1-dcache accesses   (91.78%)
-           345,442      branch-misses                                                           (91.62%)
-                14      context-switches                                                      
+       629,855,986      cycles                                                                  (90.88%)
+     1,456,949,417      instructions                     #    2.31  insn per cycle              (91.59%)
+       267,091,787      cache-references                                                        (91.75%)
+         1,116,717      cache-misses                     #    0.42% of all cache refs           (91.66%)
+       267,250,075      L1-dcache-loads                                                         (91.27%)
+         1,090,539      L1-dcache-load-misses            #    0.41% of all L1-dcache accesses   (91.17%)
+           356,229      branch-misses                                                           (91.77%)
+                20      context-switches                                                      
 
-       0.167078759 seconds time elapsed
+       0.109623222 seconds time elapsed
 
-       0.323229000 seconds user
-       0.059127000 seconds sys
+       0.310668000 seconds user
+       0.069491000 seconds sys
 
 

@@ -9,6 +9,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import transforms
 import pyvww
+from onnxruntime.quantization import quantize_static, CalibrationDataReader, QuantFormat, QuantType
 
 IMAGES_DIR = "../../../datasets/CNN-2D/coco/images/all2017"
 TRAIN_ANN  = "../../../datasets/CNN-2D/coco/annotations/instances_train.json"
@@ -82,6 +83,18 @@ class MobileNetLike(nn.Module):
         return self.net(x)
 
 
+class _CalibReader(CalibrationDataReader):
+    def __init__(self, X):
+        self.data = [{"input": X[i:i+1]} for i in range(len(X))]
+        self.idx = 0
+    def get_next(self):
+        if self.idx >= len(self.data):
+            return None
+        d = self.data[self.idx]
+        self.idx += 1
+        return d
+
+
 def make_transform(size):
     return transforms.Compose([
         transforms.Resize((size, size)),
@@ -139,6 +152,13 @@ for cfg_name, (model, img_size) in CONFIGS.items():
         root=IMAGES_DIR, annFile=TRAIN_ANN, transform=make_transform(img_size))
     loader = DataLoader(train_ds, batch_size=BATCH, shuffle=True, num_workers=4)
 
+    calib_imgs = []
+    for imgs, _ in DataLoader(train_ds, batch_size=1, shuffle=False):
+        calib_imgs.append(imgs.cpu().numpy())
+        if len(calib_imgs) >= 50:
+            break
+    calib_np = np.concatenate(calib_imgs, axis=0)
+
     t0 = time.time()
     final_loss = 0.0
     for epoch in range(EPOCHS):
@@ -172,6 +192,10 @@ for cfg_name, (model, img_size) in CONFIGS.items():
         opset_version=18, dynamo=False,
     )
     print(f"  Exported {path}")
+    int8_path = path.replace("_f32.onnx", "_int8.onnx")
+    quantize_static(path, int8_path, _CalibReader(calib_np),
+                    quant_format=QuantFormat.QDQ, weight_type=QuantType.QInt8)
+    print(f"  Quantized {int8_path}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)

@@ -1,0 +1,28 @@
+=== litert_cnn2d_simple_int8 ===
+BENCH cnn_simple_int8
+LATENCY_MEAN_US 421.54
+LATENCY_STD_US  12.14
+LATENCY_MIN_US  410.11
+LATENCY_MAX_US  633.39
+LATENCY_P95_US  436.76
+LATENCY_P99_US  447.83
+ACCURACY_PCT    10.00
+TEST_SAMPLES    100
+
+ Performance counter stats for './benchmark_cnn2d simple int8':
+
+       811,012,315      cycles                                                                  (60.55%)
+     1,247,434,619      instructions                     #    1.54  insn per cycle              (60.50%)
+       311,684,060      cache-references                                                        (60.50%)
+         5,189,382      cache-misses                     #    1.66% of all cache refs           (60.49%)
+       311,913,375      L1-dcache-loads                                                         (60.51%)
+         5,189,461      L1-dcache-load-misses            #    1.66% of all L1-dcache accesses   (60.53%)
+           488,507      branch-misses                                                           (60.55%)
+                 8      context-switches                                                      
+
+       0.496230610 seconds time elapsed
+
+       0.420958000 seconds user
+       0.072164000 seconds sys
+
+

@@ -1,28 +1,28 @@
 === litert_lstm_h128 ===
 BENCH lstm_h128_f32
-LATENCY_MEAN_US 1454.78
-LATENCY_STD_US  22.53
-LATENCY_MIN_US  1424.61
-LATENCY_MAX_US  1682.09
-LATENCY_P95_US  1480.74
-LATENCY_P99_US  1540.15
+LATENCY_MEAN_US 1438.13
+LATENCY_STD_US  13.32
+LATENCY_MIN_US  1418.07
+LATENCY_MAX_US  1507.63
+LATENCY_P95_US  1461.11
+LATENCY_P99_US  1477.76
 MAE_CYCLES      12.70
 TEST_SAMPLES    100
 
  Performance counter stats for './benchmark_lstm 128':
 
-     2,725,795,879      cycles                                                                  (59.05%)
-     2,269,007,421      instructions                     #    0.83  insn per cycle              (59.17%)
-       936,972,187      cache-references                                                        (59.28%)
-        96,571,583      cache-misses                     #   10.31% of all cache refs           (59.52%)
-       937,683,575      L1-dcache-loads                                                         (53.48%)
-        96,098,404      L1-dcache-load-misses            #   10.25% of all L1-dcache accesses   (53.71%)
-         3,990,427      branch-misses                                                           (53.93%)
-                25      context-switches                                                      
+     2,694,893,229      cycles                                                                  (58.58%)
+     2,264,034,176      instructions                     #    0.84  insn per cycle              (58.99%)
+       935,378,775      cache-references                                                        (59.56%)
+        96,046,922      cache-misses                     #   10.27% of all cache refs           (60.07%)
+       936,286,486      L1-dcache-loads                                                         (54.18%)
+        95,360,043      L1-dcache-load-misses            #   10.18% of all L1-dcache accesses   (54.16%)
+         3,506,642      branch-misses                                                           (54.15%)
+                 8      context-switches                                                      
 
-       1.567599370 seconds time elapsed
+       1.613880221 seconds time elapsed
 
-       1.497632000 seconds user
-       0.059905000 seconds sys
+       1.475745000 seconds user
+       0.063988000 seconds sys
 
 

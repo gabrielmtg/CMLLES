@@ -1,28 +1,28 @@
 === cmsisnn_ae_small ===
 BENCH ae_small_int8
-LATENCY_MEAN_US 3.20
-LATENCY_STD_US  2.16
-LATENCY_MIN_US  3.09
-LATENCY_MAX_US  71.61
-LATENCY_P95_US  3.20
+LATENCY_MEAN_US 3.19
+LATENCY_STD_US  0.36
+LATENCY_MIN_US  3.13
+LATENCY_MAX_US  14.67
+LATENCY_P95_US  3.22
 LATENCY_P99_US  3.26
 ACCURACY_PCT    54.80
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae_small':
 
-     1,977,929,192      cycles                                                                  (97.70%)
-     3,253,589,568      instructions                     #    1.64  insn per cycle              (97.76%)
-     1,247,267,259      cache-references                                                        (98.61%)
-         1,463,259      cache-misses                     #    0.12% of all cache refs           (98.91%)
-     1,245,631,752      L1-dcache-loads                                                         (98.77%)
-         1,460,527      L1-dcache-load-misses            #    0.12% of all L1-dcache accesses   (98.73%)
-         1,196,610      branch-misses                                                           (98.70%)
-               285      context-switches                                                      
+     1,965,124,495      cycles                                                                  (97.73%)
+     3,250,954,390      instructions                     #    1.65  insn per cycle              (97.82%)
+     1,247,212,967      cache-references                                                        (98.60%)
+         1,724,581      cache-misses                     #    0.14% of all cache refs           (98.75%)
+     1,245,971,916      L1-dcache-loads                                                         (98.71%)
+         1,723,689      L1-dcache-load-misses            #    0.14% of all L1-dcache accesses   (98.64%)
+         1,167,240      branch-misses                                                           (98.56%)
+                90      context-switches                                                      
 
-       1.221453925 seconds time elapsed
+       1.186829888 seconds time elapsed
 
-       1.013670000 seconds user
-       0.110359000 seconds sys
+       1.003655000 seconds user
+       0.112409000 seconds sys
 
 

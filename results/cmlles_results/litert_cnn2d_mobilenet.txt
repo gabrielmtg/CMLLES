@@ -1,28 +1,28 @@
 === litert_cnn2d_mobilenet ===
 BENCH cnn_mobilenet_f32
-LATENCY_MEAN_US 8087.08
-LATENCY_STD_US  85.26
-LATENCY_MIN_US  8004.24
-LATENCY_MAX_US  9497.80
-LATENCY_P95_US  8156.80
-LATENCY_P99_US  8290.98
+LATENCY_MEAN_US 8095.20
+LATENCY_STD_US  63.20
+LATENCY_MIN_US  8015.61
+LATENCY_MAX_US  8633.46
+LATENCY_P95_US  8220.48
+LATENCY_P99_US  8366.48
 ACCURACY_PCT    13.00
 TEST_SAMPLES    100
 
  Performance counter stats for './benchmark_cnn2d mobilenet':
 
-    14,838,129,851      cycles                                                                  (58.62%)
-    13,393,729,186      instructions                     #    0.90  insn per cycle              (58.64%)
-     5,953,658,930      cache-references                                                        (58.64%)
-        69,402,568      cache-misses                     #    1.17% of all cache refs           (57.14%)
-     5,957,798,993      L1-dcache-loads                                                         (56.70%)
-        69,318,248      L1-dcache-load-misses            #    1.16% of all L1-dcache accesses   (52.00%)
-         3,647,510      branch-misses                                                           (51.00%)
-                78      context-switches                                                      
+    14,852,412,116      cycles                                                                  (58.69%)
+    13,397,939,486      instructions                     #    0.90  insn per cycle              (58.70%)
+     5,958,303,648      cache-references                                                        (58.69%)
+        64,766,998      cache-misses                     #    1.09% of all cache refs           (58.70%)
+     5,950,794,044      L1-dcache-loads                                                         (54.02%)
+        64,701,661      L1-dcache-load-misses            #    1.09% of all L1-dcache accesses   (51.66%)
+         3,678,099      branch-misses                                                           (51.68%)
+               123      context-switches                                                      
 
-       8.565698402 seconds time elapsed
+       8.576010495 seconds time elapsed
 
-       8.230353000 seconds user
-       0.116033000 seconds sys
+       8.247825000 seconds user
+       0.104048000 seconds sys
 
 

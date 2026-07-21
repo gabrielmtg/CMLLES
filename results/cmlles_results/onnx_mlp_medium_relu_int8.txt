@@ -1,0 +1,28 @@
+=== onnx_mlp_medium_relu_int8 ===
+BENCH mlp_medium_relu_int8
+LATENCY_MEAN_US 32.44
+LATENCY_STD_US  1.89
+LATENCY_MIN_US  31.55
+LATENCY_MAX_US  63.54
+LATENCY_P95_US  32.69
+LATENCY_P99_US  37.28
+ACCURACY_PCT    90.00
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp medium relu int8':
+
+       218,066,951      cycles                                                                  (72.69%)
+       208,914,328      instructions                     #    0.96  insn per cycle              (75.15%)
+        87,136,231      cache-references                                                        (79.36%)
+         1,834,899      cache-misses                     #    2.11% of all cache refs           (79.30%)
+        87,535,592      L1-dcache-loads                                                         (75.95%)
+         1,831,315      L1-dcache-load-misses            #    2.09% of all L1-dcache accesses   (74.40%)
+           972,970      branch-misses                                                           (75.92%)
+                 2      context-switches                                                      
+
+       0.154990722 seconds time elapsed
+
+       0.078933000 seconds user
+       0.074986000 seconds sys
+
+

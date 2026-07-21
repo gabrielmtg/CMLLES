@@ -1,28 +1,28 @@
 === litert_cnn2d_simple ===
 BENCH cnn_simple_f32
-LATENCY_MEAN_US 528.12
-LATENCY_STD_US  7.33
-LATENCY_MIN_US  523.82
-LATENCY_MAX_US  617.37
-LATENCY_P95_US  544.13
-LATENCY_P99_US  550.54
+LATENCY_MEAN_US 525.43
+LATENCY_STD_US  6.72
+LATENCY_MIN_US  520.94
+LATENCY_MAX_US  581.83
+LATENCY_P95_US  540.67
+LATENCY_P99_US  550.67
 ACCURACY_PCT    10.00
 TEST_SAMPLES    100
 
  Performance counter stats for './benchmark_cnn2d simple':
 
-     1,011,975,312      cycles                                                                  (57.45%)
-     1,233,761,288      instructions                     #    1.22  insn per cycle              (59.81%)
-       445,423,012      cache-references                                                        (60.46%)
-         9,155,452      cache-misses                     #    2.06% of all cache refs           (61.12%)
-       445,494,775      L1-dcache-loads                                                         (61.12%)
-         9,121,434      L1-dcache-load-misses            #    2.05% of all L1-dcache accesses   (58.58%)
-           505,223      branch-misses                                                           (53.49%)
-                12      context-switches                                                      
+     1,004,939,263      cycles                                                                  (57.73%)
+     1,232,532,406      instructions                     #    1.23  insn per cycle              (59.73%)
+       445,688,340      cache-references                                                        (60.38%)
+         8,583,289      cache-misses                     #    1.93% of all cache refs           (60.98%)
+       445,351,830      L1-dcache-loads                                                         (60.98%)
+         8,554,730      L1-dcache-load-misses            #    1.92% of all L1-dcache accesses   (59.70%)
+           483,221      branch-misses                                                           (59.68%)
+                21      context-switches                                                      
 
-       0.636665018 seconds time elapsed
+       0.708408740 seconds time elapsed
 
-       0.543828000 seconds user
-       0.060425000 seconds sys
+       0.530179000 seconds user
+       0.072297000 seconds sys
 
 

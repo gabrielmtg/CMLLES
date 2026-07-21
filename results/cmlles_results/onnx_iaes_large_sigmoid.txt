@@ -1,21 +1,28 @@
 === onnx_iaes_large_sigmoid ===
-ORT error: Load model from model/iaes_large_sigmoid_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
-
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 47.21
+LATENCY_STD_US  3.38
+LATENCY_MIN_US  46.19
+LATENCY_MAX_US  128.78
+LATENCY_P95_US  47.68
+LATENCY_P99_US  63.33
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes large sigmoid':
 
-        92,027,155      cycles                                                                
-       102,374,186      instructions                     #    1.11  insn per cycle            
-        41,330,622      cache-references                                                      
-           534,729      cache-misses                     #    1.29% of all cache refs         
-        41,330,622      L1-dcache-loads                                                       
-           534,729      L1-dcache-load-misses            #    1.29% of all L1-dcache accesses 
-           469,002      branch-misses                                                         
+       247,147,246      cycles                                                                  (73.18%)
+       229,831,696      instructions                     #    0.93  insn per cycle              (78.19%)
+        99,386,297      cache-references                                                        (80.57%)
+         2,061,110      cache-misses                     #    2.07% of all cache refs           (80.54%)
+        99,370,080      L1-dcache-loads                                                         (80.52%)
+         2,059,359      L1-dcache-load-misses            #    2.07% of all L1-dcache accesses   (80.53%)
+           952,274      branch-misses                                                           (77.31%)
                  3      context-switches                                                      
 
-       0.053218667 seconds time elapsed
+       0.178154351 seconds time elapsed
 
-       0.034933000 seconds user
-       0.017466000 seconds sys
+       0.099383000 seconds user
+       0.071556000 seconds sys
 
 

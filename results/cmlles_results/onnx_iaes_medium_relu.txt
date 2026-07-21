@@ -1,21 +1,28 @@
 === onnx_iaes_medium_relu ===
-ORT error: Load model from model/iaes_medium_relu_f32.onnx failed:/onnxruntime_src/onnxruntime/core/graph/model.cc:179 onnxruntime::Model::Model(onnx::ModelProto&&, const onnxruntime::PathString&, const onnxruntime::IOnnxRuntimeOpSchemaRegistryList*, const onnxruntime::logging::Logger&, const onnxruntime::ModelOptions&) Unsupported model IR version: 10, max supported IR version: 9
-
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 23.43
+LATENCY_STD_US  1.58
+LATENCY_MIN_US  22.95
+LATENCY_MAX_US  47.28
+LATENCY_P95_US  23.52
+LATENCY_P99_US  25.44
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes medium relu':
 
-        92,352,767      cycles                                                                
-       102,299,823      instructions                     #    1.11  insn per cycle            
-        41,238,698      cache-references                                                      
-           487,048      cache-misses                     #    1.18% of all cache refs         
-        41,238,698      L1-dcache-loads                                                       
-           487,048      L1-dcache-load-misses            #    1.18% of all L1-dcache accesses 
-           464,546      branch-misses                                                         
-                 2      context-switches                                                      
+       201,728,553      cycles                                                                  (78.41%)
+       200,133,353      instructions                     #    0.99  insn per cycle              (78.11%)
+        82,378,325      cache-references                                                        (78.32%)
+         1,548,417      cache-misses                     #    1.88% of all cache refs           (78.08%)
+        81,692,713      L1-dcache-loads                                                         (76.77%)
+         1,606,568      L1-dcache-load-misses            #    1.97% of all L1-dcache accesses   (79.84%)
+           877,930      branch-misses                                                           (81.65%)
+                 7      context-switches                                                      
 
-       0.053388556 seconds time elapsed
+       0.147365889 seconds time elapsed
 
-       0.045112000 seconds user
-       0.007518000 seconds sys
+       0.078429000 seconds user
+       0.066664000 seconds sys
 
 

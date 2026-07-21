@@ -1,28 +1,28 @@
 === litert_ae_small ===
 BENCH ae_small_f32
-LATENCY_MEAN_US 16.42
-LATENCY_STD_US  1.04
-LATENCY_MIN_US  15.85
-LATENCY_MAX_US  37.44
-LATENCY_P95_US  16.95
-LATENCY_P99_US  17.41
+LATENCY_MEAN_US 16.53
+LATENCY_STD_US  0.88
+LATENCY_MIN_US  15.96
+LATENCY_MAX_US  37.98
+LATENCY_P95_US  17.09
+LATENCY_P99_US  17.35
 ACCURACY_PCT    85.20
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae small':
 
-     1,990,849,452      cycles                                                                  (97.54%)
-     3,272,394,463      instructions                     #    1.64  insn per cycle              (97.46%)
-     1,263,019,784      cache-references                                                        (97.66%)
-         2,287,129      cache-misses                     #    0.18% of all cache refs           (97.88%)
-     1,259,346,787      L1-dcache-loads                                                         (98.12%)
-         2,447,259      L1-dcache-load-misses            #    0.19% of all L1-dcache accesses   (98.39%)
-         1,301,804      branch-misses                                                           (98.44%)
-                18      context-switches                                                      
+     2,168,079,749      cycles                                                                  (97.64%)
+     3,269,063,986      instructions                     #    1.51  insn per cycle              (97.73%)
+     1,262,983,762      cache-references                                                        (97.61%)
+        11,190,788      cache-misses                     #    0.89% of all cache refs           (97.79%)
+     1,258,603,259      L1-dcache-loads                                                         (98.14%)
+        11,307,648      L1-dcache-load-misses            #    0.90% of all L1-dcache accesses   (98.38%)
+         1,299,025      branch-misses                                                           (98.67%)
+                23      context-switches                                                      
 
-       1.195372944 seconds time elapsed
+       1.293973203 seconds time elapsed
 
-       1.025995000 seconds user
-       0.107789000 seconds sys
+       1.119004000 seconds user
+       0.112301000 seconds sys
 
 

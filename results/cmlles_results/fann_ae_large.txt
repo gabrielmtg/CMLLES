@@ -1,28 +1,28 @@
 === fann_ae_large ===
 BENCH ae_large_f32
-LATENCY_MEAN_US 88.83
-LATENCY_STD_US  2.72
-LATENCY_MIN_US  86.54
-LATENCY_MAX_US  122.58
-LATENCY_P95_US  90.57
-LATENCY_P99_US  102.67
+LATENCY_MEAN_US 88.70
+LATENCY_STD_US  2.00
+LATENCY_MIN_US  86.50
+LATENCY_MAX_US  103.81
+LATENCY_P95_US  90.50
+LATENCY_P99_US  100.00
 ACCURACY_PCT    76.10
 TEST_SAMPLES    22544
 
  Performance counter stats for './benchmark_ae large':
 
-     2,142,314,716      cycles                                                                  (94.58%)
-     3,701,818,285      instructions                     #    1.73  insn per cycle              (95.36%)
-     1,391,872,203      cache-references                                                        (95.96%)
-         1,504,338      cache-misses                     #    0.11% of all cache refs           (95.71%)
-     1,392,023,648      L1-dcache-loads                                                         (95.70%)
-         1,502,598      L1-dcache-load-misses            #    0.11% of all L1-dcache accesses   (95.69%)
-         1,649,671      branch-misses                                                           (95.64%)
-                30      context-switches                                                      
+     2,182,735,212      cycles                                                                  (94.61%)
+     3,704,394,383      instructions                     #    1.70  insn per cycle              (95.90%)
+     1,392,557,589      cache-references                                                        (95.89%)
+         3,226,128      cache-misses                     #    0.23% of all cache refs           (95.40%)
+     1,393,028,107      L1-dcache-loads                                                         (95.36%)
+         3,227,408      L1-dcache-load-misses            #    0.23% of all L1-dcache accesses   (95.32%)
+         1,633,131      branch-misses                                                           (95.54%)
+                 9      context-switches                                                      
 
-       1.264830685 seconds time elapsed
+       1.247148870 seconds time elapsed
 
-       1.199956000 seconds user
-       0.059997000 seconds sys
+       1.143730000 seconds user
+       0.095642000 seconds sys
 
 

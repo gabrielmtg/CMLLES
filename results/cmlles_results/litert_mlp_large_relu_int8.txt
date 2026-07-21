@@ -1,0 +1,28 @@
+=== litert_mlp_large_relu_int8 ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 23.68
+LATENCY_STD_US  1.00
+LATENCY_MIN_US  23.30
+LATENCY_MAX_US  42.32
+LATENCY_P95_US  23.93
+LATENCY_P99_US  24.52
+ACCURACY_PCT    59.90
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp large relu int8':
+
+        88,483,788      cycles                                                                  (59.38%)
+        93,267,464      instructions                     #    1.05  insn per cycle              (62.21%)
+        28,807,006      cache-references                                                        (61.05%)
+           692,979      cache-misses                     #    2.41% of all cache refs           (64.10%)
+        29,722,696      L1-dcache-loads                                                         (67.62%)
+           692,472      L1-dcache-load-misses            #    2.33% of all L1-dcache accesses   (68.80%)
+           289,506      branch-misses                                                           (72.90%)
+                 2      context-switches                                                      
+
+       0.088673759 seconds time elapsed
+
+       0.022476000 seconds user
+       0.063682000 seconds sys
+
+

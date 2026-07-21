@@ -1,0 +1,28 @@
+=== litert_mlp_large_sigmoid_int8 ===
+BENCH mlp_large_sigmoid_int8
+LATENCY_MEAN_US 28.02
+LATENCY_STD_US  1.96
+LATENCY_MIN_US  27.54
+LATENCY_MAX_US  67.74
+LATENCY_P95_US  28.19
+LATENCY_P99_US  29.09
+ACCURACY_PCT    66.60
+TEST_SAMPLES    30
+
+ Performance counter stats for './benchmark_mlp large sigmoid int8':
+
+        93,102,770      cycles                                                                  (57.12%)
+        99,287,113      instructions                     #    1.07  insn per cycle              (63.38%)
+        30,957,182      cache-references                                                        (63.19%)
+           810,098      cache-misses                     #    2.62% of all cache refs           (59.70%)
+        29,820,413      L1-dcache-loads                                                         (62.56%)
+           829,815      L1-dcache-load-misses            #    2.78% of all L1-dcache accesses   (62.93%)
+           261,810      branch-misses                                                           (66.23%)
+                 1      context-switches                                                      
+
+       0.092453000 seconds time elapsed
+
+       0.032738000 seconds user
+       0.057292000 seconds sys
+
+

@@ -1,0 +1,28 @@
+=== litert_iaes_small_sigmoid_int8 ===
+BENCH iaes_small_sigmoid_int8
+LATENCY_MEAN_US 5.59
+LATENCY_STD_US  0.89
+LATENCY_MIN_US  5.30
+LATENCY_MAX_US  23.85
+LATENCY_P95_US  5.76
+LATENCY_P99_US  6.33
+ACCURACY_PCT    92.30
+TEST_SAMPLES    1000
+
+ Performance counter stats for './benchmark_iaes small sigmoid int8':
+
+        71,644,737      cycles                                                                  (59.86%)
+        70,285,956      instructions                     #    0.98  insn per cycle              (69.10%)
+        25,505,772      cache-references                                                        (79.92%)
+           294,491      cache-misses                     #    1.15% of all cache refs           (79.94%)
+        25,498,654      L1-dcache-loads                                                         (79.99%)
+           286,354      L1-dcache-load-misses            #    1.12% of all L1-dcache accesses   (77.52%)
+           263,834      branch-misses                                                           (76.90%)
+                 2      context-switches                                                      
+
+       0.073973926 seconds time elapsed
+
+       0.038594000 seconds user
+       0.034735000 seconds sys
+
+

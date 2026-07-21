@@ -1,28 +1,28 @@
 === fann_iaes_medium_relu ===
 BENCH iaes_medium_relu_f32
-LATENCY_MEAN_US 27.28
-LATENCY_STD_US  1.21
-LATENCY_MIN_US  26.37
-LATENCY_MAX_US  44.28
-LATENCY_P95_US  28.24
-LATENCY_P99_US  28.35
+LATENCY_MEAN_US 27.40
+LATENCY_STD_US  1.60
+LATENCY_MIN_US  26.46
+LATENCY_MAX_US  49.04
+LATENCY_P95_US  28.31
+LATENCY_P99_US  39.33
 ACCURACY_PCT    87.80
 TEST_SAMPLES    1000
 
  Performance counter stats for './benchmark_iaes medium relu':
 
-       140,222,221      cycles                                                                  (69.87%)
-       231,691,823      instructions                     #    1.65  insn per cycle              (70.44%)
-        73,274,285      cache-references                                                        (71.58%)
-           306,637      cache-misses                     #    0.42% of all cache refs           (70.81%)
-        74,173,418      L1-dcache-loads                                                         (73.24%)
-           314,042      L1-dcache-load-misses            #    0.42% of all L1-dcache accesses   (73.81%)
-           410,097      branch-misses                                                           (76.60%)
+       137,542,715      cycles                                                                  (71.26%)
+       228,766,865      instructions                     #    1.66  insn per cycle              (71.18%)
+        73,375,497      cache-references                                                        (71.12%)
+           300,276      cache-misses                     #    0.41% of all cache refs           (70.63%)
+        74,289,155      L1-dcache-loads                                                         (73.15%)
+           315,083      L1-dcache-load-misses            #    0.42% of all L1-dcache accesses   (76.02%)
+           397,486      branch-misses                                                           (79.20%)
                  5      context-switches                                                      
 
-       0.115010296 seconds time elapsed
+       0.112764426 seconds time elapsed
 
-       0.045701000 seconds user
-       0.066474000 seconds sys
+       0.061648000 seconds user
+       0.049318000 seconds sys
 
 

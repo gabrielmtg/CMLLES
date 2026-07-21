@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader, TensorDataset, random_split
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import litert_torch as ai_edge_torch
+import ai_edge_quantizer as aq
 
 TRAIN_PATH = "../../../datasets/LSTM/CMAPSSData/train_FD001.txt"
 TEST_PATH  = "../../../datasets/LSTM/CMAPSSData/test_FD001.txt"
@@ -151,6 +152,15 @@ for hidden in HIDDEN_SIZES:
     edge_model = ai_edge_torch.convert(model.eval(), dummy)
     edge_model.export(path)
     print(f"  Exported {path}")
+    int8_path = path.replace("_f32.tflite", "_int8.tflite")
+    f32_buf = bytearray(open(path, "rb").read())
+    quantizer = aq.Quantizer(f32_buf)
+    quantizer.load_quantization_recipe(aq.recipe.dynamic_wi8_afp32())
+    calib_data = {"serving_default": [{"args_0": X_train[i:i+1]} for i in range(min(len(X_train), 50))]}
+    calib_res = quantizer.calibrate(calib_data)
+    int8_dir, int8_name = os.path.split(int8_path)
+    quantizer.quantize(calib_res).save(int8_dir, int8_name.replace(".tflite", ""), overwrite=True)
+    print(f"  Quantized {int8_path}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)
