@@ -1,4 +1,4 @@
-CMSIS_NN = ../../CMSIS-NN-bak
+CMSIS_NN = ../../CMSIS-NN
 
 CC      = gcc
 CFLAGS  = -O2 -Wall -Wextra -I$(CMSIS_NN)/Include -I.

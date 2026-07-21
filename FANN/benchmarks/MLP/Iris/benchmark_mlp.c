@@ -84,7 +84,7 @@ static long perf_event_open_syscall(struct perf_event_attr *hw, pid_t pid,
     return syscall(__NR_perf_event_open, hw, pid, cpu, group_fd, flags);
 }
 
-typedef struct { int fd[5]; } PerfFds;
+typedef struct { int fd[6]; } PerfFds;
 
 static int open_perf_fd(uint32_t type, uint64_t config) {
     struct perf_event_attr attr;
@@ -93,28 +93,35 @@ static int open_perf_fd(uint32_t type, uint64_t config) {
     attr.size       = sizeof(attr);
     attr.config     = config;
     attr.disabled   = 1;
-    attr.exclude_hv = 1;
     return (int)perf_event_open_syscall(&attr, 0, -1, -1, 0);
 }
 
 static PerfFds perf_open_all(void) {
     PerfFds p;
-    uint64_t l1_loads  = PERF_COUNT_HW_CACHE_L1D
-                       | ((uint64_t)PERF_COUNT_HW_CACHE_OP_READ << 8)
-                       | ((uint64_t)PERF_COUNT_HW_CACHE_RESULT_ACCESS << 16);
-    uint64_t l1_misses = PERF_COUNT_HW_CACHE_L1D
-                       | ((uint64_t)PERF_COUNT_HW_CACHE_OP_READ << 8)
-                       | ((uint64_t)PERF_COUNT_HW_CACHE_RESULT_MISS << 16);
+    /* This SoC (SiFive U74) has no hardware event for total L1D accesses -
+     * confirmed against both the mainline Linux sifive/u74 pmu-events
+     * tables and the hpc-ulisboa RISC-V-Perf-Events-Unmatched project,
+     * which only document cache MISS events for this core. Retired load
+     * instruction count (integer + FP, summed in perf_disable_read) is
+     * used as an approximate proxy for L1D read accesses instead of a
+     * real cache-level counter - confirmed on real hardware that a single
+     * raw event bit reads correctly (fd[2]=100075961 for a pure-integer
+     * busy loop) but OR-combining two bits into one raw config silently
+     * reads 0, so integer and FP loads need two separate counters.
+     * l1_misses uses the documented SiFive raw event for real data-cache
+     * misses (also fires on MMIO accesses, negligible for these
+     * CPU-bound workloads). */
     p.fd[0] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_CPU_CYCLES);
     p.fd[1] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_INSTRUCTIONS);
-    p.fd[2] = open_perf_fd(PERF_TYPE_HW_CACHE, l1_loads);
-    p.fd[3] = open_perf_fd(PERF_TYPE_HW_CACHE, l1_misses);
+    p.fd[2] = open_perf_fd(PERF_TYPE_RAW, 0x0000200); /* INTEGER_LOAD_RETIRED */
+    p.fd[3] = open_perf_fd(PERF_TYPE_RAW, 0x0000202); /* DCACHE_MISS_MMIO_ACCESSES */
     p.fd[4] = open_perf_fd(PERF_TYPE_HARDWARE, PERF_COUNT_HW_BRANCH_MISSES);
+    p.fd[5] = open_perf_fd(PERF_TYPE_RAW, 0x0080000); /* FP_LOAD_RETIRED, summed into l1_loads below */
     return p;
 }
 
 static void perf_reset_enable(PerfFds *p) {
-    for (int _i = 0; _i < 5; _i++) {
+    for (int _i = 0; _i < 6; _i++) {
         if (p->fd[_i] >= 0) {
             ioctl(p->fd[_i], PERF_EVENT_IOC_RESET,  0);
             ioctl(p->fd[_i], PERF_EVENT_IOC_ENABLE, 0);
@@ -123,14 +130,18 @@ static void perf_reset_enable(PerfFds *p) {
 }
 
 static void perf_disable_read(PerfFds *p, uint64_t *out) {
-    for (int _i = 0; _i < 5; _i++) {
+    uint64_t raw[6] = {0};
+    for (int _i = 0; _i < 6; _i++) {
         if (p->fd[_i] >= 0) {
             ioctl(p->fd[_i], PERF_EVENT_IOC_DISABLE, 0);
-            read(p->fd[_i], &out[_i], sizeof(uint64_t));
-        } else {
-            out[_i] = 0;
+            read(p->fd[_i], &raw[_i], sizeof(uint64_t));
         }
     }
+    out[0] = raw[0];
+    out[1] = raw[1];
+    out[2] = raw[2] + raw[5]; /* l1_loads = integer + FP load retired */
+    out[3] = raw[3];
+    out[4] = raw[4];
 }
 
 int main(int argc, char *argv[]) {
