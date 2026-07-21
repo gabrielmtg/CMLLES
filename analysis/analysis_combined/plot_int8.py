@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from utils import (
-    load_latencies, setup_style, save,
+    load_latencies, setup_style, save, overlay_bar,
     COLORS, PLATFORM_ORDER, PLATFORM_LABEL, INT8_FRAMEWORKS_BY_PLATFORM,
 )
 
@@ -70,12 +70,63 @@ def plot_int8_speedup(df):
     plt.close(fig)
 
 
+def plot_int8_speedup_overlay(df):
+    """Same content as plot_int8_speedup, but instead of separate
+    per-platform subplots, both platforms are overlaid at the same x
+    position (see utils.overlay_bar). Only frameworks common to both
+    platforms (LiteRT, ONNX) have a value on both sides to overlay."""
+    fw_list = [f for f in INT8_FRAMEWORKS_BY_PLATFORM["RPi"]
+               if f != "CMSIS-NN" and f in INT8_FRAMEWORKS_BY_PLATFORM["RISC-V"]]
+    present_algos = [a for a in ALGO_ORDER if a in df["algorithm"].values]
+    if not fw_list or not present_algos:
+        return
+
+    n_algos = len(present_algos)
+    n_fw    = len(fw_list)
+    width   = 0.8 / n_fw
+    x_pos   = np.arange(n_algos)
+
+    fig, ax = plt.subplots(figsize=(7, 3.6))
+    ax.axhline(1.0, color="#888888", linewidth=0.8, linestyle="--")
+
+    for i, fw in enumerate(fw_list):
+        offset = (i - n_fw / 2 + 0.5) * width
+        for xi, algo in enumerate(present_algos):
+            speedups = {}
+            for platform in PLATFORM_ORDER:
+                sub = df[(df["platform"] == platform) & (df["framework"] == fw) & (df["algorithm"] == algo)]
+                m_f32  = sub[sub["precision"] == "f32"]["latency_us"].mean()
+                m_int8 = sub[sub["precision"] == "int8"]["latency_us"].mean()
+                speedups[platform] = m_f32 / m_int8 if (not np.isnan(m_f32) and not np.isnan(m_int8) and m_int8 > 0) else np.nan
+            overlay_bar(ax, x_pos[xi] + offset, speedups["RPi"], speedups["RISC-V"], COLORS[fw], size=width * 0.95)
+
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels([ALGO_LABEL[a] for a in present_algos])
+    ax.set_xlabel("Algorithm")
+    ax.set_ylabel("Speedup (F32 latency / INT8 latency)")
+    ax.set_title("INT8 speedup, RPi vs RISC-V overlaid")
+
+    fw_handles = [mpatches.Patch(facecolor=COLORS[f], label=f) for f in fw_list]
+    style_handles = [
+        mpatches.Patch(facecolor="#888888", alpha=0.35, label="Wide/translucent = larger value"),
+        mpatches.Patch(facecolor="#888888", alpha=1.0, hatch="///", label="Narrow/solid, hatched = RISC-V"),
+    ]
+    leg1 = ax.legend(handles=fw_handles, loc="upper left", fontsize=8, framealpha=0.9)
+    ax.add_artist(leg1)
+    ax.legend(handles=style_handles, loc="upper right", fontsize=7.5, framealpha=0.9)
+
+    fig.tight_layout()
+    save(fig, "int8_speedup_overlay.pdf")
+    plt.close(fig)
+
+
 def main():
     df = load_latencies()
     if df.empty:
         print("No latency CSV found in results/latencies_rpi/ or results/latencies_riscv/")
         return
     plot_int8_speedup(df)
+    plot_int8_speedup_overlay(df)
 
 
 if __name__ == "__main__":

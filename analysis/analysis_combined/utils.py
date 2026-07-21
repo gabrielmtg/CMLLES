@@ -1,4 +1,5 @@
 from pathlib import Path
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -294,6 +295,34 @@ def setup_style():
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
     })
+
+
+def overlay_bar(ax, pos, val_rpi, val_riscv, color, size=0.7, horizontal=False):
+    """Bar-in-bar overlay: the larger of the two platform values is drawn as
+    a wide, translucent bar; the smaller as a narrow, solid bar on top of
+    it, both centered at `pos`. Each platform keeps its own hatch
+    (PLATFORM_HATCH) regardless of which one ends up large/small, so hatch
+    still means "RISC-V" consistently across the figure - only alpha/width
+    encode which value is bigger."""
+    vals = {"RPi": val_rpi, "RISC-V": val_riscv}
+    present = {p: v for p, v in vals.items() if v is not None and not np.isnan(v)}
+    if not present:
+        return
+    order = sorted(present, key=lambda p: present[p], reverse=True)
+    for i, platform in enumerate(order):
+        v = present[platform]
+        w = size if i == 0 else size * 0.5
+        kwargs = dict(
+            color=color, alpha=(0.35 if i == 0 else 1.0),
+            hatch=PLATFORM_HATCH[platform],
+            edgecolor=("none" if i == 0 else "white"),
+            linewidth=(0 if i == 0 else 0.5),
+            zorder=2 + i,
+        )
+        if horizontal:
+            ax.barh(pos, v, height=w, **kwargs)
+        else:
+            ax.bar(pos, v, width=w, **kwargs)
 
 
 def save(fig, name):
