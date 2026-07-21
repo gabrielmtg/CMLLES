@@ -2,6 +2,7 @@ import os
 import json
 import time
 import struct
+import subprocess
 import numpy as np
 import torch
 import torch.nn as nn
@@ -10,6 +11,10 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import pyvww
 import pnnx
+
+_TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../ncnn/build/tools/quantize")
+_NCNN2TABLE = os.path.join(_TOOLS, "ncnn2table")
+_NCNN2INT8  = os.path.join(_TOOLS, "ncnn2int8")
 
 IMAGES_DIR = "../../../datasets/CNN-2D/coco/images/all2017"
 TRAIN_ANN  = "../../../datasets/CNN-2D/coco/annotations/instances_train.json"
@@ -160,6 +165,13 @@ for cfg_name, (model, img_size) in CONFIGS.items():
         if not (os.path.exists(ncnn_param) and os.path.exists(ncnn_bin)):
             raise
     print(f"  Exported {ncnn_param}")
+    if os.path.exists(_NCNN2TABLE):
+        table_path = ncnn_param.replace("_f32.ncnn.param", "_int8.table")
+        int8_param = ncnn_param.replace("_f32.ncnn.param", "_int8.ncnn.param")
+        int8_bin   = ncnn_bin.replace("_f32.ncnn.bin", "_int8.ncnn.bin")
+        subprocess.run([_NCNN2TABLE, ncnn_param, ncnn_bin, table_path, "method=aciq"], check=True)
+        subprocess.run([_NCNN2INT8, ncnn_param, ncnn_bin, int8_param, int8_bin, table_path], check=True)
+        print(f"  Quantized {int8_param}")
 
 with open(os.path.join(MODEL_DIR, "training_metrics.json"), "w") as f:
     json.dump(metrics, f, indent=2)
