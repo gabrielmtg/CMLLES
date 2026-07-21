@@ -1,0 +1,42 @@
+=== litert_mlp_large_relu_int8 ===
+./benchmark_mlp: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libtensorflowlite_c.so)
+=== litert_mlp_large_relu_int8 ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 711.21
+LATENCY_STD_US  17.42
+LATENCY_MIN_US  706.75
+LATENCY_MAX_US  1018.00
+LATENCY_P95_US  737.50
+LATENCY_P99_US  774.00
+ACCURACY_PCT    59.90
+TEST_SAMPLES    30
+=== litert_mlp_large_relu_int8 ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 712.00
+LATENCY_STD_US  23.35
+LATENCY_MIN_US  707.00
+LATENCY_MAX_US  1127.50
+LATENCY_P95_US  744.00
+LATENCY_P99_US  761.50
+ACCURACY_PCT    59.90
+TEST_SAMPLES    30
+=== litert_mlp_large_relu_int8 ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 711.72
+LATENCY_STD_US  21.53
+LATENCY_MIN_US  706.00
+LATENCY_MAX_US  1135.75
+LATENCY_P95_US  757.25
+LATENCY_P99_US  777.50
+ACCURACY_PCT    59.90
+TEST_SAMPLES    30
+=== litert_mlp_large_relu_int8 ===
+BENCH mlp_large_relu_int8
+LATENCY_MEAN_US 355.44
+LATENCY_STD_US  11.85
+LATENCY_MIN_US  353.25
+LATENCY_MAX_US  614.25
+LATENCY_P95_US  354.50
+LATENCY_P99_US  385.50
+ACCURACY_PCT    59.90
+TEST_SAMPLES    30

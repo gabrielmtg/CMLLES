@@ -1,0 +1,42 @@
+=== ncnn_iaes_large_sigmoid ===
+./benchmark_iaes: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by ./benchmark_iaes)
+=== ncnn_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 179.91
+LATENCY_STD_US  12.14
+LATENCY_MIN_US  177.75
+LATENCY_MAX_US  471.75
+LATENCY_P95_US  179.25
+LATENCY_P99_US  225.50
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000
+=== ncnn_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 89.95
+LATENCY_STD_US  12.46
+LATENCY_MIN_US  88.75
+LATENCY_MAX_US  426.25
+LATENCY_P95_US  89.25
+LATENCY_P99_US  108.00
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000
+=== ncnn_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 180.54
+LATENCY_STD_US  9.80
+LATENCY_MIN_US  178.75
+LATENCY_MAX_US  315.50
+LATENCY_P95_US  180.00
+LATENCY_P99_US  235.25
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000
+=== ncnn_iaes_large_sigmoid ===
+BENCH iaes_large_sigmoid_f32
+LATENCY_MEAN_US 89.48
+LATENCY_STD_US  3.82
+LATENCY_MIN_US  88.75
+LATENCY_MAX_US  155.00
+LATENCY_P95_US  89.50
+LATENCY_P99_US  90.75
+ACCURACY_PCT    97.60
+TEST_SAMPLES    1000

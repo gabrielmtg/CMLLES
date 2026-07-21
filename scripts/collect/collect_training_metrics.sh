@@ -9,6 +9,7 @@ OUTPUT="${RESULTS_DIR}/training_metrics_all.csv"
 printf "framework,algorithm,model,training_time_s,epochs,final_train_loss,final_test_accuracy_pct,test_samples,threshold\n" > "$OUTPUT"
 
 find . -path "./output_rpi_image" -prune -o \
+        -path "./output_rv_image" -prune -o \
         -path "*/benchmarks/*/model/training_metrics.json" -print | sort | while read -r f; do
     parts=$(echo "$f" | awk -F'/' '{print $2, $4}')
     framework=$(echo "$parts" | cut -d' ' -f1)

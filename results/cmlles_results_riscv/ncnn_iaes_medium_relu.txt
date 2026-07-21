@@ -1,0 +1,42 @@
+=== ncnn_iaes_medium_relu ===
+./benchmark_iaes: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by ./benchmark_iaes)
+=== ncnn_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 66.22
+LATENCY_STD_US  4.33
+LATENCY_MIN_US  65.00
+LATENCY_MAX_US  146.75
+LATENCY_P95_US  66.25
+LATENCY_P99_US  70.50
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== ncnn_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 69.31
+LATENCY_STD_US  5.49
+LATENCY_MIN_US  68.25
+LATENCY_MAX_US  181.50
+LATENCY_P95_US  69.25
+LATENCY_P99_US  75.00
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== ncnn_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 69.31
+LATENCY_STD_US  7.38
+LATENCY_MIN_US  68.00
+LATENCY_MAX_US  232.50
+LATENCY_P95_US  69.25
+LATENCY_P99_US  75.00
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== ncnn_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 68.73
+LATENCY_STD_US  4.89
+LATENCY_MIN_US  67.75
+LATENCY_MAX_US  169.00
+LATENCY_P95_US  68.75
+LATENCY_P99_US  72.00
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000

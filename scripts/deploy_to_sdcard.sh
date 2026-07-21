@@ -8,7 +8,7 @@ cd "$SCRIPT_DIR"
 source env.sh
 
 SD_DEVICE="${1:-/dev/sda}"
-WORK_IMG="${IMAGES_DIR}/cmlles-raspios.img"
+WORK_IMG="${2:-${IMAGES_DIR}/cmlles-raspios.img}"
 
 if [ ! -f "$WORK_IMG" ]; then
     echo "Erro: imagem não encontrada em ${WORK_IMG}"
@@ -53,5 +53,5 @@ sync
 echo ""
 echo "============================================================="
 echo " Pronto! SD card gravado com sucesso."
-echo " Remova o cartão e insira na Raspberry Pi 4B."
+echo " Remova o cartão e insira na placa de destino."
 echo "============================================================="

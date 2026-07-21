@@ -1,0 +1,55 @@
+=== onnx_cnn2d_intermediate ===
+./benchmark_cnn2d: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libonnxruntime.so.1)
+./benchmark_cnn2d: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libstdc++.so.6)
+=== onnx_cnn2d_intermediate ===
+[0;93m2023-03-01 11:11:47.800471250 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 11:11:47.800831250 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 11:11:47.800930000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH cnn_intermediate_f32
+LATENCY_MEAN_US 36214.77
+LATENCY_STD_US  9805.97
+LATENCY_MIN_US  32768.25
+LATENCY_MAX_US  68106.00
+LATENCY_P95_US  65964.50
+LATENCY_P99_US  66253.00
+ACCURACY_PCT    9.00
+TEST_SAMPLES    100
+=== onnx_cnn2d_intermediate ===
+[0;93m2023-03-01 12:18:02.251630750 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 12:18:02.252062000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 12:18:02.252150000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH cnn_intermediate_f32
+LATENCY_MEAN_US 35793.59
+LATENCY_STD_US  9735.92
+LATENCY_MIN_US  32426.75
+LATENCY_MAX_US  67642.75
+LATENCY_P95_US  65188.75
+LATENCY_P99_US  65688.50
+ACCURACY_PCT    9.00
+TEST_SAMPLES    100
+=== onnx_cnn2d_intermediate ===
+[0;93m2023-03-01 12:50:15.809357000 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 12:50:15.809821000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 12:50:15.809977000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH cnn_intermediate_f32
+LATENCY_MEAN_US 32634.89
+LATENCY_STD_US  621.31
+LATENCY_MIN_US  32389.25
+LATENCY_MAX_US  47718.50
+LATENCY_P95_US  32825.50
+LATENCY_P99_US  33910.75
+ACCURACY_PCT    9.00
+TEST_SAMPLES    100
+=== onnx_cnn2d_intermediate ===
+[0;93m2023-03-01 13:34:18.222250000 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 13:34:18.222590750 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 13:34:18.222688500 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH cnn_intermediate_f32
+LATENCY_MEAN_US 40472.71
+LATENCY_STD_US  13973.18
+LATENCY_MIN_US  32465.25
+LATENCY_MAX_US  67047.75
+LATENCY_P95_US  65526.00
+LATENCY_P99_US  66227.25
+ACCURACY_PCT    9.00
+TEST_SAMPLES    100

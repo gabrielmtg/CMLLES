@@ -1,0 +1,13 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR riscv64)
+
+set(CMAKE_C_COMPILER riscv64-buildroot-linux-gnu-gcc)
+set(CMAKE_CXX_COMPILER riscv64-buildroot-linux-gnu-g++)
+set(CMAKE_AR riscv64-buildroot-linux-gnu-ar)
+set(CMAKE_LINKER riscv64-buildroot-linux-gnu-ld)
+
+set(CMAKE_FIND_ROOT_PATH "$ENV{RV_STAGING_DIR}")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

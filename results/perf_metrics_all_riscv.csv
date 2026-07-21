@@ -1,0 +1,1 @@
+benchmark,cycles,instructions,ipc,cache_references,cache_misses,cache_miss_rate_pct,l1_dcache_loads,l1_dcache_load_misses,l1_miss_rate_pct,branch_misses,context_switches,elapsed_time_s

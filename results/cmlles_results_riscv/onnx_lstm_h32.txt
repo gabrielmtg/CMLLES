@@ -1,0 +1,55 @@
+=== onnx_lstm_h32 ===
+./benchmark_lstm: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libonnxruntime.so.1)
+./benchmark_lstm: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libstdc++.so.6)
+=== onnx_lstm_h32 ===
+[0;93m2023-03-01 11:21:57.309265000 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 11:21:57.309606000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 11:21:57.309715000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH lstm_h32_f32
+LATENCY_MEAN_US 684.84
+LATENCY_STD_US  6.91
+LATENCY_MIN_US  681.75
+LATENCY_MAX_US  824.50
+LATENCY_P95_US  700.75
+LATENCY_P99_US  709.50
+MAE_CYCLES      12.52
+TEST_SAMPLES    100
+=== onnx_lstm_h32 ===
+[0;93m2023-03-01 12:28:13.165864000 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 12:28:13.166288500 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 12:28:13.166377000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH lstm_h32_f32
+LATENCY_MEAN_US 679.68
+LATENCY_STD_US  21.52
+LATENCY_MIN_US  669.50
+LATENCY_MAX_US  947.25
+LATENCY_P95_US  715.50
+LATENCY_P99_US  779.25
+MAE_CYCLES      12.52
+TEST_SAMPLES    100
+=== onnx_lstm_h32 ===
+[0;93m2023-03-01 13:00:21.509187250 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 13:00:21.509534750 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 13:00:21.509636000 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH lstm_h32_f32
+LATENCY_MEAN_US 674.09
+LATENCY_STD_US  8.48
+LATENCY_MIN_US  669.50
+LATENCY_MAX_US  752.00
+LATENCY_P95_US  700.50
+LATENCY_P99_US  707.00
+MAE_CYCLES      12.52
+TEST_SAMPLES    100
+=== onnx_lstm_h32 ===
+[0;93m2023-03-01 13:44:30.379248750 [W:onnxruntime:bench, cpuid_info.cc:105 LogEarlyWarning] Unknown CPU vendor. cpuinfo_vendor value: 0[m
+[0;93m2023-03-01 13:44:30.379708500 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card1": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2023-03-01 13:44:30.379801250 [W:onnxruntime:bench, device_discovery.cc:285 GetGpuDevices] Failed to detect devices under "/sys/class/drm/card0": device_discovery.cc:94 ReadFileContents Failed to open file: "/sys/class/drm/card0/device/vendor"[m
+BENCH lstm_h32_f32
+LATENCY_MEAN_US 674.90
+LATENCY_STD_US  11.57
+LATENCY_MIN_US  668.50
+LATENCY_MAX_US  853.25
+LATENCY_P95_US  705.75
+LATENCY_P99_US  710.75
+MAE_CYCLES      12.52
+TEST_SAMPLES    100

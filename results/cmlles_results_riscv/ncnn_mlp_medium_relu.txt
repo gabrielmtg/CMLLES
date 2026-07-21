@@ -1,0 +1,42 @@
+=== ncnn_mlp_medium_relu ===
+./benchmark_mlp: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by ./benchmark_mlp)
+=== ncnn_mlp_medium_relu ===
+BENCH mlp_medium_relu_f32
+LATENCY_MEAN_US 66.60
+LATENCY_STD_US  14.23
+LATENCY_MIN_US  65.00
+LATENCY_MAX_US  461.75
+LATENCY_P95_US  66.00
+LATENCY_P99_US  93.00
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30
+=== ncnn_mlp_medium_relu ===
+BENCH mlp_medium_relu_f32
+LATENCY_MEAN_US 68.68
+LATENCY_STD_US  7.81
+LATENCY_MIN_US  67.50
+LATENCY_MAX_US  271.25
+LATENCY_P95_US  68.50
+LATENCY_P99_US  75.00
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30
+=== ncnn_mlp_medium_relu ===
+BENCH mlp_medium_relu_f32
+LATENCY_MEAN_US 68.64
+LATENCY_STD_US  8.84
+LATENCY_MIN_US  67.25
+LATENCY_MAX_US  280.75
+LATENCY_P95_US  68.25
+LATENCY_P99_US  88.75
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30
+=== ncnn_mlp_medium_relu ===
+BENCH mlp_medium_relu_f32
+LATENCY_MEAN_US 69.27
+LATENCY_STD_US  8.49
+LATENCY_MIN_US  67.50
+LATENCY_MAX_US  208.50
+LATENCY_P95_US  69.00
+LATENCY_P99_US  125.75
+ACCURACY_PCT    93.40
+TEST_SAMPLES    30

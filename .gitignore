@@ -1,7 +1,6 @@
 output_rpi_image/
 output_rt_image/
-
-onnxruntime-linux-aarch64-1.17.1/
+output_rv_image/
 
 datasets/*
 
@@ -59,3 +58,5 @@ a.out
 # Build artifacts dentro de submodulos
 NCNN/ncnn/build/
 FANN/fann/build/
+
+pessoal/

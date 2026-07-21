@@ -1,0 +1,42 @@
+=== litert_iaes_medium_relu ===
+./benchmark_iaes: /lib/riscv64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /lib/libtensorflowlite_c.so)
+=== litert_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 111.01
+LATENCY_STD_US  5.48
+LATENCY_MIN_US  109.75
+LATENCY_MAX_US  188.50
+LATENCY_P95_US  110.75
+LATENCY_P99_US  142.75
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== litert_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 113.47
+LATENCY_STD_US  17.44
+LATENCY_MIN_US  111.75
+LATENCY_MAX_US  621.75
+LATENCY_P95_US  112.75
+LATENCY_P99_US  149.25
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== litert_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 112.20
+LATENCY_STD_US  4.83
+LATENCY_MIN_US  111.00
+LATENCY_MAX_US  177.25
+LATENCY_P95_US  112.25
+LATENCY_P99_US  117.00
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
+=== litert_iaes_medium_relu ===
+BENCH iaes_medium_relu_f32
+LATENCY_MEAN_US 112.73
+LATENCY_STD_US  6.57
+LATENCY_MIN_US  111.50
+LATENCY_MAX_US  245.25
+LATENCY_P95_US  112.50
+LATENCY_P99_US  117.00
+ACCURACY_PCT    98.40
+TEST_SAMPLES    1000
