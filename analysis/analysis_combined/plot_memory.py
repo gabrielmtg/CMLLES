@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from utils import (
-    load_binary, setup_style, save, overlay_bar,
+    load_binary, setup_style, save, overlay_bar, platform_legend_handles,
     FRAMEWORK_ORDER, COLORS, PLATFORM_ORDER, PLATFORM_LABEL, PLATFORM_HATCH,
 )
 
@@ -61,20 +61,15 @@ def bar_footprint_summary(df):
             label = (f"{row.total_kb:,.0f} KB  "
                       f"(.text {row.text_kb:,.0f} / .data {row.data_kb:,.0f} / .bss {row.bss_kb:,.0f})")
             ax.text(row.total_kb * 1.08, y_pos[i] + offset, label,
-                    va="center", fontsize=10, color=HEADER_COLOR)
+                    va="center", fontsize=11, color=HEADER_COLOR)
 
     ax.set_xscale("log")
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(frameworks, fontsize=12)
-    ax.tick_params(axis="x", labelsize=10)
-    ax.set_xlabel("Static memory footprint, mean across algorithms (KB, log scale)", fontsize=12)
-    ax.set_title("Executable memory footprint by framework and platform", fontsize=13)
-    ax.set_xlim(right=max_total * 40)
+    ax.set_yticklabels(frameworks)
+    ax.set_xlabel("Static memory footprint, mean across algorithms (KB, log scale)")
+    ax.set_xlim(right=max_total * 6)
 
-    handles = [mpatches.Patch(facecolor="white", edgecolor="#444444",
-                               hatch=PLATFORM_HATCH[p], label=PLATFORM_LABEL[p])
-               for p in PLATFORM_ORDER]
-    ax.legend(handles=handles, loc="upper right", fontsize=11)
+    ax.legend(handles=platform_legend_handles(), loc="upper right")
 
     fig.tight_layout()
     save(fig, "memory_footprint.pdf")
@@ -84,9 +79,11 @@ def bar_footprint_summary(df):
 def bar_footprint_summary_overlay(df):
     """Same content as bar_footprint_summary, but platforms overlaid at the
     same y position instead of paired offset rows (see utils.overlay_bar).
-    Each bar keeps its total/.text/.data/.bss breakdown annotation, same
-    as bar_footprint_summary, stacked as two lines (RPi above, RISC-V
-    below) since both bars now share one row."""
+    Bars are drawn almost as thick as the row pitch itself, so adjacent
+    frameworks' bars sit right next to each other with barely any gap,
+    keeping the figure short on the y-axis. Each bar keeps its own
+    total/.text/.data/.bss annotation, stacked as two lines (RPi above,
+    RISC-V below), same style as bar_footprint_summary."""
     sub = df[df["algorithm"].isin(ALGO_ORDER) & df["framework"].isin(FRAMEWORK_ORDER)]
     if sub.empty:
         return
@@ -108,7 +105,7 @@ def bar_footprint_summary_overlay(df):
         reverse=True,
     )
 
-    fig, ax = plt.subplots(figsize=(12, 0.9 * len(frameworks) + 1.1))
+    fig, ax = plt.subplots(figsize=(12, 0.75 * len(frameworks) + 1.0))
     y_pos = np.arange(len(frameworks))
     text_offset = 0.16
 
@@ -118,30 +115,42 @@ def bar_footprint_summary_overlay(df):
         rv_row = agg[(agg["framework"] == fw) & (agg["platform"] == "RISC-V")]
         rpi_v = rpi_row["total_kb"].values[0] if not rpi_row.empty else np.nan
         rv_v = rv_row["total_kb"].values[0] if not rv_row.empty else np.nan
-        overlay_bar(ax, y_pos[i], rpi_v, rv_v, COLORS[fw], size=0.7, horizontal=True)
+        overlay_bar(ax, y_pos[i], rpi_v, rv_v, COLORS[fw], size=0.94, horizontal=True)
 
-        for row, plat, dy in ((rpi_row, "RPi", text_offset), (rv_row, "RISC-V", -text_offset)):
-            if row.empty:
-                continue
-            row = row.iloc[0]
-            label = (f"{plat}: {row.total_kb:,.0f} KB  "
-                      f"(.text {row.text_kb:,.0f} / .data {row.data_kb:,.0f} / .bss {row.bss_kb:,.0f})")
-            ax.text(row.total_kb * 1.08, y_pos[i] + dy, label,
-                    va="center", fontsize=9, color=HEADER_COLOR)
+        if fw == "NCNN" and not rpi_row.empty and not rv_row.empty:
+            rpi = rpi_row.iloc[0]
+            rv = rv_row.iloc[0]
+            text_x = rv.total_kb * 1.08
+            rpi_label = (f"RPi: {rpi.total_kb:,.0f} KB\n"
+                         f"(.text {rpi.text_kb:,.0f} / .data {rpi.data_kb:,.0f} / .bss {rpi.bss_kb:,.0f})")
+            rv_label = (f"RISC-V: {rv.total_kb:,.0f} KB\n"
+                        f"(.text {rv.text_kb:,.0f} / .data {rv.data_kb:,.0f} / .bss {rv.bss_kb:,.0f})")
+            ax.text(text_x, y_pos[i] + text_offset + 0.14, rpi_label,
+                    va="center", fontsize=10, color=HEADER_COLOR)
+            ax.text(text_x, y_pos[i] - text_offset - 0.14, rv_label,
+                    va="center", fontsize=10, color=HEADER_COLOR)
+        else:
+            for row, plat, dy in ((rpi_row, "RPi", text_offset), (rv_row, "RISC-V", -text_offset)):
+                if row.empty:
+                    continue
+                row = row.iloc[0]
+                label = (f"{plat}: {row.total_kb:,.0f} KB  "
+                          f"(.text {row.text_kb:,.0f} / .data {row.data_kb:,.0f} / .bss {row.bss_kb:,.0f})")
+                ax.text(row.total_kb * 1.08, y_pos[i] + dy, label,
+                        va="center", fontsize=10, color=HEADER_COLOR)
 
     ax.set_xscale("log")
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(frameworks, fontsize=12)
-    ax.tick_params(axis="x", labelsize=10)
-    ax.set_xlabel("Static memory footprint, mean across algorithms (KB, log scale)", fontsize=12)
-    ax.set_title("Memory footprint, RPi vs RISC-V overlaid", fontsize=13)
-    ax.set_xlim(right=max_total * 40)
+    ax.set_yticklabels(frameworks, fontsize=14)
+    ax.set_xlabel("Static memory footprint, mean across algorithms (KB, log scale)")
+    ax.set_xlim(right=max_total * 4)
+    # Headroom above the top row (same trick as the other overlay charts)
+    # so the legend fits inside the axes, clear of the FANN row's text,
+    # without pushing the whole plot off-center the way bbox_to_anchor > 1
+    # did (that expands the saved bbox on one side only).
+    ax.set_ylim(bottom=-0.58, top=len(frameworks) - 1 + 0.58)
 
-    style_handles = [
-        mpatches.Patch(facecolor="#888888", alpha=0.35, label="Wide/translucent = larger value"),
-        mpatches.Patch(facecolor="#888888", alpha=1.0, hatch="///", label="Narrow/solid, hatched = RISC-V"),
-    ]
-    ax.legend(handles=style_handles, loc="upper right", fontsize=10)
+    ax.legend(handles=platform_legend_handles(), loc="upper right", fontsize=8)
 
     fig.tight_layout()
     save(fig, "memory_footprint_overlay.pdf")

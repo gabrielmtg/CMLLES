@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from utils import (
+from analysis.analysis_riscv.utils import (
     load_latencies, load_perf, setup_style, save,
     INT8_FRAMEWORKS, COLORS, HATCHES,
     SIZE_ORDER, SIZE_LABEL, HIDDEN_ORDER, HIDDEN_LABEL, CNN_ORDER, CNN_LABEL,

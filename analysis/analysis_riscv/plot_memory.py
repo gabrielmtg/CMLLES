@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from utils import load_binary, setup_style, save, FRAMEWORK_ORDER, COLORS
+from analysis.analysis_riscv.utils import load_binary, setup_style, save, FRAMEWORK_ORDER, COLORS
 
 setup_style()
 
